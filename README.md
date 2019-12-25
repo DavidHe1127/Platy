@@ -18,9 +18,10 @@ Responsibilities:
 
 
 ## How to kickstart
-First, run `yarn build` from inside `frontend` folder which results in `build` directory including production-ready artifacts.
+First, install dependencies for `frontend` and `express` respectively.
+Then, run `yarn build` from inside `frontend` folder which results in `build` directory including production-ready artifacts.
 
-Run `docker-compose up` from project root and navigate to `http://localhost:4000` in your browser once containers are up and running.
+Lastly, run `docker-compose up` from project root and navigate to `http://localhost:4000` in your browser once containers are up and running.
 
 ## TODOs
 - Add routes using react-router and ensure a page reload on a given path will load `index.html` correctly.
