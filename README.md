@@ -25,6 +25,7 @@ Lastly, run `docker-compose up` from project root and navigate to `http://localh
 ## TODOs
 - Add routes using react-router and ensure a page reload on a given path will load `index.html` correctly.
 - Incorporate ElasticCache and RDS and deploy the whole stack onto ECS
+- Add https support
 
 ## Reference links
 [url rewrite in reverse proxy](https://serverfault.com/questions/379675/nginx-reverse-proxy-url-rewrite)
