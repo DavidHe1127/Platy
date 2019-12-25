@@ -18,6 +18,8 @@ Responsibilities:
 
 
 ## How to kickstart
+First, run `yarn build` from inside `frontend` folder which results in `build` directory including production-ready artifacts.
+
 Run `docker-compose up` from project root and navigate to `http://localhost:4000` in your browser once containers are up and running.
 
 ## TODOs
