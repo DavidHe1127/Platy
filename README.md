@@ -16,7 +16,6 @@ Responsibilities:
 - nginx - reverse proxy + static assets serving
 - express - api server
 
-
 ## How to kickstart
 First, install dependencies for `frontend` and `express` respectively.
 Then, run `yarn build` from inside `frontend` folder which results in `build` directory including production-ready artifacts.
@@ -26,3 +25,7 @@ Lastly, run `docker-compose up` from project root and navigate to `http://localh
 ## TODOs
 - Add routes using react-router and ensure a page reload on a given path will load `index.html` correctly.
 - Incorporate ElasticCache and RDS and deploy the whole stack onto ECS
+
+## Reference links
+[url rewrite in reverse proxy](https://serverfault.com/questions/379675/nginx-reverse-proxy-url-rewrite)
+
