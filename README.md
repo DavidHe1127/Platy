@@ -25,6 +25,7 @@ Lastly, run `docker-compose up` from project root and navigate to `http://localh
 ## TODOs
 - Incorporate ElasticCache and RDS and deploy the whole stack onto ECS
 - Add https support
+- Use makefile as task runner for build/deploy
 
 ## Reference links
 [url rewrite in reverse proxy](https://serverfault.com/questions/379675/nginx-reverse-proxy-url-rewrite)
