@@ -23,7 +23,6 @@ Then, run `yarn build` from inside `frontend` folder which results in `build` di
 Lastly, run `docker-compose up` from project root and navigate to `http://localhost:4000` in your browser once containers are up and running.
 
 ## TODOs
-- Add routes using react-router and ensure a page reload on a given path will load `index.html` correctly.
 - Incorporate ElasticCache and RDS and deploy the whole stack onto ECS
 - Add https support
 
