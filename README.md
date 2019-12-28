@@ -23,9 +23,9 @@ Then, run `yarn build` from inside `frontend` folder which results in `build` di
 Lastly, run `docker-compose up` from project root and navigate to `http://localhost:4000` in your browser once containers are up and running.
 
 ## TODOs
-- Incorporate ElasticCache and RDS and deploy the whole stack onto ECS
 - Add https support
-- Use makefile as task runner for build/deploy
+- Use terraform for resources provisioning
+- Incorporate ElasticCache and RDS and deploy the whole stack onto ECS
 
 ## Reference links
 [url rewrite in reverse proxy](https://serverfault.com/questions/379675/nginx-reverse-proxy-url-rewrite)
