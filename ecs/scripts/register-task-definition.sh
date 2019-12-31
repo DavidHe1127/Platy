@@ -7,4 +7,4 @@ task_definition="${1:-web}"
 
 aws ecs register-task-definition \
   --cli-input-json file://"$APPLICATION_PATH"/ecs/"$task_definition"-task-definition.json \
-  --tags key=datetime,value=$(date +%Y-%m-%d\ %H:%M:%S)
+  --tags key=datetime,value="$(date +%Y-%m-%d\ %H:%M:%S)"
