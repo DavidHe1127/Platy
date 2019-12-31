@@ -1,10 +1,11 @@
-#!bin/bash
+#!/bin/bash
 
 set -xe
 
-function let_us_do_it() {
+if [ "$NODE_ENV" == "production" ]; then
   INSTANCE_ID=$(curl http://169.254.169.254/latest/meta-data/public-hostname)
-  node start.js
-}
+  node server
+else
+  node server
+fi
 
-let_us_do_it

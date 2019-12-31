@@ -35,7 +35,7 @@ app.get('/health_check', (req, res) => {
 
 app.get('/greetings', (req, res) => {
   res.status(200).json({
-    msg: 'Merry xmas!!!'
+    msg: 'Merry xmas!!!' + process.env.INSTANCE_ID
   });
 });
 

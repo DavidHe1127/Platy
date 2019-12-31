@@ -23,6 +23,4 @@ EXPOSE 8000
 
 VOLUME ["$INSTALL_PATH/public"]
 
-# CMD ["./start.sh"]
-
-CMD ["node", "server.js"]
+CMD ["./start.sh"]

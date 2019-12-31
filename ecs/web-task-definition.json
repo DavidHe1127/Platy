@@ -31,7 +31,7 @@
       "memory": 300,
       "environment": [
         {
-          "name": "RAILS_ENV",
+          "name": "NODE_ENV",
           "value": "production"
         },
         {
