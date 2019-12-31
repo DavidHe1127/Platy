@@ -16,7 +16,7 @@ export NGINX_IMAGE=dockerzon-ecs_nginx
 
 prepare-n-push-image:
 	echo "Build, tag and push images to your registry"
-	./scripts/build-n-push-image.sh
+	./scripts/prepare-n-push-image.sh
 
 register-task-definition:
 	echo "Register (t)ask definition"
