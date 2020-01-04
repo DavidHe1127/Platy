@@ -57,7 +57,7 @@ resource "aws_route_table" "dockerzon-ecs-vpc-public-route" {
   }
 
   route {
-    cidr_block = "::/0"
+    ipv6_cidr_block = "::/0"
     gateway_id = aws_internet_gateway.dockerzon-ecs-vpc-igw.id
   }
 
