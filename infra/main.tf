@@ -18,10 +18,10 @@ resource "aws_subnet" "public-subnet" {
 resource "aws_subnet" "private-subnet" {
   vpc_id            = aws_vpc.dockerzon-ecs-vpc.id
   cidr_block        = "10.0.2.0/24"
-  availability_zone = "ap-southeast-2b"
+  availability_zone = "ap-southeast-2a"
 
   tags = {
-    Name = "10.0.2.0/ap-southeast-2b"
+    Name = "10.0.2.0/ap-southeast-2a"
   }
 }
 
@@ -30,8 +30,9 @@ resource "aws_vpc" "dockerzon-ecs-vpc" {
   cidr_block = "10.0.0.0/16"
 
   tags = {
-    env = "dev"
-    app = "dockerzon-ecs"
+    env  = "dev"
+    app  = "dockerzon-ecs"
+    Name = "dockerzon-ecs-vpc"
   }
 
 }
