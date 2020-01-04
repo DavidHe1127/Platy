@@ -41,7 +41,7 @@ resource "aws_internet_gateway" "dockerzon-ecs-vpc-igw" {
   vpc_id = aws_vpc.dockerzon-ecs-vpc.id
 
   tags = {
-    name = "dockerzon-ecs-vpc-igw"
+    Name = "dockerzon-ecs-vpc-igw"
   }
 }
 
@@ -58,11 +58,11 @@ resource "aws_route_table" "dockerzon-ecs-vpc-public-route" {
 
   route {
     ipv6_cidr_block = "::/0"
-    gateway_id = aws_internet_gateway.dockerzon-ecs-vpc-igw.id
+    gateway_id      = aws_internet_gateway.dockerzon-ecs-vpc-igw.id
   }
 
   tags = {
-    name = "dockerzon-ecs-vpc-public-route"
+    Name = "dockerzon-ecs-vpc-public-route"
   }
 }
 
