@@ -1,3 +1,4 @@
+# this file creates VPC and 2 subnets with one being public and one being private
 provider "aws" {
   profile = "qq"
   region  = "ap-southeast-2"
