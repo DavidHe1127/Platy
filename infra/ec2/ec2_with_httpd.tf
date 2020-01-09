@@ -1,4 +1,3 @@
-# 8:45 for alb on aws cert course
 provider "aws" {
   profile = "qq"
   region  = "ap-southeast-2"
