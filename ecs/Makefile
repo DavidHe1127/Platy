@@ -1,6 +1,5 @@
 # Use tab as indentations
 
-# set value only if it's not set
 export BUILD=latest
 export CLUSTER=production
 

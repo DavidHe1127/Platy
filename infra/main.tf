@@ -4,6 +4,12 @@ provider "aws" {
   region  = "ap-southeast-2"
 }
 
+module "alb" {
+  source = "./alb"
+
+  vpc_tag_name = var.vpc_tag_name
+}
+
 # subnets
 resource "aws_subnet" "public-subnet" {
   vpc_id                  = aws_vpc.dockerzon-ecs-vpc.id

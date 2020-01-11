@@ -1,19 +1,13 @@
 # alb lab 10:33
-variable "vpc_tag_name" {}
-
 data "aws_vpc" "dockerzon-ecs-vpc" {
   tags = {
-    Name = "${var.vpc_tag_name}"
+    Name = var.vpc_tag_name
   }
-}
-
-provider "aws" {
-  profile = "qq"
-  region  = "ap-southeast-2"
 }
 
 resource "aws_lb_target_group" "dockerzon-ecs-target-group" {
   target_type = "instance"
+  name        = var.vpc_tag_name
 
   port     = 80
   protocol = "HTTP"

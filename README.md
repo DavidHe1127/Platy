@@ -22,9 +22,16 @@ Then, run `yarn build` from inside `frontend` folder which results in `build` di
 
 Lastly, run `docker-compose up` from project root and navigate to `http://localhost:4000` in your browser once containers are up and running.
 
+## Provision resources
+We use terraform for this. See example below:
+
+```shell
+# from infra folder
+$ terraform apply -var-file="dev.tfvars"
+```
+
 ## TODOs
 - Add https support
-- Use terraform for resources provisioning
 - Incorporate ElasticCache and RDS and deploy the whole stack onto ECS
 
 ## Reference links
