@@ -10,6 +10,21 @@ module "alb" {
   vpc_tag_name = var.vpc_tag_name
 }
 
+module "instances-sg" {
+  source = "./ec2-sg"
+
+  vpc_id = aws_vpc.dockerzon-ecs-vpc.id
+}
+
+module "instances" {
+  source = "./ec2"
+
+  instance_count  = 2
+  names           = ["dockerzon-ecs-web01", "dockerzon-ecs-web02"]
+  subnets         = [aws_subnet.private-subnet.id, aws_subnet.private-subnet.id]
+  security_groups = [module.instances-sg.id]
+}
+
 # subnets
 resource "aws_subnet" "public-subnet" {
   vpc_id                  = aws_vpc.dockerzon-ecs-vpc.id
