@@ -1,13 +1,19 @@
-# this file creates VPC and 2 subnets with one being public and one being private
+# for vpc/subnets
 provider "aws" {
   profile = "qq"
   region  = "ap-southeast-2"
 }
 
+# modules
 module "alb" {
   source = "./alb"
 
-  vpc_tag_name = var.vpc_tag_name
+  vpc_id          = aws_vpc.dockerzon-ecs-vpc.id
+  vpc_name        = var.vpc_tag_name
+  public_subnets  = [aws_subnet.public-subnet-2a, aws_subnet.public-subnet-2b]
+  security_groups = [module.instances-sg.id]
+  target_count    = 2
+  target_arns     = []
 }
 
 module "instances-sg" {
@@ -101,34 +107,12 @@ resource "aws_route_table" "dockerzon-ecs-vpc-public-route" {
 }
 
 # Route Table association
-resource "aws_route_table_association" "dockerzon-ecs-vpc-route-table" {
-  subnet_id      = aws_subnet.public-subnet.id
+resource "aws_route_table_association" "public-subnet-2a-route-link" {
+  subnet_id      = aws_subnet.public-subnet-2a.id
   route_table_id = aws_route_table.dockerzon-ecs-vpc-public-route.id
 }
 
-
-# --------------------------------------------------
-# with vpc module, it creates IGW for you when specifying public subnet
-# Hide required components under the hood not good for me being familiar with VPC
-# use native aws_vpc until you master it.
-
-# module "vpc" {
-#   source = "terraform-aws-modules/vpc/aws"
-
-#   name = "dockerzon-ecs-vpc"
-#   cidr = "10.0.0.0/16"
-
-#   enable_ipv6 = true
-
-#   azs             = ["ap-southeast-2a", "ap-southeast-2b", "ap-southeast-2c"]
-#   # public_subnets  = ["10.0.1.0/24"]
-#   # private_subnets = ["10.0.2.0/24"]
-
-#   # enable_nat_gateway = true
-#   # enable_vpn_gateway = true
-
-#   tags = {
-#     Terraform   = "true"
-#     Environment = "dev"
-#   }
-# }
+resource "aws_route_table_association" "public-subnet-2b-route-link" {
+  subnet_id      = aws_subnet.public-subnet-2b.id
+  route_table_id = aws_route_table.dockerzon-ecs-vpc-public-route.id
+}
