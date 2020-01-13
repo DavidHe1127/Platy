@@ -29,8 +29,6 @@ resource "aws_lb" "dockerzon-ecs-alb" {
   subnets         = var.public_subnets
   security_groups = var.security_groups
 
-  enable_deletion_protection = true
-
   tags = {
     Name = "dockerzon-ecs-alb"
   }
@@ -43,13 +41,13 @@ resource "aws_lb_listener" "dockerzon-ecs-alb-listner" {
 
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.dockerzon-ecs-target-group
+    target_group_arn = aws_lb_target_group.dockerzon-ecs-target-group.arn
   }
 }
 
 resource "aws_lb_target_group_attachment" "dockerzon-ecs-alb-tg-attachment" {
   count            = var.target_count
-  target_group_arn = aws_lb_target_group.dockerzon-ecs-target-group
+  target_group_arn = aws_lb_target_group.dockerzon-ecs-target-group.arn
   port             = 80
-  target_id        = element(var.target_arns, count.index)
+  target_id        = element(var.target_ids, count.index)
 }

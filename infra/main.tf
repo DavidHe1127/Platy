@@ -4,18 +4,6 @@ provider "aws" {
   region  = "ap-southeast-2"
 }
 
-# modules
-module "alb" {
-  source = "./alb"
-
-  vpc_id          = aws_vpc.dockerzon-ecs-vpc.id
-  vpc_name        = var.vpc_tag_name
-  public_subnets  = [aws_subnet.public-subnet-2a, aws_subnet.public-subnet-2b]
-  security_groups = [module.instances-sg.id]
-  target_count    = 2
-  target_arns     = []
-}
-
 module "instances-sg" {
   source = "./ec2-sg"
 
@@ -27,8 +15,20 @@ module "instances" {
 
   instance_count  = 2
   names           = ["dockerzon-ecs-web01", "dockerzon-ecs-web02"]
-  subnets         = [aws_subnet.private-subnet.id, aws_subnet.private-subnet.id]
+  subnets         = [aws_subnet.private-subnet-2a.id, aws_subnet.private-subnet-2b.id]
   security_groups = [module.instances-sg.id]
+}
+
+# modules
+module "alb" {
+  source = "./alb"
+
+  vpc_id          = aws_vpc.dockerzon-ecs-vpc.id
+  vpc_name        = var.vpc_tag_name
+  public_subnets  = [aws_subnet.public-subnet-2a.id, aws_subnet.public-subnet-2b.id]
+  security_groups = [module.instances-sg.id]
+  target_count    = 2
+  target_ids      = module.instances.instance_ids
 }
 
 # subnets
@@ -54,13 +54,23 @@ resource "aws_subnet" "public-subnet-2b" {
   }
 }
 
-resource "aws_subnet" "private-subnet" {
+resource "aws_subnet" "private-subnet-2a" {
   vpc_id            = aws_vpc.dockerzon-ecs-vpc.id
-  cidr_block        = "10.0.2.0/24"
+  cidr_block        = "10.0.5.0/24"
   availability_zone = "ap-southeast-2a"
 
   tags = {
-    Name = "10.0.2.0/ap-southeast-2a"
+    Name = "10.0.5.0/ap-southeast-2a"
+  }
+}
+
+resource "aws_subnet" "private-subnet-2b" {
+  vpc_id            = aws_vpc.dockerzon-ecs-vpc.id
+  cidr_block        = "10.0.4.0/24"
+  availability_zone = "ap-southeast-2b"
+
+  tags = {
+    Name = "10.0.4.0/ap-southeast-2b"
   }
 }
 

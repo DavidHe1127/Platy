@@ -1,4 +1,4 @@
 # * splat operator
-output "ec2_id" {
-  value = aws_instance.web.*.arn
+output "instance_ids" {
+  value = aws_instance.web[*].id
 }

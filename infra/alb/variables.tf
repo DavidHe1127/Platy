@@ -24,8 +24,8 @@ variable "target_count" {
   description = "Target length"
 }
 
-variable "target_arns" {
+variable "target_ids" {
   type        = list
-  description = "List of target arn"
+  description = "List of target ids"
 }
 
