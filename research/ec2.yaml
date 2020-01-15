@@ -1,0 +1,62 @@
+AWSTemplateFormatVersion: '2010-09-09'
+
+#Parameters
+Parameters:
+  KeyName:
+    Description: Name of an existing EC2 KeyPair to enable SSH access to the instance
+    Type: AWS::EC2::KeyPair::KeyName
+    ConstraintDescription: must be the name of an existing EC2 KeyPair.
+  AMI:
+    Type: 'String'
+    Default: 'ami-0b8b10b5bf11f3a22'
+#Resources
+Resources:
+  EC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.micro
+      SecurityGroups: [!Ref InstanceSecurityGroup]
+      KeyName: !Ref KeyName
+      ImageId: !Ref AMI
+      UserData:
+        # | in yml means value should be interpreted as a multi-line scalar value. so no need for \n
+        Fn::Base64: !Sub |
+          #!/bin/bash -xe
+          yum update -y
+          yum install httpd -y
+          service httpd start
+          chkconfig httpd on
+          cd /var/www/html
+          echo "<html><h1>This ec2 comes with apache installed via user data</h1></html>" > index.html
+      Tags:
+        - Key: Name
+          Value: ec2 with apache installed via user data
+  InstanceSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Enable http and ssh access
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          Description: Allow ssh
+          FromPort: 22
+          ToPort: 22
+          CidrIp: '0.0.0.0/0'
+        - IpProtocol: tcp
+          Description: Allow http
+          FromPort: 80
+          ToPort: 80
+          CidrIp: '0.0.0.0/0'
+#Outputs
+Outputs:
+  InstanceId:
+    Description: InstanceId of the newly created EC2 instance
+    Value: !Ref 'EC2Instance'
+  AZ:
+    Description: Availability Zone of the newly created EC2 instance
+    Value: !GetAtt [EC2Instance, AvailabilityZone]
+  PublicDNS:
+    Description: Public DNSName of the newly created EC2 instance
+    Value: !GetAtt [EC2Instance, PublicDnsName]
+  PublicIP:
+    Description: Public IP address of the newly created EC2 instance
+    Value: !GetAtt [EC2Instance, PublicIp]
