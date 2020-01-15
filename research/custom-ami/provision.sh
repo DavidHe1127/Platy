@@ -1,6 +1,6 @@
 #!/bin/bash
 
 aws cloudformation create-stack \
-    --stack-name basic-ec2 \
-    --template-body file://ec2.yaml \
+    --stack-name custom-ami \
+    --template-body file://main.yaml \
     --parameters file://params.json
