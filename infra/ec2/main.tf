@@ -1,8 +1,8 @@
 resource "aws_instance" "web" {
-  ami           = "ami-0119aa4d67e59007c"
-  instance_type = "t2.micro"
-  key_name      = "test-terraform-vpc-provisioning"
-  user_data     = templatefile("ec2/install_apache.sh", { server = "0${var.instance_count}" })
+  ami             = var.ami
+  instance_type   = "t2.micro"
+  key_name        = "test-terraform-vpc-provisioning"
+  user_data       = templatefile("ec2/install_apache.sh", { server = "0${var.instance_count}" })
   security_groups = var.security_groups
 
   count     = var.instance_count

@@ -17,3 +17,9 @@ variable "security_groups" {
   type        = list
   description = "Instance security groups"
 }
+
+variable "ami" {
+  type        = string
+  description = "ami id"
+}
+

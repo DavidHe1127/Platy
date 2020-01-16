@@ -17,6 +17,7 @@ module "instances" {
   names           = ["dockerzon-ecs-web01", "dockerzon-ecs-web02"]
   subnets         = [aws_subnet.private-subnet-2a.id, aws_subnet.private-subnet-2b.id]
   security_groups = [module.instances-sg.id]
+  ami             = var.ami
 }
 
 # modules
