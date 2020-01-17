@@ -13,13 +13,20 @@ variable "instance_count" {
   description = "Instance count"
 }
 
-variable "security_groups" {
-  type        = list
-  description = "Instance security groups"
-}
-
 variable "ami" {
   type        = string
   description = "ami id"
 }
+
+variable "vpc_id" {
+  type        = string
+  description = "vpc id"
+}
+
+variable "alb_sg_id" {
+  type        = string
+  description = "alb sg id"
+}
+
+
 
