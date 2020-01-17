@@ -1,4 +1,5 @@
 resource "aws_security_group" "app-instance-sg" {
+  name        = "app-instance-sg-terraform"
   description = "Flow traffic to alb"
   vpc_id      = var.vpc_id
 

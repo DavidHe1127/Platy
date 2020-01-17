@@ -22,12 +22,13 @@ Resources:
         # | in yml means value should be interpreted as a multi-line scalar value. so no need for \n
         Fn::Base64: !Sub |
           #!/bin/bash -xe
+          IP=$(curl http://169.254.169.254/latest/meta-data/local-ipv4)
           yum update -y
           yum install httpd -y
           service httpd start
           chkconfig httpd on
           cd /var/www/html
-          echo "<html><h1>This ec2 comes with apache installed via user data</h1></html>" > index.html
+          echo "<html><h1>EC2 instance($IP) selected by load balancer served your request</h1></html>" > index.html
       Tags:
         - Key: Name
           Value: ec2 with apache installed via user data

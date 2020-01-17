@@ -1,4 +1,4 @@
 # var input values
 vpc_tag_name = "dockerzon-ecs-vpc"
-ami          = "ami-083ec19169338e7a8"
+ami          = "ami-086be9e7a208dad05"
 app_name     = "dockerzon"
