@@ -8,7 +8,7 @@ module "instances" {
   source = "./ec2"
 
   instance_count = 2
-  names          = ["dockerzon-ecs-web01", "dockerzon-ecs-web02"]
+  name           = var.app_name
   subnets        = [aws_subnet.private-subnet-2a.id, aws_subnet.private-subnet-2b.id]
   ami            = var.ami
   vpc_id         = aws_vpc.dockerzon-ecs-vpc.id

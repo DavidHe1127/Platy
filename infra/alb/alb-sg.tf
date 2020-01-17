@@ -1,6 +1,6 @@
-resource "aws_security_group" "dockerzon-alb-sg" {
-  name        = "dockerzon-alb-sg"
-  description = "Dockerzon alb sg"
+resource "aws_security_group" "dockerzon-lb-sg" {
+  name        = "dockerzon-lb-sg"
+  description = "Dockerzon load balancer security group"
   vpc_id      = var.vpc_id
 
   ingress {

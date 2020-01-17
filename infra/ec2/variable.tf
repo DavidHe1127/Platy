@@ -1,11 +1,11 @@
-variable "names" {
-  type        = list
-  description = "Instance(s) names set by tag"
+variable "name" {
+  type        = string
+  description = "instance name"
 }
 
 variable "subnets" {
   type        = list
-  description = "Instance subnet id"
+  description = "instance subnet id"
 }
 
 variable "instance_count" {

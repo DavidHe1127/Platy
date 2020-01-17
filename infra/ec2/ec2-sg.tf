@@ -1,6 +1,5 @@
-resource "aws_security_group" "terraform-web-sg" {
-  name        = "terraform-web-sg"
-  description = "Terraform experiment"
+resource "aws_security_group" "app-instance-sg" {
+  description = "Flow traffic to alb"
   vpc_id      = var.vpc_id
 
   # ingress {
@@ -34,11 +33,14 @@ resource "aws_security_group" "terraform-web-sg" {
   # }
 
   ingress {
-    from_port       = 0
-    to_port         = 0
-    protocol        = "-1"
+    from_port = 0
+    to_port   = 0
+    protocol  = "-1"
     # cidr_blocks     = ["0.0.0.0/0"]
     security_groups = [var.alb_sg_id]
   }
 
+  tags = {
+    Name = "app-instance-sg-terraform"
+  }
 }

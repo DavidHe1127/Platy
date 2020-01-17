@@ -16,7 +16,7 @@ variable "public_subnets" {
 
 variable "target_count" {
   type        = number
-  description = "Target length"
+  description = "The number of targets to be registered"
 }
 
 variable "target_ids" {

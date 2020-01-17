@@ -8,3 +8,8 @@ variable "ami" {
   type        = string
   description = "custom ami with apache pre-installed"
 }
+
+variable "app_name" {
+  type        = string
+  description = "app name"
+}

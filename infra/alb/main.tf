@@ -1,6 +1,6 @@
-resource "aws_lb_target_group" "dockerzon-ecs-target-group" {
+resource "aws_lb_target_group" "dockerzon-lb-tg" {
   target_type = "instance"
-  name        = "dockerzon-ecs-lb-tg"
+  name        = "dockerzon-lb-tg"
 
   port     = 80
   protocol = "HTTP"
@@ -16,38 +16,40 @@ resource "aws_lb_target_group" "dockerzon-ecs-target-group" {
   }
 
   tags = {
-    Name = "dockerzon-ecs"
+    Name = "dockerzon-lb-tg-terraform"
   }
 }
 
-resource "aws_lb" "dockerzon-ecs-alb" {
-  name               = "dockerzon-ecs-alb"
+# alb
+resource "aws_lb" "dockerzon-lb" {
   internal           = false
   load_balancer_type = "application"
   ip_address_type    = "ipv4"
 
   subnets         = var.public_subnets
-  security_groups = [aws_security_group.dockerzon-alb-sg.id]
+  security_groups = [aws_security_group.dockerzon-lb-sg.id]
 
   tags = {
-    Name = "dockerzon-ecs-alb"
+    Name = "dockerzon-lb-terraform"
   }
 }
 
-resource "aws_lb_listener" "dockerzon-ecs-alb-listner" {
-  load_balancer_arn = aws_lb.dockerzon-ecs-alb.arn
+# alb listener
+resource "aws_lb_listener" "dockerzon-lb-listner" {
+  load_balancer_arn = aws_lb.dockerzon-lb.arn
   port              = 80
   protocol          = "HTTP"
 
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.dockerzon-ecs-target-group.arn
+    target_group_arn = aws_lb_target_group.dockerzon-lb-tg.arn
   }
 }
 
-resource "aws_lb_target_group_attachment" "dockerzon-ecs-alb-tg-attachment" {
+# attach targets to target group
+resource "aws_lb_target_group_attachment" "dockerzon-lb-tg-attachment" {
   count            = var.target_count
-  target_group_arn = aws_lb_target_group.dockerzon-ecs-target-group.arn
+  target_group_arn = aws_lb_target_group.dockerzon-lb-tg.arn
   port             = 80
   target_id        = element(var.target_ids, count.index)
 }
