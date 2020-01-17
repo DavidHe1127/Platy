@@ -22,6 +22,7 @@ resource "aws_lb_target_group" "dockerzon-lb-tg" {
 
 # alb
 resource "aws_lb" "dockerzon-lb" {
+  name               = "dockerzon-lb-terraform"
   internal           = false
   load_balancer_type = "application"
   ip_address_type    = "ipv4"
