@@ -4,10 +4,17 @@ provider "aws" {
   region  = "ap-southeast-2"
 }
 
+terraform {
+  backend "local" {
+    path = "./terraform.tfstate"
+  }
+}
+
 module "instances-sg" {
   source = "./ec2-sg"
 
-  vpc_id = aws_vpc.dockerzon-ecs-vpc.id
+  vpc_id    = aws_vpc.dockerzon-ecs-vpc.id
+  alb_sg_id = module.alb.sg_id
 }
 
 module "instances" {
@@ -24,12 +31,11 @@ module "instances" {
 module "alb" {
   source = "./alb"
 
-  vpc_id          = aws_vpc.dockerzon-ecs-vpc.id
-  vpc_name        = var.vpc_tag_name
-  public_subnets  = [aws_subnet.public-subnet-2a.id, aws_subnet.public-subnet-2b.id]
-  security_groups = [module.instances-sg.id]
-  target_count    = 2
-  target_ids      = module.instances.instance_ids
+  vpc_id         = aws_vpc.dockerzon-ecs-vpc.id
+  vpc_name       = var.vpc_tag_name
+  public_subnets = [aws_subnet.public-subnet-2a.id, aws_subnet.public-subnet-2b.id]
+  target_count   = 2
+  target_ids     = module.instances.instance_ids
 }
 
 # subnets

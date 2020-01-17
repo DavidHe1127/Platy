@@ -27,7 +27,7 @@ resource "aws_lb" "dockerzon-ecs-alb" {
   ip_address_type    = "ipv4"
 
   subnets         = var.public_subnets
-  security_groups = var.security_groups
+  security_groups = [aws_security_group.dockerzon-alb-sg.id]
 
   tags = {
     Name = "dockerzon-ecs-alb"

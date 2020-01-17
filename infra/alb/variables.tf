@@ -14,11 +14,6 @@ variable "public_subnets" {
   description = "Array of minimum 2 public subnets from 2 azs"
 }
 
-variable "security_groups" {
-  type        = list
-  description = "Array of security groups"
-}
-
 variable "target_count" {
   type        = number
   description = "Target length"
