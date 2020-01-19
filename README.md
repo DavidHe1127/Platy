@@ -31,9 +31,12 @@ $ terraform apply -var-file="dev.tfvars"
 ```
 
 ## TODOs
+- Add jumpbox
+- Add NAT Gateway
+- Custom VPC (public + private subnets) + alb + ECS
 - Add https support
-- Use [terraform-aws-security-group](https://github.com/terraform-aws-modules/terraform-aws-security-group) module to create sg
 - Incorporate ElasticCache and RDS and deploy the whole stack onto ECS
+- Use [terraform-aws-security-group](https://github.com/terraform-aws-modules/terraform-aws-security-group) module to create sg
 
 ## Reference links
 [url rewrite in reverse proxy](https://serverfault.com/questions/379675/nginx-reverse-proxy-url-rewrite)
