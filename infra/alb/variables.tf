@@ -4,6 +4,11 @@ variable "vpc_id" {
   description = "vpc id"
 }
 
+variable "ec2_sg_id" {
+  type        = string
+  description = "ec2 sg id"
+}
+
 variable "vpc_name" {
   type        = string
   description = "vpc name"

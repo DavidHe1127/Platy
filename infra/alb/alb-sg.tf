@@ -17,6 +17,7 @@ resource "aws_security_group" "dockerzon-lb-sg" {
     protocol         = "tcp"
     cidr_blocks      = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
+    security_groups  = [var.app_sg_id]
   }
 
   tags = {

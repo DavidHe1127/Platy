@@ -24,6 +24,7 @@ module "alb" {
   public_subnets = [aws_subnet.public-subnet-2a.id, aws_subnet.public-subnet-2b.id]
   target_count   = 2
   target_ids     = module.instances.instance_ids
+  app_sg_id      = module.instances.app_sg_id
 }
 
 # subnets
