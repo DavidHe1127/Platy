@@ -48,9 +48,10 @@ resource "aws_lb_listener" "dockerzon-lb-listner" {
 }
 
 # attach targets to target group
-resource "aws_lb_target_group_attachment" "dockerzon-lb-tg-attachment" {
-  count            = var.target_count
-  target_group_arn = aws_lb_target_group.dockerzon-lb-tg.arn
-  port             = 80
-  target_id        = element(var.target_ids, count.index)
-}
+# NOT REQUIRED when using it with ecs. ECS will automatically do attachment
+# resource "aws_lb_target_group_attachment" "dockerzon-lb-tg-attachment" {
+#   count            = var.target_count
+#   target_group_arn = aws_lb_target_group.dockerzon-lb-tg.arn
+#   port             = 80
+#   target_id        = element(var.target_ids, count.index)
+# }

@@ -13,3 +13,13 @@ variable "app_name" {
   type        = string
   description = "app name"
 }
+
+variable "cluster" {
+  type        = string
+  description = "ecs cluster"
+}
+
+variable "instance_key_name" {
+  type        = string
+  description = "instance key name"
+}

@@ -28,5 +28,13 @@ variable "alb_sg_id" {
   description = "alb sg id"
 }
 
+variable "key_name" {
+  type        = string
+  description = "key name"
+}
 
+variable "cluster" {
+  type        = string
+  description = "cluster instances to register"
+}
 
