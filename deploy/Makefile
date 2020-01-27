@@ -4,11 +4,11 @@ export BUILD=latest
 export CLUSTER=dockerzon
 
 export APPLICATION_NAME=dockerzon-ecs
-export APPLICATION_PATH=$(HOME)/lab/$(APPLICATION_NAME)
+export APPLICATION_PATH=$(HOME)/$(APPLICATION_NAME)
 
 export REGISTRY=216659404274.dkr.ecr.ap-southeast-2.amazonaws.com
-export EXPRESS_REPO=dockerzon/express
-export NGINX_REPO=dockerzon/nginx
+export EXPRESS_REPO=dockerzon-express
+export NGINX_REPO=dockerzon-nginx
 
 export EXPRESS_IMAGE=dockerzon-ecs_express
 export NGINX_IMAGE=dockerzon-ecs_nginx

@@ -6,4 +6,4 @@ set -e
 service_config="${1:-web}"
 
 aws ecs create-service \
-  --cli-input-json file://"$APPLICATION_PATH"/ecs/"$service_config"-service.json
+  --cli-input-json file://"$APPLICATION_PATH"/deploy/"$service_config"-service.json

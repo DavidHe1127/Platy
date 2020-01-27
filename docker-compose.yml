@@ -27,15 +27,15 @@ services:
     ports:
       - '4000:80'
 
-  dockerzon:
+  express:
     build: ./express
-    container_name: dockerzon
+    container_name: express
     ports:
       - '8000:8000'
     volumes:
-      - .:/dockerzon
+      - .:/express
     env_file:
-      - .dockerzon.env
+      - .express.env
 
   # sidekiq:
   #   build: .
