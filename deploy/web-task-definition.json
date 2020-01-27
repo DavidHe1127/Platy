@@ -9,18 +9,18 @@
           "hostPort": 80
         }
       ],
-      "links": ["dockerzon:dockerzon"],
+      "links": ["express:express"],
       "volumesFrom": [
         {
-          "sourceContainer": "dockerzon"
+          "sourceContainer": "express"
         }
       ],
       "cpu": 256,
       "memory": 100
     },
     {
-      "name": "dockerzon",
-      "image": "216659404274.dkr.ecr.ap-southeast-2.amazonaws.com/dockerzon/dockerzon:latest",
+      "name": "express",
+      "image": "216659404274.dkr.ecr.ap-southeast-2.amazonaws.com/dockerzon/express:latest",
       "portMappings": [
         {
           "containerPort": 8000,
@@ -37,18 +37,6 @@
         {
           "name": "DATABASE_URL",
           "value": "postgresql://dockerzon:52230365@dockerzon-production.c3mu4bphl5ah.ap-southeast-2.rds.amazonaws.com:5432/dockerzon?encoding=utf8&pool=40&timeout=5000"
-        },
-        {
-          "name": "CACHE_URL",
-          "value": "redis://dockerzon-production.tyd2kk.0001.apse2.cache.amazonaws.com:6379"
-        },
-        {
-          "name": "JOB_WORKER_URL",
-          "value": "redis://dockerzon-production.tyd2kk.0001.apse2.cache.amazonaws.com:6379"
-        },
-        {
-          "name": "SECRET_TOKEN",
-          "value": "e729b1520e3ac988979e2559df5bb7ea59816ce5dbd96bdd1904c8719f2f542c23e9cdcc20b540adca05092c5b53a543e3ba0deb9ca8d6d0eaac43746673fd18"
         }
       ]
     }
