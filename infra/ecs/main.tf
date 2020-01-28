@@ -1,4 +1,3 @@
-# for vpc/subnets
 provider "aws" {
   profile = "qq"
   region  = "ap-southeast-2"
