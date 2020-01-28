@@ -36,9 +36,9 @@ module "instances" {
 
   instance_count = 2
   name           = var.app_name
-  subnets        = [aws_subnet.private-subnet-2a.id, aws_subnet.private-subnet-2b.id]
+  subnets        = [var.vpc_private_subnets["2a"], var.vpc_private_subnets["2b"]]
   ami            = var.ami
-  vpc_id         = aws_vpc.dockerzon-ecs-vpc.id
+  vpc_id         = var.vpc_id
   alb_sg_id      = module.alb.sg_id
   cluster        = var.cluster
   key_name       = var.instance_key_name
@@ -48,9 +48,9 @@ module "instances" {
 module "alb" {
   source = "./alb"
 
-  vpc_id         = aws_vpc.dockerzon-ecs-vpc.id
-  vpc_name       = var.vpc_tag_name
-  public_subnets = [aws_subnet.public-subnet-2a.id, aws_subnet.public-subnet-2b.id]
+  vpc_id         = var.vpc_id
+  vpc_name       = var.vpc_name
+  public_subnets = [var.vpc_public_subnets["2a"], var.vpc_public_subnets["2b"]]
   target_count   = 2
   target_ids     = module.instances.instance_ids
   app_sg_id      = module.instances.app_sg_id

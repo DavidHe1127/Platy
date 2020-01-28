@@ -1,7 +1,22 @@
 # expected input vars
-variable "vpc_tag_name" {
+variable "vpc_name" {
   type        = string
-  description = "vpc name tag"
+  description = "vpc name"
+}
+
+variable "vpc_id" {
+  type        = string
+  description = "vpc id"
+}
+
+variable "vpc_public_subnets" {
+  type        = map
+  description = "vpc public subnet map"
+}
+
+variable "vpc_private_subnets" {
+  type        = map
+  description = "vpc private subnet map"
 }
 
 variable "ami" {
