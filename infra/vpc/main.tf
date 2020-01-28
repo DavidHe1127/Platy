@@ -53,7 +53,7 @@ resource "aws_vpc" "dockerzon-ecs-vpc" {
   tags = {
     env  = "dev"
     app  = "dockerzon-ecs"
-    Name = "dockerzon-ecs-vpc"
+    Name = var.name
   }
 }
 
@@ -62,7 +62,7 @@ resource "aws_internet_gateway" "dockerzon-ecs-vpc-igw" {
   vpc_id = aws_vpc.dockerzon-ecs-vpc.id
 
   tags = {
-    Name = "dockerzon-ecs-vpc-igw"
+    Name = "${var.name}-igw"
   }
 }
 
@@ -83,7 +83,7 @@ resource "aws_route_table" "dockerzon-ecs-vpc-public-route" {
   }
 
   tags = {
-    Name = "dockerzon-ecs-vpc-public-route"
+    Name = "${var.name}-public-route"
   }
 }
 
