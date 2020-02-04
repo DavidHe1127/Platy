@@ -18,3 +18,6 @@ vpc_private_subnets = {
   "2a" = "subnet-0d2f33a67fd2fafdd"
   "2b" = "subnet-0d50ff82e398882b3"
 }
+
+app_sg_id = ""
+lb_sg_id  = ""

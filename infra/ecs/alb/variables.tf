@@ -4,9 +4,9 @@ variable "vpc_id" {
   description = "vpc id"
 }
 
-variable "app_sg_id" {
+variable "lb_sg_id" {
   type        = string
-  description = "instance sg id"
+  description = "load balancer sg id"
 }
 
 variable "vpc_name" {

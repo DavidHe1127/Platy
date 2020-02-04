@@ -38,3 +38,13 @@ variable "instance_key_name" {
   type        = string
   description = "instance key name"
 }
+
+variable "app_sg_id" {
+  type        = string
+  description = "instance sg id"
+}
+
+variable "lb_sg_id" {
+  type        = string
+  description = "load balancer sg id"
+}

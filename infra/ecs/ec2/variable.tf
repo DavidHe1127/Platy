@@ -23,9 +23,9 @@ variable "vpc_id" {
   description = "vpc id"
 }
 
-variable "alb_sg_id" {
+variable "app_sg_id" {
   type        = string
-  description = "alb sg id"
+  description = "instance sg id"
 }
 
 variable "key_name" {

@@ -38,7 +38,7 @@ module "instances" {
   subnets        = [var.vpc_private_subnets["2a"], var.vpc_private_subnets["2b"]]
   ami            = var.ami
   vpc_id         = var.vpc_id
-  alb_sg_id      = module.alb.sg_id
+  app_sg_id      = var.app_sg_id
   cluster        = var.cluster
   key_name       = var.instance_key_name
 }
@@ -52,5 +52,5 @@ module "alb" {
   public_subnets = [var.vpc_public_subnets["2a"], var.vpc_public_subnets["2b"]]
   target_count   = 2
   target_ids     = module.instances.instance_ids
-  app_sg_id      = module.instances.app_sg_id
+  lb_sg_id       = var.lb_sg_id
 }

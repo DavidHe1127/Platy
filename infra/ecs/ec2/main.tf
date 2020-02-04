@@ -3,7 +3,7 @@ resource "aws_instance" "web" {
   instance_type        = "t2.micro"
   key_name             = var.key_name
   user_data            = templatefile("ec2/register_instance.sh", { cluster = var.cluster })
-  security_groups      = [aws_security_group.app-instance-sg.id]
+  security_groups      = [var.app_sg_id]
   iam_instance_profile = aws_iam_instance_profile.instance-profile.name
   # user_data            = templatefile("ec2/install_apache.sh", { server = "0${var.instance_count}" })
 
