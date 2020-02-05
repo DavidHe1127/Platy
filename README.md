@@ -33,6 +33,8 @@ $ terraform apply -var-file="dev.tfvars"
 ## [Design Principle](./design-principles.md)
 
 ## TODOs
+- Add logs to cloudwatch
+- Use ecs-cli for deployment and use docker-compose way
 - Add jumpbox
 - Add NAT Gateway
 - Custom VPC (public + private subnets) + alb + ECS
