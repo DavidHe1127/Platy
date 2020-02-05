@@ -10,12 +10,12 @@ vpc_id   = "vpc-0c8dfb97911324204"
 vpc_name = "dockerzon-ecs-vpc"
 
 vpc_public_subnets = {
-  "2a" = "subnet-0b7c60a2ef364280f"
+  "2a" = "subnet-0d2f33a67fd2fafdd"
   "2b" = "subnet-09dbd04aef523cc8f"
 }
 
 vpc_private_subnets = {
-  "2a" = "subnet-0d2f33a67fd2fafdd"
+  "2a" = "subnet-0b7c60a2ef364280f"
   "2b" = "subnet-0d50ff82e398882b3"
 }
 

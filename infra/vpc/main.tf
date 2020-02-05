@@ -11,7 +11,7 @@ resource "aws_subnet" "public-subnet-2a" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "10.0.1.0/ap-southeast-2a"
+    Name = "10.0.1.0/ap-southeast-2a/public"
   }
 }
 
@@ -22,7 +22,7 @@ resource "aws_subnet" "public-subnet-2b" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "10.0.3.0/ap-southeast-2b"
+    Name = "10.0.3.0/ap-southeast-2b/public"
   }
 }
 
@@ -32,7 +32,7 @@ resource "aws_subnet" "private-subnet-2a" {
   availability_zone = "ap-southeast-2a"
 
   tags = {
-    Name = "10.0.5.0/ap-southeast-2a"
+    Name = "10.0.5.0/ap-southeast-2a/private"
   }
 }
 
@@ -42,7 +42,7 @@ resource "aws_subnet" "private-subnet-2b" {
   availability_zone = "ap-southeast-2b"
 
   tags = {
-    Name = "10.0.4.0/ap-southeast-2b"
+    Name = "10.0.4.0/ap-southeast-2b/private"
   }
 }
 
