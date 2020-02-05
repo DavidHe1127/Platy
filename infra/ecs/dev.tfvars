@@ -19,5 +19,5 @@ vpc_private_subnets = {
   "2b" = "subnet-0d50ff82e398882b3"
 }
 
-app_sg_id = ""
-lb_sg_id  = ""
+app_sg_id = "sg-01d8e4518dae3e783"
+lb_sg_id  = "sg-0d96dd81025c83852"
