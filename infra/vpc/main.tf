@@ -3,6 +3,10 @@ provider "aws" {
   region  = "ap-southeast-2"
 }
 
+locals {
+  region = "ap-southeast-2"
+}
+
 # subnets
 resource "aws_subnet" "public-subnet-2a" {
   vpc_id                  = aws_vpc.dockerzon-ecs-vpc.id
@@ -48,7 +52,7 @@ resource "aws_subnet" "private-subnet-2b" {
 
 # vpc
 resource "aws_vpc" "dockerzon-ecs-vpc" {
-  cidr_block           = "10.0.0.0/16"
+  cidr_block = "10.0.0.0/16"
   # dns settings below required to use VPC PrviateLinks
   enable_dns_support   = true
   enable_dns_hostnames = true

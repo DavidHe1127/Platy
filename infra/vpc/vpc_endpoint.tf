@@ -1,0 +1,83 @@
+resource "aws_vpc_endpoint" "ecr-api" {
+  vpc_id            = aws_vpc.dockerzon-ecs-vpc.id
+  service_name      = "com.amazonaws.${local.region}.ecr.api"
+  vpc_endpoint_type = "Interface"
+
+  security_group_ids = [
+    aws_security_group.dockerzon-vpc-endpoint-sg.id
+  ]
+
+  subnet_ids          = [aws_subnet.private-subnet-2a.id, aws_subnet.private-subnet-2b.id]
+  private_dns_enabled = false
+}
+
+resource "aws_vpc_endpoint" "ecr-dkr" {
+  vpc_id            = aws_vpc.dockerzon-ecs-vpc.id
+  service_name      = "com.amazonaws.${local.region}.ecr.dkr"
+  vpc_endpoint_type = "Interface"
+
+  security_group_ids = [
+    aws_security_group.dockerzon-vpc-endpoint-sg.id
+  ]
+
+  subnet_ids          = [aws_subnet.private-subnet-2a.id, aws_subnet.private-subnet-2b.id]
+  private_dns_enabled = true
+}
+
+resource "aws_vpc_endpoint" "ecr-s3" {
+  vpc_id              = aws_vpc.dockerzon-ecs-vpc.id
+  service_name        = "com.amazonaws.${local.region}.s3"
+  vpc_endpoint_type   = "Gateway"
+  private_dns_enabled = false
+
+  policy = file("vpc_endpoint_s3_ecr_policy.json")
+
+  route_table_ids = [
+    aws_vpc.dockerzon-ecs-vpc.main_route_table_id,
+    aws_route_table.dockerzon-ecs-vpc-public-route.id
+  ]
+
+  tags = {
+    name = "ecr-s3 endpoint gateway"
+  }
+}
+
+resource "aws_vpc_endpoint" "ecs-agent" {
+  vpc_id            = aws_vpc.dockerzon-ecs-vpc.id
+  service_name      = "com.amazonaws.${local.region}.ecs-agent"
+  vpc_endpoint_type = "Interface"
+
+  security_group_ids = [
+    aws_security_group.dockerzon-vpc-endpoint-sg.id
+  ]
+
+  subnet_ids          = [aws_subnet.private-subnet-2a.id, aws_subnet.private-subnet-2b.id]
+  private_dns_enabled = false
+}
+
+resource "aws_vpc_endpoint" "ecs" {
+  vpc_id            = aws_vpc.dockerzon-ecs-vpc.id
+  service_name      = "com.amazonaws.${local.region}.ecs"
+  vpc_endpoint_type = "Interface"
+
+  security_group_ids = [
+    aws_security_group.dockerzon-vpc-endpoint-sg.id
+  ]
+
+  subnet_ids          = [aws_subnet.private-subnet-2a.id, aws_subnet.private-subnet-2b.id]
+  private_dns_enabled = false
+}
+
+resource "aws_vpc_endpoint" "ecs-telemetry" {
+  vpc_id            = aws_vpc.dockerzon-ecs-vpc.id
+  service_name      = "com.amazonaws.${local.region}.ecs-telemetry"
+  vpc_endpoint_type = "Interface"
+
+  security_group_ids = [
+    aws_security_group.dockerzon-vpc-endpoint-sg.id
+  ]
+
+  subnet_ids          = [aws_subnet.private-subnet-2a.id, aws_subnet.private-subnet-2b.id]
+  private_dns_enabled = false
+}
+

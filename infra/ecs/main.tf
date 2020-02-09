@@ -43,7 +43,7 @@ module "instances" {
   key_name       = var.instance_key_name
 }
 
-# modules
+# load balancer
 module "alb" {
   source = "./alb"
 
