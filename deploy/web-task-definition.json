@@ -2,7 +2,7 @@
   "containerDefinitions": [
     {
       "name": "nginx",
-      "image": "216659404274.dkr.ecr.ap-southeast-2.amazonaws.com/dockerzon/nginx:latest",
+      "image": "216659404274.dkr.ecr.ap-southeast-2.amazonaws.com/dockerzon-nginx:latest",
       "portMappings": [
         {
           "containerPort": 80,
@@ -20,7 +20,7 @@
     },
     {
       "name": "express",
-      "image": "216659404274.dkr.ecr.ap-southeast-2.amazonaws.com/dockerzon/express:latest",
+      "image": "216659404274.dkr.ecr.ap-southeast-2.amazonaws.com/dockerzon-express:latest",
       "portMappings": [
         {
           "containerPort": 8000,
