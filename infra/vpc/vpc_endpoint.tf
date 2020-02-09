@@ -8,7 +8,7 @@ resource "aws_vpc_endpoint" "ecr-api" {
   ]
 
   subnet_ids          = [aws_subnet.private-subnet-2a.id, aws_subnet.private-subnet-2b.id]
-  private_dns_enabled = false
+  private_dns_enabled = true
 }
 
 resource "aws_vpc_endpoint" "ecr-dkr" {
@@ -28,7 +28,6 @@ resource "aws_vpc_endpoint" "ecr-s3" {
   vpc_id              = aws_vpc.dockerzon-ecs-vpc.id
   service_name        = "com.amazonaws.${local.region}.s3"
   vpc_endpoint_type   = "Gateway"
-  private_dns_enabled = false
 
   policy = file("vpc_endpoint_s3_ecr_policy.json")
 
@@ -52,7 +51,7 @@ resource "aws_vpc_endpoint" "ecs-agent" {
   ]
 
   subnet_ids          = [aws_subnet.private-subnet-2a.id, aws_subnet.private-subnet-2b.id]
-  private_dns_enabled = false
+  private_dns_enabled = true
 }
 
 resource "aws_vpc_endpoint" "ecs" {
@@ -65,7 +64,7 @@ resource "aws_vpc_endpoint" "ecs" {
   ]
 
   subnet_ids          = [aws_subnet.private-subnet-2a.id, aws_subnet.private-subnet-2b.id]
-  private_dns_enabled = false
+  private_dns_enabled = true
 }
 
 resource "aws_vpc_endpoint" "ecs-telemetry" {
@@ -78,6 +77,6 @@ resource "aws_vpc_endpoint" "ecs-telemetry" {
   ]
 
   subnet_ids          = [aws_subnet.private-subnet-2a.id, aws_subnet.private-subnet-2b.id]
-  private_dns_enabled = false
+  private_dns_enabled = true
 }
 
