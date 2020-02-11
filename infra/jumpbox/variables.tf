@@ -1,14 +1,19 @@
-variable "public_subnet_id" {
-  type        = string
-  description = "public subnet id"
-}
-
-variable "ssh_key" {
+variable "key_name" {
   type        = string
   description = "ssh key name"
 }
 
-variable "private_subnet_cidr" {
+variable "ami" {
   type        = string
-  description = "private subnet cidr"
+  description = "jump box ami"
+}
+
+variable "vpc_id" {
+  type        = string
+  description = "vpc id"
+}
+
+variable "hosting_subnet_id" {
+  type        = string
+  description = "id of public subnet where jump box is hosted"
 }
