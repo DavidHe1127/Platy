@@ -4,7 +4,7 @@
     "taskDefinition": "web",
     "loadBalancers": [
         {
-            "targetGroupArn": "arn:aws:elasticloadbalancing:ap-southeast-2:216659404274:targetgroup/dockerzon-lb-tg/73f2dfce0246d25d",
+            "targetGroupArn": "arn:aws:elasticloadbalancing:ap-southeast-2:216659404274:targetgroup/dockerzon-lb-tg/25d202d0b1172ea3",
             "containerName": "nginx",
             "containerPort": 80
         }
