@@ -18,7 +18,7 @@ PLACEHOLDER_BACKEND_PORT="8000"
 #
 # http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html
 
-PLACEHOLDER_VHOST="$(curl http://169.254.169.254/latest/meta-data/public-hostname)"
+PLACEHOLDER_VHOST="$(curl http://169.254.169.254/latest/meta-data/local-ipv4)"
 # PLACEHOLDER_VHOST="localhost"
 
 # Where is our default config located?
