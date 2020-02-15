@@ -33,6 +33,7 @@ $ terraform apply -var-file="dev.tfvars"
 ## [Design Principle](./design-principles.md)
 
 ## TODOs
+- Add architectural diagram
 - Add logs to cloudwatch
 - Use ecs-cli for deployment and use docker-compose way
 - Add jumpbox
