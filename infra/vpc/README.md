@@ -15,4 +15,6 @@ It also creates 3 endpoints:
 - Amazon ECR - allow instances to download image manifest
 - Gateway Amazon S3 - allow instances to download image layers from underlying private Amazon S3 buckets that host them
 
+Endpoints are required if instances being placed in a private network need to communicate with AWS services directly without a need for Internet.
+
 [Setting up AWS PrivateLink for Amazon ECS, and Amazon ECR](https://aws.amazon.com/blogs/compute/setting-up-aws-privatelink-for-amazon-ecs-and-amazon-ecr/)
