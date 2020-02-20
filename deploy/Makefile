@@ -23,17 +23,9 @@ prepare-n-push-image:
 	echo "Build, tag and push images to your registry"
 	./scripts/prepare-n-push-image.sh
 
-register-task-definition:
-	echo "Register (t)ask definition"
-	./scripts/register-task-definition.sh ${t}
-
 create-service:
 	echo "Create ecs web service by feeding (c)onfigs in a json file"
 	./scripts/create-service.sh
-
-deregister-task-definition:
-	echo "Deregister a task definition by (t)ask and (r)evision"
-	./scripts/deregister-task-definition.sh ${t} $(r)
 
 update-service:
 	echo "Update a running ecs web service with (t)task definition, (c)service config, desired count(cnt)"
