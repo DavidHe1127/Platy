@@ -27,6 +27,16 @@
           "hostPort": 8000
         }
       ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-region": "ap-southeast-2",
+          "awslogs-stream-prefix": "dockerzon",
+          "awslogs-multiline-pattern": "^DOCKERZON::",
+          "awslogs-create-group": "true",
+          "awslogs-group": "/ecs/dockerzon/dev"
+        }
+      },
       "cpu": 768,
       "memory": 300,
       "environment": [

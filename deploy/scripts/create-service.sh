@@ -1,9 +1,28 @@
 #!/usr/bin/env bash
 
-# Exit the script as soon as something fails.
-set -e
+set -euo pipefail
 
-service_config="${1:-web}"
+# spin up service with count set to 1
+ecs-cli compose \
+  --file ./docker-compose.yml \
+  --project-name ${APPLICATION_NAME} \
+  --ecs-params ./ecs-params.yml \
+  --region ap-southeast-2 \
+  --cluster ${CLUSTER} \
+  service up \
+  --timeout 8 \
+  --create-log-groups \
+  --target-group-arn ${TARGET_GROUP_ARN} \
+  --container-name ${CONTAINER_NAME} \
+  --container-port ${CONTAINER_PORT} \
+  --role ${SERVICE_ROLE_ARN}
 
-aws ecs create-service \
-  --cli-input-json file://"$APPLICATION_PATH"/deploy/"$service_config"-service.json
+# scale it up to desired task count
+ecs-cli compose \
+  --file ./docker-compose.yml \
+  --project-name ${APPLICATION_NAME} \
+  --ecs-params ./ecs-params.yml \
+  --region ap-southeast-2 \
+  --cluster ${CLUSTER} \
+  service scale ${DESIRED_TASK_COUNT} \
+  --timeout 8
