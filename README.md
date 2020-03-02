@@ -38,6 +38,7 @@ $ terraform apply -var-file="dev.tfvars"
 - Add ASG
 - Add NAT Gateway
 - Add https support
+- Setup remote state file storage using S3
 - Incorporate ElasticCache and RDS and deploy the whole stack onto ECS
 - Use [terraform-aws-security-group](https://github.com/terraform-aws-modules/terraform-aws-security-group) module to create sg
 
