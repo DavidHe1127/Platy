@@ -34,7 +34,8 @@ $ terraform apply -var-file="dev.tfvars"
 
 ## TODOs
 
-- Clean-up
+- Implement service update
+- Add ASG
 - Add NAT Gateway
 - Add https support
 - Incorporate ElasticCache and RDS and deploy the whole stack onto ECS
