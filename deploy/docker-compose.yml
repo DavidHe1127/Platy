@@ -2,8 +2,6 @@ version: '3'
 services:
   nginx:
     image: 216659404274.dkr.ecr.ap-southeast-2.amazonaws.com/dockerzon-nginx:latest
-    depends_on:
-      - express
     links:
       - express
     ports:
@@ -22,6 +20,7 @@ services:
       - '8000:8000'
     environment:
       - NODE_ENV=production
+      - TEST_UPDATE=update
     logging:
       driver: awslogs
       options:

@@ -17,6 +17,9 @@ ecs-cli compose \
   --container-port ${CONTAINER_PORT} \
   --role ${SERVICE_ROLE_ARN}
 
+
+  echo 'xxxx'
+
 # scale it up to desired task count
 ecs-cli compose \
   --file ./docker-compose.yml \
@@ -25,4 +28,6 @@ ecs-cli compose \
   --region ap-southeast-2 \
   --cluster ${CLUSTER} \
   service scale ${DESIRED_TASK_COUNT} \
+  --deployment-max-percent 100 \
+  --deployment-min-healthy-percent 50 \
   --timeout 8
