@@ -20,7 +20,7 @@ services:
       - '8000:8000'
     environment:
       - NODE_ENV=production
-      - TEST_UPDATE=update
+      - NEXT_GOAL=SAPro
     logging:
       driver: awslogs
       options:

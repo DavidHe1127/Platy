@@ -17,9 +17,6 @@ ecs-cli compose \
   --container-port ${CONTAINER_PORT} \
   --role ${SERVICE_ROLE_ARN}
 
-
-  echo 'xxxx'
-
 # scale it up to desired task count
 ecs-cli compose \
   --file ./docker-compose.yml \

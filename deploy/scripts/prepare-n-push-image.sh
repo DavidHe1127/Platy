@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Exit the script as soon as something fails.
-set -e
+set -euo pipefail
 
 cd "${APPLICATION_PATH}" && docker-compose build
 

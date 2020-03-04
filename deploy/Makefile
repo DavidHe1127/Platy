@@ -23,13 +23,9 @@ prepare-n-push-image:
 	echo "Build, tag and push images to your registry"
 	./scripts/prepare-n-push-image.sh
 
-create-service:
-	echo "Create ecs web service by feeding (c)onfigs in a json file"
-	./scripts/create-service.sh
-
-update-service:
-	echo "Update a running ecs web service with (t)task definition, (c)service config, desired count(cnt)"
-	./scripts/update-service.sh ${t} ${c} ${cnt}
+create-or-service:
+	echo "Create a service if it doesn't exist or update if it does"
+	./scripts/create-or-update-service.sh
 
 .PHONY: clean
 
