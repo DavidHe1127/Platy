@@ -1,4 +1,4 @@
-# used during local dev
+# used for local dev
 version: '3'
 
 services:

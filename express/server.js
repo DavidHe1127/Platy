@@ -35,9 +35,9 @@ app.get('/health_check', (req, res) => {
 
 app.get('/greetings', (req, res) => {
   res.status(200).json({
-    msg: `Merry xmas!!! From ${process.env.INSTANCE_ID}
-          It's updated ${process.env.TEST_UPDATE}
-          `
+    msg: `Hello from instance ${process.env.INSTANCE_ID} \n
+
+          My next goal is ${process.env.NEXT_GOAL}`
   });
 });
 
