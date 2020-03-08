@@ -72,4 +72,34 @@ Calculation result is `2` which means ECS may start `2` NEW tasks before stoppin
 
 Calculation result is `2` and `1` which means ECS may start `2` NEW tasks before stopping 1 OLD tasks (provided that the cluster resources required to do this are available). And the count of RUNNING tasks must be `1`.
 
+**Example Four**
+
+```json
+{
+  "desiredCount": 3,
+  "deploymentConfiguration": {
+    "maximumPercent": 100,
+    "minimumHealthyPercent": 33
+  }
+}
+```
+
+Max no. of tasks are allowed to be in `RUNNING` or `PENDING` state  is `3 * (100 / 100) = 3`.
+Min no. of tasks must be running during update is `3 * (33 / 100) = 1`.
+
+**Example Five**
+
+```json
+{
+  "desiredCount": 3,
+  "deploymentConfiguration": {
+    "maximumPercent": 100,
+    "minimumHealthyPercent": 50
+  }
+}
+```
+
+Max no. of tasks are allowed to be in `RUNNING` or `PENDING` state is `3 * (100 / 100) = 3`.
+Min no. of tasks must be running during update is `3 * (50 / 100) = 2`.
+
 [More examples](https://stackoverflow.com/questions/40731143/what-is-the-minimum-healthy-percent-and-maximum-percent-in-amazon-ecs)
