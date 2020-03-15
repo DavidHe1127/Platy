@@ -1,1 +1,2 @@
-domain_name = "api.theparrodise.com"
+domain_name = "*.theparrodise.com"
+domain_fqdn = "theparrodise.com."
