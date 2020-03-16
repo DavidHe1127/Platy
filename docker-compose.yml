@@ -5,15 +5,20 @@ services:
   nginx:
     build: ./frontend
     container_name: nginx
+    environment:
+      - NODE_ENV=development
     ports:
-      - '4000:80'
+      - '80:80'
 
   express:
     build: ./express
     container_name: express
     ports:
+      # - '8000:8000'
       - '8000:8000'
     volumes:
       - .:/express
-    env_file:
-      - ./express/.env
+    environment:
+      - NODE_ENV=development
+      - HOST=localhost
+      - PORT=8000
