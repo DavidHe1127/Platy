@@ -53,4 +53,5 @@ module "alb" {
   target_count   = 2
   target_ids     = module.instances.instance_ids
   lb_sg_id       = var.lb_sg_id
+  domain_name    = var.domain_name
 }

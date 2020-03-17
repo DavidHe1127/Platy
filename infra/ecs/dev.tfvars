@@ -5,6 +5,7 @@ ami               = "ami-06862a6ef1260bb02"
 app_name          = "dockerzon"
 cluster           = "dockerzon"
 instance_key_name = "dockerzon-ecs"
+domain_name       = "*.theparrodise.com"
 
 vpc_id   = "vpc-01f2c79f328ce1caf"
 vpc_name = "dockerzon-ecs-vpc"

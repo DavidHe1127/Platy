@@ -29,3 +29,8 @@ variable "target_ids" {
   description = "List of target ids"
 }
 
+variable "domain_name" {
+  type        = string
+  description = "Domain name"
+}
+

@@ -48,3 +48,8 @@ variable "lb_sg_id" {
   type        = string
   description = "load balancer sg id"
 }
+
+variable "domain_name" {
+  type        = string
+  description = "Full qualified domain name"
+}

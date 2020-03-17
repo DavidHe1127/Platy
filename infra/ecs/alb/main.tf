@@ -1,3 +1,8 @@
+data "aws_acm_certificate" "https-cert" {
+  domain   = var.domain_name
+  statuses = ["ISSUED"]
+}
+
 resource "aws_lb_target_group" "dockerzon-lb-tg" {
   target_type = "instance"
   name        = "dockerzon-lb-tg"
@@ -35,11 +40,29 @@ resource "aws_lb" "dockerzon-lb" {
   }
 }
 
-# alb listener
-resource "aws_lb_listener" "dockerzon-lb-listner" {
+# http listener
+resource "aws_lb_listener" "dockerzon-lb-http-listener" {
   load_balancer_arn = aws_lb.dockerzon-lb.arn
   port              = 80
   protocol          = "HTTP"
+
+  default_action {
+    type = "redirect"
+
+    redirect {
+      port        = "443"
+      protocol    = "HTTPS"
+      status_code = "HTTP_301"
+    }
+  }
+}
+
+# https listener
+resource "aws_lb_listener" "dockerzon-lb-https-listener" {
+  load_balancer_arn = aws_lb.dockerzon-lb.arn
+  port              = 443
+  protocol          = "HTTPS"
+  certificate_arn   = data.aws_acm_certificate.https-cert.arn
 
   default_action {
     type             = "forward"

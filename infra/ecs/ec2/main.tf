@@ -20,22 +20,23 @@ resource "aws_iam_instance_profile" "instance-profile" {
 }
 
 resource "aws_iam_role" "instance-profile-role" {
-  name               = "dockerzon-instance-profile-role"
-  assume_role_policy = file("ec2/assumer_role.policy.json")
+  name                  = "dockerzon-instance-profile-role"
+  assume_role_policy    = file("ec2/assumer_role.policy.json")
+  force_detach_policies = true
 
   tags = {
     Purpose = "Allow ec2 to contact ecs"
   }
 }
 
-resource "aws_iam_policy_attachment" "ecs-ec2" {
-  name       = "ecs-ec2"
-  roles      = [aws_iam_role.instance-profile-role.name]
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role"
+resource "aws_iam_policy" "policy" {
+  name        = "instance-profile-policy"
+  description = "Dockerzon instance profile role policy"
+
+  policy = file("ec2/allow_create_log_group.policy.json")
 }
 
-resource "aws_iam_role_policy" "allow-create-log-group" {
-  name   = "test_policy"
-  role   = aws_iam_role.instance-profile-role.id
-  policy = file("ec2/allow_create_log_group.policy.json")
+resource "aws_iam_role_policy_attachment" "policy-attachment" {
+  role       = aws_iam_role.instance-profile-role.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role"
 }
