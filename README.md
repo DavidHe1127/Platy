@@ -34,13 +34,17 @@ $ terraform apply -var-file="dev.tfvars"
 
 ## TODOs
 
-- Add https support
 - Add ASG
 - Add NAT Gateway
 - Setup remote state file storage using S3
 - Incorporate ElasticCache and RDS and deploy the whole stack onto ECS
 - Use [terraform-aws-security-group](https://github.com/terraform-aws-modules/terraform-aws-security-group) module to create sg
 
+## Heads-up
+
+- When pointing a record to a new alb dns, it can take up to half hour before it's effective
+
 ## Reference links
 - [url rewrite in reverse proxy](https://serverfault.com/questions/379675/nginx-reverse-proxy-url-rewrite)
 - [Sg rules for ALB](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/security-group-rules-reference.html)
+
