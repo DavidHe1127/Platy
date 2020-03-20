@@ -4,15 +4,16 @@ const restifyClient = require('restify-clients');
 const PORT = process.env.PORT || 8000;
 const HOST = process.env.HOST || '0.0.0.0';
 
-const query = 'san';
+const query = 'schofields';
+const key = 'b49d801e628045cf87c51838202003'
 
 const server = restify.createServer();
 const weatherClient = restifyClient.createJsonClient({
-  url: 'https://www.metaweather.com'
+  url: 'https://api.weatherapi.com'
 });
 
 server.get('/weather', (req, res, next) => {
-  weatherClient.get(`/api/location/search/?query=${query}`, (err, req, r, obj) => {
+  weatherClient.get(`/v1/current.json?key=${key}&q=${query}`, (err, req, r, obj) => {
     res.send(obj);
     next();
   });
