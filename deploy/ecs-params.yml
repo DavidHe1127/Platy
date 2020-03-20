@@ -7,3 +7,6 @@ task_definition:
     nginx:
       cpu_shares: 768
       mem_limit: 300m
+  placement_constraints:
+      - type: memberOf
+        expression: "attribute:location == instanceOne"
