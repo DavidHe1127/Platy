@@ -12,10 +12,8 @@ const weatherClient = restifyClient.createJsonClient({
 });
 
 server.get('/weather', (req, res, next) => {
-  weatherClient.get(`/api/location/search/?query=${query}`, (err, req, res, obj) => {
-    console.log('xxx', err);
-
-    res.send('hello ' + req.params.name);
+  weatherClient.get(`/api/location/search/?query=${query}`, (err, req, r, obj) => {
+    res.send(obj);
     next();
   });
 });
