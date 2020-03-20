@@ -9,4 +9,5 @@ task_definition:
       mem_limit: 300m
   placement_constraints:
       - type: memberOf
-        expression: "attribute:location == instanceOne"
+        # run services on instance with attribute equal to instanceTwo
+        expression: "attribute:location == instanceTwo"

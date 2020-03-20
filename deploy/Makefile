@@ -17,7 +17,7 @@ export TARGET_GROUP_ARN=arn:aws:elasticloadbalancing:ap-southeast-2:216659404274
 export CONTAINER_NAME=nginx
 export CONTAINER_PORT=80
 export SERVICE_ROLE_ARN=arn:aws:iam::216659404274:role/ecs-deepdive-servicerole
-export DESIRED_TASK_COUNT=2
+export DESIRED_TASK_COUNT=1
 
 prepare-n-push-image:
 	echo "Build, tag and push images to your registry"
