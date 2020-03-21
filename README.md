@@ -35,6 +35,7 @@ $ terraform apply -var-file="dev.tfvars"
 ## TODOs
 
 - Add Service Discovery
+- Add CircleCI
 - Add ASG
 - Add NAT Gateway
 - Setup remote state file storage using S3
