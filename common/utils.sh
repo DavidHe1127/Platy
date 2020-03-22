@@ -7,7 +7,7 @@ function build_image() {
   IMAGE=$2
   TAG=$3
 
-  cd $APPLICATION_PATH/express && docker build -t "$IMAGE:$TAG" .
+  cd $APPLICATION_PATH && docker build -t "$IMAGE:$TAG" .
 }
 
 function tag_image() {
@@ -28,6 +28,45 @@ function push_image() {
   ECR_REPO=$2
 
   docker push "$REGISTRY/$ECR_REPO"
+}
+
+function deploy_service() {
+  APPLICATION_NAME=$1
+  CLUSTER=$2
+  TARGET_GROUP_ARN=$3
+
+  CONTAINER_NAME=$4
+  CONTAINER_PORT=$5
+
+  SERVICE_ROLE_ARN=$6
+  DESIRED_TASK_COUNT=$7
+
+  # spin up service with count set to 1
+  ecs-cli compose \
+    --file ./docker-compose.yml \
+    --project-name ${APPLICATION_NAME} \
+    --ecs-params ./ecs-params.yml \
+    --region ap-southeast-2 \
+    --cluster ${CLUSTER} \
+    service up \
+    --timeout 8 \
+    --create-log-groups \
+    --target-group-arn ${TARGET_GROUP_ARN} \
+    --container-name ${CONTAINER_NAME} \
+    --container-port ${CONTAINER_PORT} \
+    --role ${SERVICE_ROLE_ARN}
+
+  # scale it up to desired task count
+  ecs-cli compose \
+    --file ./docker-compose.yml \
+    --project-name ${APPLICATION_NAME} \
+    --ecs-params ./ecs-params.yml \
+    --region ap-southeast-2 \
+    --cluster ${CLUSTER} \
+    service scale ${DESIRED_TASK_COUNT} \
+    --deployment-max-percent 100 \
+    --deployment-min-healthy-percent 50 \
+    --timeout 8
 }
 
 # Allows to call a function based on arguments passed to the script

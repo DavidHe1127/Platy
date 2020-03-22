@@ -2,7 +2,7 @@ resource "aws_instance" "web" {
   ami                  = var.ami
   instance_type        = "t2.micro"
   key_name             = var.key_name
-  user_data            = templatefile("ec2/bootstrap/index.sh", { cluster = var.cluster })
+  user_data            = templatefile("ec2/bootstrap/index.sh", { cluster = var.cluster, count = count.index })
   security_groups      = [var.app_sg_id]
   iam_instance_profile = aws_iam_instance_profile.instance-profile.name
 

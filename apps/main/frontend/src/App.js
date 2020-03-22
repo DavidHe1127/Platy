@@ -69,7 +69,7 @@ function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Let's Learn React
         </a>
       </header>
     </div>

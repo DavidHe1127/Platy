@@ -38,7 +38,7 @@ app.get('/health_check', (req, res) => {
 
 app.get('/greetings', (req, res) => {
   res.status(200).json({
-    msg: `Hello from instance ${process.env.INSTANCE_ID} \n
+    msg: `Hello req served by instance ${process.env.INSTANCE_ID} \n
 
           My next goal is ${process.env.NEXT_GOAL}`
   });

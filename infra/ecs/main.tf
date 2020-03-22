@@ -29,6 +29,14 @@ resource "aws_ecr_repository" "dockerzon-nginx" {
   }
 }
 
+resource "aws_ecr_repository" "dockerzon-temperature-api" {
+  name = "${var.cluster}-temperature-api"
+
+  tags = {
+    Name = "dockerzon-temperature-api-ecr-repo"
+  }
+}
+
 # container instance
 module "instances" {
   source = "./ec2"
