@@ -38,3 +38,8 @@ variable "cluster" {
   description = "cluster instances to register"
 }
 
+variable "attributes" {
+  type        = map
+  description = "instance attributes"
+}
+

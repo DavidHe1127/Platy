@@ -1,16 +1,16 @@
 resource "aws_instance" "web" {
-  ami                  = var.ami
-  instance_type        = "t2.micro"
-  key_name             = var.key_name
-  user_data            = templatefile("ec2/bootstrap/index.sh", { cluster = var.cluster, count = count.index })
-  security_groups      = [var.app_sg_id]
-  iam_instance_profile = aws_iam_instance_profile.instance-profile.name
+  ami                    = var.ami
+  instance_type          = "t2.micro"
+  key_name               = var.key_name
+  user_data              = templatefile("ec2/bootstrap/index.sh", { cluster = var.cluster, attribute = lookup(var.attributes, count.index + 1) })
+  vpc_security_group_ids = [var.app_sg_id]
+  iam_instance_profile   = aws_iam_instance_profile.instance-profile.name
 
   count     = var.instance_count
   subnet_id = element(var.subnets, count.index)
 
   tags = {
-    Name = "${var.name}-0${count.index}"
+    Name = "${var.name}-0${count.index + 1}"
   }
 }
 

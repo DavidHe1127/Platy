@@ -53,3 +53,8 @@ variable "domain_name" {
   type        = string
   description = "Full qualified domain name"
 }
+
+variable "instance_attributes" {
+  type        = map
+  description = "instance attributes"
+}

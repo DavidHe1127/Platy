@@ -44,6 +44,7 @@ module "instances" {
   instance_count = 2
   name           = var.app_name
   subnets        = [var.vpc_public_subnets["2a"], var.vpc_public_subnets["2b"]]
+  attributes     = var.instance_attributes
   ami            = var.ami
   vpc_id         = var.vpc_id
   app_sg_id      = var.app_sg_id
