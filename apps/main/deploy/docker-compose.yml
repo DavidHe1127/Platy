@@ -1,7 +1,7 @@
 version: '3'
 services:
   nginx:
-    image: 216659404274.dkr.ecr.ap-southeast-2.amazonaws.com/dockerzon-nginx:latest
+    image: 216659404274.dkr.ecr.ap-southeast-2.amazonaws.com/dockerzon-nginx:1.1
     links:
       - express
     ports:
@@ -15,7 +15,7 @@ services:
         awslogs-group: /ecs/dockerzon/dev
 
   express:
-    image: 216659404274.dkr.ecr.ap-southeast-2.amazonaws.com/dockerzon-express:latest
+    image: 216659404274.dkr.ecr.ap-southeast-2.amazonaws.com/dockerzon-express:1.1
     ports:
       - '8000:8000'
     environment:

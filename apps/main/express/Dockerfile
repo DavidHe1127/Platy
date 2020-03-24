@@ -1,11 +1,8 @@
 FROM node:10
 # Create app directory
-WORKDIR /usr/src/app
+WORKDIR /express
 
 RUN apt-get install curl
-
-ENV INSTALL_PATH /dockerzon
-RUN mkdir -p $INSTALL_PATH
 
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
@@ -20,7 +17,5 @@ RUN npm install
 COPY . .
 
 EXPOSE 8000
-
-VOLUME ["$INSTALL_PATH/public"]
 
 CMD ["./start.sh"]

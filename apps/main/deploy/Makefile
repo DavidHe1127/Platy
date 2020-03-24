@@ -10,9 +10,9 @@ EXPRESS_IMAGE=dockerzon-ecs_express
 NGINX_IMAGE=dockerzon-ecs_nginx
 EXPRESS_REPO=dockerzon-express
 NGINX_REPO=dockerzon-nginx
-TAG=1.0
+TAG=1.1
 
-TARGET_GROUP_ARN=arn:aws:elasticloadbalancing:ap-southeast-2:216659404274:targetgroup/dockerzon-lb-tg/a6bbc24870fd51c8
+TARGET_GROUP_ARN=arn:aws:elasticloadbalancing:ap-southeast-2:216659404274:targetgroup/dockerzon-lb-tg/3079a9f88ab8f9ea
 CONTAINER_NAME=nginx
 CONTAINER_PORT=80
 SERVICE_ROLE_ARN=arn:aws:iam::216659404274:role/ecs-deepdive-servicerole
