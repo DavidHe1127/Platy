@@ -50,3 +50,6 @@ $ terraform apply -var-file="dev.tfvars"
 - [url rewrite in reverse proxy](https://serverfault.com/questions/379675/nginx-reverse-proxy-url-rewrite)
 - [Sg rules for ALB](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/security-group-rules-reference.html)
 
+## Versions
+Terraform v0.12.18
+AWS Provider v2.54.0_x4 

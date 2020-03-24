@@ -21,8 +21,8 @@ vpc_private_subnets = {
 }
 
 instance_attributes = {
-  "1" = "{\"location\": \"instanceOne\"}"
-  "2" = "{\"location\": \"instanceTwo\"}"
+  "1" = "{\\\"location\\\": \\\"instanceOne\\\"}"
+  "2" = "{\\\"location\\\": \\\"instanceTwo\\\"}"
 }
 
 app_sg_id = "sg-09847148c0ef7a66f"
