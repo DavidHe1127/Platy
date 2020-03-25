@@ -11,7 +11,7 @@ REPO=dockerzon-temperature-api
 
 TEMPERATURE_API_IMAGE=dockerzon-ecs_temperature-api
 
-TARGET_GROUP_ARN=arn:aws:elasticloadbalancing:ap-southeast-2:216659404274:targetgroup/dockerzon-lb-tg/3079a9f88ab8f9ea
+TARGET_GROUP_NAME=dockerzon-lb-tg-temperature-api
 CONTAINER_NAME=temperature_api
 CONTAINER_PORT=8000
 SERVICE_ROLE_ARN=arn:aws:iam::216659404274:role/ecs-deepdive-servicerole
@@ -31,7 +31,7 @@ deploy-service:
 	echo "Create a service if it doesn't exist or update if it does"
 	../../../common/utils.sh deploy_service ${APPLICATION_NAME} \
 		${CLUSTER} \
-		${TARGET_GROUP_ARN} \
+		${TARGET_GROUP_NAME} \
 		${CONTAINER_NAME} \
 		${CONTAINER_PORT} \
 		${SERVICE_ROLE_ARN} \

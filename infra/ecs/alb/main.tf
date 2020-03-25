@@ -60,7 +60,7 @@ resource "aws_lb_listener_rule" "path_based_routing" {
 
   condition {
     path_pattern {
-      values = ["/weather/*"]
+      values = ["/weather"]
     }
   }
 }

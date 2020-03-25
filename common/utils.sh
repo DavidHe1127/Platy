@@ -33,7 +33,7 @@ function push_image() {
 function deploy_service() {
   APPLICATION_NAME=$1
   CLUSTER=$2
-  TARGET_GROUP_ARN=$3
+  TARGET_GROUP_NAME=$3
 
   CONTAINER_NAME=$4
   CONTAINER_PORT=$5
@@ -41,29 +41,34 @@ function deploy_service() {
   SERVICE_ROLE_ARN=$6
   DESIRED_TASK_COUNT=$7
 
+  TARGET_GROUP_ARN=$(aws elbv2 describe-target-groups \
+                    --name $TARGET_GROUP_NAME \
+                    --query 'TargetGroups[0].{arn:TargetGroupArn}.arn' \
+                    --output text)
+
   # spin up service with count set to 1
   ecs-cli compose \
     --file ./docker-compose.yml \
-    --project-name ${APPLICATION_NAME} \
+    --project-name $APPLICATION_NAME \
     --ecs-params ./ecs-params.yml \
     --region ap-southeast-2 \
-    --cluster ${CLUSTER} \
+    --cluster $CLUSTER \
     service up \
     --timeout 8 \
     --create-log-groups \
-    --target-group-arn ${TARGET_GROUP_ARN} \
-    --container-name ${CONTAINER_NAME} \
-    --container-port ${CONTAINER_PORT} \
-    --role ${SERVICE_ROLE_ARN}
+    --target-group-arn $TARGET_GROUP_ARN \
+    --container-name $CONTAINER_NAME \
+    --container-port $CONTAINER_PORT \
+    --role $SERVICE_ROLE_ARN
 
   # scale it up to desired task count
   ecs-cli compose \
     --file ./docker-compose.yml \
-    --project-name ${APPLICATION_NAME} \
+    --project-name $APPLICATION_NAME \
     --ecs-params ./ecs-params.yml \
     --region ap-southeast-2 \
-    --cluster ${CLUSTER} \
-    service scale ${DESIRED_TASK_COUNT} \
+    --cluster $CLUSTER \
+    service scale $DESIRED_TASK_COUNT \
     --deployment-max-percent 100 \
     --deployment-min-healthy-percent 0 \
     --timeout 8

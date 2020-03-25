@@ -12,7 +12,7 @@ EXPRESS_REPO=dockerzon-express
 NGINX_REPO=dockerzon-nginx
 TAG=1.1
 
-TARGET_GROUP_ARN=arn:aws:elasticloadbalancing:ap-southeast-2:216659404274:targetgroup/dockerzon-lb-tg/3079a9f88ab8f9ea
+TARGET_GROUP_NAME=dockerzon-lb-tg
 CONTAINER_NAME=nginx
 CONTAINER_PORT=80
 SERVICE_ROLE_ARN=arn:aws:iam::216659404274:role/ecs-deepdive-servicerole
@@ -39,7 +39,7 @@ deploy-service:
 	echo "Create a service if it doesn't exist or update if it does"
 	../../../common/utils.sh deploy_service ${APPLICATION_NAME} \
 		${CLUSTER} \
-		${TARGET_GROUP_ARN} \
+		${TARGET_GROUP_NAME} \
 		${CONTAINER_NAME} \
 		${CONTAINER_PORT} \
 		${SERVICE_ROLE_ARN} \

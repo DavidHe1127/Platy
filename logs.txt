@@ -1,0 +1,5 @@
+INFO[0000] Using ECS task definition                     TaskDefinition="temperature-api:4"
+WARN[0000] Failed to create log group /ecs/dockerzon/temperatureapi/dev in ap-southeast-2: The specified log group already exists
+WARN[0000] You cannot update the load balancer configuration on an existing service.  serviceName=temperature-api
+INFO[0000] Updated ECS service successfully              desiredCount=1 force-deployment=false service=temperature-api
+INFO[0000] Service status                                desiredCount=1 runningCount=1 serviceName=temperature-api
