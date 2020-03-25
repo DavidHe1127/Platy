@@ -25,6 +25,46 @@ resource "aws_lb_target_group" "dockerzon-lb-tg" {
   }
 }
 
+# temperature api tg
+resource "aws_lb_target_group" "dockerzon-lb-tg-temperature-api" {
+  target_type = "instance"
+  name        = "dockerzon-lb-tg-temperature-api"
+
+  port     = 80
+  protocol = "HTTP"
+  vpc_id   = var.vpc_id
+
+  health_check {
+    protocol            = "HTTP"
+    path                = "/health_check"
+    healthy_threshold   = 2
+    unhealthy_threshold = 3
+    timeout             = 5
+    interval            = 6
+  }
+
+  tags = {
+    Name = "dockerzon-lb-tg-temperature-api"
+  }
+}
+
+# listener rule
+resource "aws_lb_listener_rule" "path_based_routing" {
+  listener_arn = aws_lb_listener.dockerzon-lb-https-listener.arn
+  priority     = 99
+
+  action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.dockerzon-lb-tg-temperature-api.arn
+  }
+
+  condition {
+    path_pattern {
+      values = ["/weather/*"]
+    }
+  }
+}
+
 # alb
 resource "aws_lb" "dockerzon-lb" {
   name               = "dockerzon-lb-terraform"
