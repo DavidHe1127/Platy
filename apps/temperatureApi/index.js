@@ -22,7 +22,7 @@ server.get('/weather', (req, res, next) => {
   );
 });
 
-app.get('/health_check', (req, res, next) => {
+server.get('/health_check', (req, res, next) => {
   res.send({
     healthy: true,
   });

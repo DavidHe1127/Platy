@@ -1,0 +1,10 @@
+version: 1
+task_definition:
+  services:
+    temperature_api:
+      cpu_shares: 768
+      mem_limit: 300m
+  placement_constraints:
+      - type: memberOf
+        # run services on instance with attribute equal to instanceTwo
+        expression: "attribute:location == instanceOne"

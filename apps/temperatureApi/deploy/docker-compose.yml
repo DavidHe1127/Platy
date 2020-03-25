@@ -1,12 +1,12 @@
 version: '3'
 services:
   temperature_api:
-    image: 216659404274.dkr.ecr.ap-southeast-2.amazonaws.com/dockerzon-express:latest
+    image: 216659404274.dkr.ecr.ap-southeast-2.amazonaws.com/dockerzon-temperature-api:1.0
     ports:
-      - '8000:8000'
+      - '80:8000'
     environment:
       - NODE_ENV=production
-      - NEXT_GOAL=SAPro
+      - NEXT_GOAL=ServiceDiscovery
     logging:
       driver: awslogs
       options:

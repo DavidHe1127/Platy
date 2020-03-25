@@ -1,6 +1,6 @@
 # Use tab as indentations
 
-TAG=latest
+TAG=1.0
 CLUSTER=dockerzon
 
 APPLICATION_NAME=temperature-api
@@ -11,7 +11,7 @@ REPO=dockerzon-temperature-api
 
 TEMPERATURE_API_IMAGE=dockerzon-ecs_temperature-api
 
-TARGET_GROUP_ARN=arn:aws:elasticloadbalancing:ap-southeast-2:216659404274:targetgroup/dockerzon-lb-tg/a6bbc24870fd51c8
+TARGET_GROUP_ARN=arn:aws:elasticloadbalancing:ap-southeast-2:216659404274:targetgroup/dockerzon-lb-tg/3079a9f88ab8f9ea
 CONTAINER_NAME=temperature_api
 CONTAINER_PORT=8000
 SERVICE_ROLE_ARN=arn:aws:iam::216659404274:role/ecs-deepdive-servicerole

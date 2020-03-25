@@ -65,7 +65,7 @@ function deploy_service() {
     --cluster ${CLUSTER} \
     service scale ${DESIRED_TASK_COUNT} \
     --deployment-max-percent 100 \
-    --deployment-min-healthy-percent 50 \
+    --deployment-min-healthy-percent 0 \
     --timeout 8
 }
 
