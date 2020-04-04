@@ -4,7 +4,7 @@
 
 A tailored version of `dockerzon` used in `Scaling Docker on AWS` course on udemy.
 
-It's created to demonstrate how you can have the trio - react app + nginx + express work together in docker. It's comprised of:
+The main app is created to demonstrate how you can have the trio - react app + nginx + express work together in docker. It's comprised of:
 
 - frontend
   - nginx
@@ -16,19 +16,23 @@ Responsibilities:
 - nginx - reverse proxy + static assets serving
 - express - api server
 
+Weather API app is deployed on another ec2 instance separated from main app's one. This deployment allows us to explore ECS service discovery.
+
+## Apps
+
+- Weather API `https://api.theparrodise.com/weather`
+- Main APP `https://api.theparrodise.com`
+
+## Architecture Diagram
+
+Coming soon...
+
 ## How to kickstart
+
 First, install dependencies for `frontend` and `express` respectively.
 Then, run `yarn build` from inside `frontend` folder which results in `build` directory including production-ready artifacts.
 
 Lastly, run `docker-compose up` from project root and navigate to `http://localhost:4000` in your browser once containers are up and running.
-
-## Provision resources
-We use terraform for this. See example below:
-
-```shell
-# from infra folder
-$ terraform apply -var-file="dev.tfvars"
-```
 
 ## [Design Principle](./design-principles.md)
 
@@ -45,6 +49,7 @@ $ terraform apply -var-file="dev.tfvars"
 ## Heads-up
 
 - When pointing a record to a new alb dns, it can take up to half hour before it's effective
+- It can take up to 10 minutes to recover your deployed apps from a `stopped` state
 
 ## Reference links
 - [url rewrite in reverse proxy](https://serverfault.com/questions/379675/nginx-reverse-proxy-url-rewrite)
@@ -52,4 +57,4 @@ $ terraform apply -var-file="dev.tfvars"
 
 ## Versions
 Terraform v0.12.18
-AWS Provider v2.54.0_x4 
+AWS Provider v2.54.0_x4
