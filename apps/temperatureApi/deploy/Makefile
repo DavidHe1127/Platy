@@ -15,7 +15,6 @@ VPC_ID=vpc-01f2c79f328ce1caf
 TARGET_GROUP_NAME=dockerzon-lb-tg-temperature-api
 CONTAINER_NAME=temperature_api
 CONTAINER_PORT=8000
-SERVICE_ROLE_ARN=arn:aws:iam::216659404274:role/ecs-deepdive-servicerole
 DESIRED_TASK_COUNT=1
 
 build-image:
@@ -35,7 +34,6 @@ deploy-service:
 		${TARGET_GROUP_NAME} \
 		${CONTAINER_NAME} \
 		${CONTAINER_PORT} \
-		${SERVICE_ROLE_ARN} \
 		${DESIRED_TASK_COUNT} \
 		${VPC_ID}
 
