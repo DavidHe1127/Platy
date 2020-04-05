@@ -18,7 +18,7 @@ It's implemented by creating a set of A/SRV records in a private hosted zone. Th
 ### Verification
 Go to Route53 and see if you have something setup as follow:
 
-![route53-private-dns](service-discovery-route53)
+![route53-private-dns](./service-discovery-route53.png)
 
 ---
 
