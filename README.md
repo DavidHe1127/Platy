@@ -63,3 +63,4 @@ AWS Provider v2.54.0_x4
 ## Docs
 
 - [Service Discovery](./docs/service-discovery.md)
+- [App Notes](./docs/app-notes.md)

@@ -1,4 +1,4 @@
-## Learning notes
+## App notes
 
 ### Security Group
 - ELB security rules guide. see [Elastic Load Balancing Rules

@@ -23,11 +23,21 @@ Go to Route53 and see if you have something setup as follow:
 ---
 
 ### Notes
+Code below will get you instance ip:
 
+```shell
+# servicediscovery is cloud map cli api name
+aws servicediscovery discover-instances \
+  --namespace-name=dockerzon-dns-ns \
+  --service-name=temperature-api \
+  --query 'Instances[0].Attributes.{ip:AWS_INSTANCE_IPV4, port:AWS_INSTANCE_PORT}'
 ```
-dig srv temperature-api.dockerzon-dns-ns
 
-nslookup -q=SRV temperature-api.dockerzon-dns-ns
+will return
 
-host -t SRV temperature-api.dockerzon-dns-ns
+```json
+{
+    "ip": "10.0.1.151",
+    "port": "80"
+}
 ```
