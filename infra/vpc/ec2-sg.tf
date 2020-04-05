@@ -17,6 +17,16 @@ resource "aws_security_group_rule" "allow-inbound-traffic-from-alb" {
   security_group_id        = aws_security_group.app-instance-sg.id
 }
 
+// this allow instances within the same subnet talk to each other
+resource "aws_security_group_rule" "allow-comms-between-instances" {
+  type                     = "ingress"
+  from_port                = 80
+  to_port                  = 80
+  protocol                 = "tcp"
+  source_security_group_id = aws_security_group.app-instance-sg.id
+  security_group_id        = aws_security_group.app-instance-sg.id
+}
+
 resource "aws_security_group_rule" "allow-outbound-traffic-off-instance" {
   type              = "egress"
   from_port         = 0
