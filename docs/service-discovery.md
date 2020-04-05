@@ -41,3 +41,7 @@ will return
     "port": "80"
 }
 ```
+
+### References
+
+- [What is SRV why we need one?](https://www.webhostingbuzz.com/wiki/what-srv-record-and-why-you-might-need-one/)
