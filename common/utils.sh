@@ -38,8 +38,8 @@ function deploy_service() {
   CONTAINER_NAME=$4
   CONTAINER_PORT=$5
 
-  SERVICE_ROLE_ARN=$6
-  DESIRED_TASK_COUNT=$7
+  DESIRED_TASK_COUNT=$6
+  VPC_ID=$7
 
   TARGET_GROUP_ARN=$(aws elbv2 describe-target-groups \
                     --name $TARGET_GROUP_NAME \
@@ -55,11 +55,18 @@ function deploy_service() {
     --cluster $CLUSTER \
     service up \
     --timeout 8 \
+    --launch-type EC2 \
     --create-log-groups \
     --target-group-arn $TARGET_GROUP_ARN \
     --container-name $CONTAINER_NAME \
     --container-port $CONTAINER_PORT \
-    --role $SERVICE_ROLE_ARN
+    --vpc $VPC_ID \
+    --enable-service-discovery \
+    --sd-container-name $CONTAINER_NAME \
+    --sd-container-port $CONTAINER_PORT \
+    --private-dns-namespace dockerzon-dns-ns \
+    --dns-ttl 300 \
+    --dns-type SRV \
 
   # scale it up to desired task count
   ecs-cli compose \

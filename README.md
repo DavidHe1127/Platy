@@ -38,13 +38,12 @@ Lastly, run `docker-compose up` from project root and navigate to `http://localh
 
 ## TODOs
 
-- Add Service Discovery
-- Add CircleCI
 - Add ASG
 - Add NAT Gateway
 - Setup remote state file storage using S3
 - Incorporate ElasticCache and RDS and deploy the whole stack onto ECS
 - Use [terraform-aws-security-group](https://github.com/terraform-aws-modules/terraform-aws-security-group) module to create sg
+- Add CircleCI
 
 ## Heads-up
 
@@ -54,7 +53,13 @@ Lastly, run `docker-compose up` from project root and navigate to `http://localh
 ## Reference links
 - [url rewrite in reverse proxy](https://serverfault.com/questions/379675/nginx-reverse-proxy-url-rewrite)
 - [Sg rules for ALB](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/security-group-rules-reference.html)
+- [Service Discovery](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-cli-tutorial-servicediscovery.html)
 
 ## Versions
 Terraform v0.12.18
 AWS Provider v2.54.0_x4
+
+## Docs
+
+- [Service Discovery](./docs/service-discovery.md)
+- [App Notes](./docs/app-notes.md)
