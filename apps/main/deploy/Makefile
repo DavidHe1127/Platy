@@ -12,6 +12,7 @@ EXPRESS_REPO=dockerzon-express
 NGINX_REPO=dockerzon-nginx
 TAG=1.1
 
+VPC_ID=vpc-01f2c79f328ce1caf
 TARGET_GROUP_NAME=dockerzon-lb-tg
 CONTAINER_NAME=nginx
 CONTAINER_PORT=80
@@ -43,7 +44,8 @@ deploy-service:
 		${CONTAINER_NAME} \
 		${CONTAINER_PORT} \
 		${SERVICE_ROLE_ARN} \
-		${DESIRED_TASK_COUNT}
+		${DESIRED_TASK_COUNT} \
+		${VPC_ID}
 
 .PHONY: clean
 
