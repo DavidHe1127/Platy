@@ -1,7 +1,7 @@
 [
   {
     "ParameterKey": "KeyName",
-    "ParameterValue": "test-terraform-vpc-provisioning"
+    "ParameterValue": "dockerzon-ecs"
   },
   {
     "ParameterKey": "AMI",
