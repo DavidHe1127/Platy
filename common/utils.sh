@@ -67,6 +67,7 @@ function deploy_service() {
     --private-dns-namespace dockerzon-dns-ns \
     --dns-ttl 300 \
     --dns-type SRV \
+    --health-check-grace-period 300
 
   # scale it up to desired task count
   ecs-cli compose \
