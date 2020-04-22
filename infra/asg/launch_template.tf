@@ -1,3 +1,9 @@
+locals {
+  user_data = {
+    "1" = "{\\\"location\\\": \\\"instanceOne\\\"}"
+  }
+}
+
 resource "aws_launch_template" "dockerzon-asg" {
   name = "DockerzonASGLaunchTemplate"
 
@@ -5,7 +11,7 @@ resource "aws_launch_template" "dockerzon-asg" {
   instance_type = var.instance
   key_name      = var.key
 
-  vpc_security_group_ids = var.vpc_security_group_ids
+  # vpc_security_group_ids = var.vpc_security_group_ids
 
   block_device_mappings {
     device_name = "/dev/xvda"
@@ -41,27 +47,5 @@ resource "aws_launch_template" "dockerzon-asg" {
     }
   }
 
-  # Network interfaces and instance-level security groups can not be specified together
-  user_data = filebase64("${path.module}/example.sh")
+  user_data = base64encode(templatefile("${path.module}/../ecs/ec2/bootstrap/index.sh", { cluster = var.cluster, attribute = lookup(local.user_data, 1) }))
 }
-
-
-
-
-# resource "aws_launch_template" "foobar" {
-#   name_prefix   = "foobar"
-#   image_id      = "ami-1a2b3c"
-#   instance_type = "t2.micro"
-# }
-
-# resource "aws_autoscaling_group" "bar" {
-#   availability_zones = ["us-east-1a"]
-#   desired_capacity   = 1
-#   max_size           = 1
-#   min_size           = 1
-
-#   launch_template {
-#     id      = "${aws_launch_template.foobar.id}"
-#     version = "$Latest"
-#   }
-# }

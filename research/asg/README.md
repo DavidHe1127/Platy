@@ -22,7 +22,9 @@ Update service to enable scaling policy for reaction when linked alarm is trigge
 
 #### ASG
 
-Add cluster scaling
+Add cluster scaling.
+
+Amazon EC2 Auto Scaling attempts to distribute instances evenly between the Availability Zones that are enabled for your Auto Scaling group. Amazon EC2 Auto Scaling does this by attempting to launch new instances in the Availability Zone with the fewest instances. If the attempt fails, however, Amazon EC2 Auto Scaling attempts to launch the instances in another Availability Zone until it succeeds. For Auto Scaling groups in a VPC, if there are multiple subnets in an Availability Zone, Amazon EC2 Auto Scaling selects a subnet from the Availability Zone at random.
 
 
 ### Notes

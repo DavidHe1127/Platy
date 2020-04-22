@@ -23,9 +23,9 @@ variable "vpc_public_subnets" {
   description = "VPC public subnets id"
 }
 
-variable "target_group_arn" {
-  type        = string
-  description = "Arn of target group to launch instances in"
+variable "target_group_arns" {
+  type        = list
+  description = "Arn of target groups to launch instances in"
 }
 
 # launch template

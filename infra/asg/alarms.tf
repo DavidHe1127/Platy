@@ -72,19 +72,18 @@ resource "aws_cloudwatch_metric_alarm" "dockerzon-cluster-scale-in-alarm" {
   # dimensions - an aspect or feature of a situation
   dimensions = {
     ClusterName = var.cluster
-    ServiceName = var.service
   }
 
   actions_enabled           = true
   insufficient_data_actions = []
   ok_actions                = []
-  # alarm_actions = [
-  #   aws_appautoscaling_policy.ecs-scaling-out-policy.arn
-  # ]
+  alarm_actions = [
+    aws_autoscaling_policy.dockerzon-cluster-scale-in-policy.arn
+  ]
 }
 
 resource "aws_cloudwatch_metric_alarm" "dockerzon-cluster-scale-out-alarm" {
-  alarm_name        = "DockerzonServiceScaleOutAlarm"
+  alarm_name        = "DockerzonClusterScaleOutAlarm"
   alarm_description = "Scale service out when CPUUtilization exceeds specified threshold"
   namespace         = "AWS/ECS"
 
@@ -94,20 +93,19 @@ resource "aws_cloudwatch_metric_alarm" "dockerzon-cluster-scale-out-alarm" {
   period              = "60"
   # average value in 60 seconds of time
   statistic           = "Average"
-  threshold           = "75"
+  threshold           = "90"
   evaluation_periods  = "1"
   datapoints_to_alarm = "1"
 
   # dimensions - an aspect or feature of a situation
   dimensions = {
     ClusterName = var.cluster
-    ServiceName = var.service
   }
 
   actions_enabled           = true
   insufficient_data_actions = []
   ok_actions                = []
-  # alarm_actions = [
-  #   aws_appautoscaling_policy.ecs-scaling-out-policy.arn
-  # ]
+  alarm_actions = [
+    aws_autoscaling_policy.dockerzon-cluster-scale-out-policy.arn
+  ]
 }
