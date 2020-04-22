@@ -27,3 +27,36 @@ variable "target_group_arn" {
   type        = string
   description = "Arn of target group to launch instances in"
 }
+
+# launch template
+variable "ami" {
+  type        = string
+  default     = "ami-06862a6ef1260bb02"
+  description = "AMI id new instance is launched from"
+}
+
+variable "instance" {
+  type        = string
+  default     = "t2.micro"
+  description = "Instance type"
+}
+
+variable "key" {
+  type        = string
+  description = "Key for ssh"
+}
+
+variable "vpc_security_group_ids" {
+  type        = list
+  description = "vpc sg ids"
+}
+
+variable "app_instance_sg_ids" {
+  type        = list
+  description = "app instance sg ids"
+}
+
+variable "instance_profile" {
+  type        = string
+  description = "instance profile name"
+}
