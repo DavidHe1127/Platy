@@ -15,7 +15,7 @@ VPC_ID=vpc-01f2c79f328ce1caf
 TARGET_GROUP_NAME=dockerzon-lb-tg-temperature-api
 CONTAINER_NAME=temperature_api
 CONTAINER_PORT=8000
-DESIRED_TASK_COUNT=1
+DESIRED_TASK_COUNT=2
 
 build-image:
 	echo "Build and tag image"
