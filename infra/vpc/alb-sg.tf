@@ -30,8 +30,8 @@ resource "aws_security_group_rule" "allow-inbound-traffic-from-http" {
 
 resource "aws_security_group_rule" "allow-outbound-traffic-to-instance" {
   type                     = "egress"
-  from_port                = 80
-  to_port                  = 80
+  from_port                = 32768
+  to_port                  = 65535
   protocol                 = "tcp"
   source_security_group_id = aws_security_group.app-instance-sg.id
   security_group_id        = aws_security_group.dockerzon-lb-sg.id
