@@ -65,7 +65,7 @@ resource "aws_cloudwatch_metric_alarm" "dockerzon-cluster-scale-in-alarm" {
   period              = "60"
   # average value in 60 seconds of time
   statistic           = "Average"
-  threshold           = "25"
+  threshold           = "35"
   evaluation_periods  = "1"
   datapoints_to_alarm = "1"
 
@@ -88,12 +88,12 @@ resource "aws_cloudwatch_metric_alarm" "dockerzon-cluster-scale-out-alarm" {
   namespace         = "AWS/ECS"
 
   # ecs service overall cpu utilization
-  metric_name         = "CPUUtilization"
+  metric_name         = "CPUReservation"
   comparison_operator = "GreaterThanThreshold"
   period              = "60"
   # average value in 60 seconds of time
   statistic           = "Average"
-  threshold           = "90"
+  threshold           = "75"
   evaluation_periods  = "1"
   datapoints_to_alarm = "1"
 

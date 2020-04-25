@@ -16,31 +16,30 @@ const weatherClient = restifyClient.createJsonClient({
 });
 
 server.get('/weather', (req, res, next) => {
-  cpu.usage().then((cpuPercentage) => {
-    (function fiboLoop() {
-      process.stdout.write(fibo(45).toString());
-      process.nextTick(fiboLoop);
-    })();
-
-    (function spinForever() {
-      process.stdout.write('.');
-      process.nextTick(spinForever);
-    })();
-    res.send('xxx');
-    console.log(cpuPercentage + '%');
-    next();
-  });
-
-  // weatherClient.get(
-  //   `/v1/current.json?key=${key}&q=${query}`,
-  //   (err, req, r, obj) => {
-  //     cpu.usage().then((cpuPercentage) => {
-  //       res.send(obj);
-  //       next();
-  //       console.log(cpuPercentage + '%');
-  //     });
-  //   }
-  // );
+  // CPU intensive code below for testing ASG purpose
+  //   cpu.usage().then((cpuPercentage) => {
+  //     (function fiboLoop() {
+  //       process.stdout.write(fibo(45).toString());
+  //       process.nextTick(fiboLoop);
+  //     })();
+  //
+  //     (function spinForever() {
+  //       process.stdout.write('.');
+  //       process.nextTick(spinForever);
+  //     })();
+  //     res.send('xxx');
+  //     console.log(cpuPercentage + '%');
+  //     next();
+  weatherClient.get(
+    `/v1/current.json?key=${key}&q=${query}`,
+    (err, req, r, obj) => {
+      cpu.usage().then((cpuPercentage) => {
+        res.send(obj);
+        next();
+        console.log(cpuPercentage + '%');
+      });
+    }
+  );
 });
 
 server.get('/health_check', (req, res, next) => {

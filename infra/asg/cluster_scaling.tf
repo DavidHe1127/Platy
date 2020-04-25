@@ -1,6 +1,6 @@
 resource "aws_autoscaling_group" "dockerzon-cluster-asg" {
   name                      = "DockerzonClusterASG"
-  max_size                  = 4
+  max_size                  = 3
   min_size                  = 0
   desired_capacity          = 0
   vpc_zone_identifier       = [var.vpc_public_subnets["2a"], var.vpc_public_subnets["2b"]]
