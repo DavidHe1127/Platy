@@ -46,27 +46,55 @@ function deploy_service() {
                     --query 'TargetGroups[0].{arn:TargetGroupArn}.arn' \
                     --output text)
 
-  # spin up service with count set to 1
-  ecs-cli compose \
-    --file ./docker-compose.yml \
-    --project-name $APPLICATION_NAME \
-    --ecs-params ./ecs-params.yml \
-    --region ap-southeast-2 \
-    --cluster $CLUSTER \
-    service up \
-    --timeout 8 \
-    --launch-type EC2 \
-    --create-log-groups \
-    --target-group-arn $TARGET_GROUP_ARN \
-    --container-name $CONTAINER_NAME \
-    --container-port $CONTAINER_PORT \
-    --vpc $VPC_ID \
-    --enable-service-discovery \
-    --sd-container-name $CONTAINER_NAME \
-    --sd-container-port $CONTAINER_PORT \
-    --private-dns-namespace dockerzon-dns-ns \
-    --dns-ttl 300 \
-    --dns-type SRV \
+  SERVICE_DISCOVERY=$(aws ecs describe-services \
+        --services $APPLICATION_NAME \
+        --cluster dockerzon \
+        --query 'services[0].serviceRegistries' \
+        --output text)
+
+  if [ -z "$SERVICE_DISCOVERY" ];then
+    echo 'Service Discovery not found... Deploying service with Service Discovery'
+    # spin up service with count set to 1
+    ecs-cli compose \
+      --file ./docker-compose.yml \
+      --project-name $APPLICATION_NAME \
+      --ecs-params ./ecs-params.yml \
+      --region ap-southeast-2 \
+      --cluster $CLUSTER \
+      service up \
+      --timeout 8 \
+      --launch-type EC2 \
+      --create-log-groups \
+      --target-group-arn $TARGET_GROUP_ARN \
+      --container-name $CONTAINER_NAME \
+      --container-port $CONTAINER_PORT \
+      --vpc $VPC_ID \
+      --health-check-grace-period 300 \
+      --enable-service-discovery \
+      --sd-container-name $CONTAINER_NAME \
+      --sd-container-port $CONTAINER_PORT \
+      --private-dns-namespace dockerzon-dns-ns \
+      --dns-ttl 300 \
+      --dns-type SRV
+  else
+    echo 'Service Discovery enabled... Deploying service without Service Discovery'
+    # spin up service with count set to 1
+    ecs-cli compose \
+      --file ./docker-compose.yml \
+      --project-name $APPLICATION_NAME \
+      --ecs-params ./ecs-params.yml \
+      --region ap-southeast-2 \
+      --cluster $CLUSTER \
+      service up \
+      --timeout 8 \
+      --launch-type EC2 \
+      --create-log-groups \
+      --target-group-arn $TARGET_GROUP_ARN \
+      --container-name $CONTAINER_NAME \
+      --container-port $CONTAINER_PORT \
+      --vpc $VPC_ID \
+      --health-check-grace-period 300
+  fi
 
   # scale it up to desired task count
   ecs-cli compose \

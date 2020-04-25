@@ -8,6 +8,7 @@ resource "aws_security_group" "app-instance-sg" {
   }
 }
 
+# Use port range 32768-65535 when dynamic port mapping is enabled
 resource "aws_security_group_rule" "allow-inbound-traffic-from-alb" {
   type                     = "ingress"
   from_port                = 0

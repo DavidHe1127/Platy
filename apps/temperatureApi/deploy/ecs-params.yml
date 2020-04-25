@@ -2,7 +2,7 @@ version: 1
 task_definition:
   services:
     temperature_api:
-      cpu_shares: 256
+      cpu_shares: 512
       mem_limit: 300m
   placement_constraints:
       - type: memberOf
