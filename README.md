@@ -34,7 +34,7 @@ Then, run `yarn build` from inside `frontend` folder which results in `build` di
 
 Lastly, run `docker-compose up` from project root and navigate to `http://localhost:4000` in your browser once containers are up and running.
 
-## [Design Principle](./design-principles.md)
+<!-- ## [Design Principle](./design-principles.md) -->
 
 ## TODOs
 
@@ -62,3 +62,4 @@ AWS Provider v2.54.0_x4
 
 - [Service Discovery](./docs/service-discovery.md)
 - [App Notes](./docs/app-notes.md)
+- [ASG with ECS](./docs/asg.md)
