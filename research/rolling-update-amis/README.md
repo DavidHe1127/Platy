@@ -3,7 +3,8 @@
 ### Prerequisite
 
 - Try with `minimumHealthyPercent` set to **100%** which will ensure the replaced tasks are `RUNNING` and healthy before
-ECS scheduler does its job to terminate old tasks deployed on old instances
+ECS scheduler does its job to terminate old tasks deployed on old instances.
+By default, `--deployment-min-healthy-percent` is `100` when deploying through ECS-CLI.
 
 ### Steps
 
@@ -14,3 +15,7 @@ ECS scheduler does its job to terminate old tasks deployed on old instances
   ```shell
     aws autoscaling terminate-instance-in-auto-scaling-group --instance-id XXXX --should-decrement-desired-capacity 2
   ```
+
+### TODOS
+
+- Add step to check whether or not instances are running on latest AMIs

@@ -1,8 +1,8 @@
 resource "aws_autoscaling_group" "dockerzon-cluster-asg" {
   name                      = "DockerzonClusterASG"
-  max_size                  = 3
-  min_size                  = 0
-  desired_capacity          = 0
+  max_size                  = var.max_size_asg
+  min_size                  = var.min_size_asg
+  desired_capacity          = var.desired_capacity_asg
   vpc_zone_identifier       = [var.vpc_public_subnets["2a"], var.vpc_public_subnets["2b"]]
   target_group_arns         = var.target_group_arns
   health_check_type         = "EC2"
