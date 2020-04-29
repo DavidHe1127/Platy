@@ -47,6 +47,6 @@ diff -u \
   <(echo "$CHANGES" | jq '.after')
 
 # apply changes...
-# terraform apply \
-#   -input=false \
-#   tfplan
+terraform apply \
+  -input=false \
+  tfplan
