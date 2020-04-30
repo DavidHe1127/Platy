@@ -4,6 +4,7 @@
 **/node_modules
 **/build
 infra/**/.terraform
+infra/**/tfplan
 
 /.pnp
 .pnp.js

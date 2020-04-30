@@ -60,3 +60,22 @@ variable "instance_profile" {
   type        = string
   description = "instance profile name"
 }
+
+# asg
+variable "min_size_asg" {
+  type        = number
+  default     = 1
+  description = "Min asg size"
+}
+
+variable "max_size_asg" {
+  type        = number
+  default     = 3
+  description = "Max asg size"
+}
+
+variable "desired_capacity_asg" {
+  type        = number
+  default     = 1
+  description = "Desired count of targets"
+}

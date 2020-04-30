@@ -44,6 +44,7 @@ resource "aws_launch_template" "dockerzon-asg" {
 
     tags = {
       Origin = "Lauched by Dockerzon ASG launch template"
+      Name   = "Dockerzon-launched-by-asg"
     }
   }
 
