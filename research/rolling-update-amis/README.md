@@ -18,4 +18,4 @@ By default, `--deployment-min-healthy-percent` is `100` when deploying through E
 
 ### TODOS
 
-- Add step to check whether or not instances are running on latest AMIs
+- Check to see if added instances are ready for tasks placement.
