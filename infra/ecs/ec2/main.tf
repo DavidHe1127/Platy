@@ -1,42 +1,32 @@
-resource "aws_instance" "web" {
-  ami                    = var.ami
-  instance_type          = "t2.micro"
-  key_name               = var.key_name
-  user_data              = templatefile("ec2/bootstrap/index.sh", { cluster = var.cluster, attribute = lookup(var.attributes, count.index + 1) })
-  vpc_security_group_ids = [var.app_sg_id]
-  iam_instance_profile   = aws_iam_instance_profile.instance-profile.name
+# resource "aws_instance" "web" {
+#   ami                    = var.ami
+#   instance_type          = "t2.micro"
+#   key_name               = var.key_name
+#   user_data              = templatefile("ec2/bootstrap/index.sh", { cluster = var.cluster, attribute = lookup(var.attributes, count.index + 1) })
+#   vpc_security_group_ids = [var.app_sg_id]
+#   iam_instance_profile   = aws_iam_instance_profile.instance-profile.name
 
-  count     = var.instance_count
-  subnet_id = element(var.subnets, count.index)
+#   count     = var.instance_count
+#   subnet_id = element(var.subnets, count.index)
 
-  tags = {
-    Name = "${var.name}-0${count.index + 1}"
+#   tags = {
+#     Name = "${var.name}-0${count.index + 1}"
+#   }
+# }
+
+resource "aws_autoscaling_group" "dockerzon-cluster-asg" {
+  name                      = "DockerzonClusterASG"
+  max_size                  = var.max_size_asg
+  min_size                  = var.min_size_asg
+  desired_capacity          = var.desired_capacity_asg
+  vpc_zone_identifier       = var.subnets
+  target_group_arns         = var.target_group_arns
+  health_check_type         = "EC2"
+  health_check_grace_period = 301
+  service_linked_role_arn   = var.ecs_cluster_auto_scaling_role_arn
+
+  launch_template {
+    id      = aws_launch_template.dockerzon-asg.id
+    version = "$Latest"
   }
-}
-
-resource "aws_iam_instance_profile" "instance-profile" {
-  name = "dockerzon-instance-profile"
-  role = aws_iam_role.instance-profile-role.name
-}
-
-resource "aws_iam_role" "instance-profile-role" {
-  name                  = "dockerzon-instance-profile-role"
-  assume_role_policy    = file("ec2/assumer_role.policy.json")
-  force_detach_policies = true
-
-  tags = {
-    Purpose = "Allow ec2 to contact ecs"
-  }
-}
-
-resource "aws_iam_policy" "policy" {
-  name        = "instance-profile-policy"
-  description = "Dockerzon instance profile role policy"
-
-  policy = file("ec2/allow_create_log_group.policy.json")
-}
-
-resource "aws_iam_role_policy_attachment" "policy-attachment" {
-  role       = aws_iam_role.instance-profile-role.name
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role"
 }

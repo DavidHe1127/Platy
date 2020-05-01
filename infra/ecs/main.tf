@@ -41,15 +41,16 @@ resource "aws_ecr_repository" "dockerzon-temperature-api" {
 module "instances" {
   source = "./ec2"
 
-  instance_count = 2
-  name           = var.app_name
-  subnets        = [var.vpc_public_subnets["2a"], var.vpc_public_subnets["2b"]]
-  attributes     = var.instance_attributes
-  ami            = var.ami
-  vpc_id         = var.vpc_id
-  app_sg_id      = var.app_sg_id
-  cluster        = var.cluster
-  key_name       = var.instance_key_name
+  name                              = local.configs.ec2.name
+  subnets                           = local.configs.ec2.subnets
+  attributes                        = local.configs.ec2.instance_attributes
+  ami                               = local.configs.ec2.ami
+  vpc_id                            = local.configs.ec2.vpc_id
+  cluster                           = local.configs.ec2.cluster
+  key_name                          = local.configs.ec2.key_name
+  target_group_arns                 = local.configs.ec2.target_group_arns
+  app_instance_sg_ids               = local.configs.ec2.app_instance_sg_ids
+  ecs_cluster_auto_scaling_role_arn = local.configs.ec2.ecs_cluster_auto_scaling_role_arn
 }
 
 # load balancer
@@ -60,7 +61,6 @@ module "alb" {
   vpc_name       = var.vpc_name
   public_subnets = [var.vpc_public_subnets["2a"], var.vpc_public_subnets["2b"]]
   target_count   = 2
-  target_ids     = module.instances.instance_ids
   lb_sg_id       = var.lb_sg_id
   domain_name    = var.domain_name
 }

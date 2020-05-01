@@ -24,11 +24,6 @@ variable "target_count" {
   description = "The number of targets to be registered"
 }
 
-variable "target_ids" {
-  type        = list
-  description = "List of target ids"
-}
-
 variable "domain_name" {
   type        = string
   description = "Domain name"

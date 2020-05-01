@@ -19,11 +19,6 @@ variable "vpc_private_subnets" {
   description = "vpc private subnet map"
 }
 
-variable "ami" {
-  type        = string
-  description = "custom ami with apache pre-installed"
-}
-
 variable "app_name" {
   type        = string
   description = "app name"
@@ -32,11 +27,6 @@ variable "app_name" {
 variable "cluster" {
   type        = string
   description = "ecs cluster"
-}
-
-variable "instance_key_name" {
-  type        = string
-  description = "instance key name"
 }
 
 variable "app_sg_id" {
@@ -52,9 +42,4 @@ variable "lb_sg_id" {
 variable "domain_name" {
   type        = string
   description = "Full qualified domain name"
-}
-
-variable "instance_attributes" {
-  type        = map
-  description = "instance attributes"
 }

@@ -1,10 +1,6 @@
 # var input values
-# ecs ami ami-06862a6ef1260bb02
-# ec2 ami ami-086be9e7a208dad05
-ami               = "ami-06862a6ef1260bb02"
 app_name          = "dockerzon"
 cluster           = "dockerzon"
-instance_key_name = "dockerzon-ecs"
 domain_name       = "*.theparrodise.com"
 
 vpc_id   = "vpc-01f2c79f328ce1caf"
@@ -20,10 +16,6 @@ vpc_private_subnets = {
   "2b" = "subnet-0d6ed92658dd2da83"
 }
 
-instance_attributes = {
-  "1" = "{\\\"location\\\": \\\"instanceOne\\\"}"
-  "2" = "{\\\"location\\\": \\\"instanceTwo\\\"}"
-}
-
 app_sg_id = "sg-09847148c0ef7a66f"
 lb_sg_id  = "sg-0b7429161a2cc32ae"
+
