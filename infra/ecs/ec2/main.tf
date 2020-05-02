@@ -36,7 +36,7 @@ resource "aws_launch_template" "dockerzon-asg" {
   network_interfaces {
     associate_public_ip_address = true
     delete_on_termination       = true
-    description                 = "Dockerzon ASG launch template"
+    description                 = "dockerzon ECS instance ENI"
     device_index                = 0
     security_groups             = var.app_instance_sg_ids
   }
