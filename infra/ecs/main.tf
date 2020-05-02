@@ -41,15 +41,15 @@ resource "aws_ecr_repository" "dockerzon-temperature-api" {
 module "instances" {
   source = "./ec2"
 
+  ami                               = local.configs.ec2.ami
   name                              = local.configs.ec2.name
   subnets                           = local.configs.ec2.subnets
-  attributes                        = local.configs.ec2.instance_attributes
-  ami                               = local.configs.ec2.ami
-  vpc_id                            = local.configs.ec2.vpc_id
   cluster                           = local.configs.ec2.cluster
   key_name                          = local.configs.ec2.key_name
   target_group_arns                 = local.configs.ec2.target_group_arns
   app_instance_sg_ids               = local.configs.ec2.app_instance_sg_ids
+  instance_attributes               = local.configs.ec2.instance_attributes
+  launch_template_name              = local.configs.ec2.launch_template_name
   ecs_cluster_auto_scaling_role_arn = local.configs.ec2.ecs_cluster_auto_scaling_role_arn
 }
 

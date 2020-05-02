@@ -19,11 +19,6 @@ variable "instance_type" {
   description = "ami id"
 }
 
-variable "vpc_id" {
-  type        = string
-  description = "vpc id"
-}
-
 variable "key_name" {
   type        = string
   description = "key name"
@@ -34,12 +29,11 @@ variable "cluster" {
   description = "cluster instances to register"
 }
 
-variable "attributes" {
-  type        = map
+variable "instance_attributes" {
+  type        = string
   description = "instance attributes"
 }
 
-# asg
 variable "min_size_asg" {
   type        = number
   default     = 1
@@ -71,4 +65,9 @@ variable "app_instance_sg_ids" {
 variable "ecs_cluster_auto_scaling_role_arn" {
   type        = string
   description = "ECS cluster auto scaling role arn"
+}
+
+variable "launch_template_name" {
+  type        = string
+  description = "launch template name"
 }

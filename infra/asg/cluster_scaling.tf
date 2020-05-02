@@ -1,20 +1,3 @@
-resource "aws_autoscaling_group" "dockerzon-cluster-asg" {
-  name                      = "DockerzonClusterASG"
-  max_size                  = var.max_size_asg
-  min_size                  = var.min_size_asg
-  desired_capacity          = var.desired_capacity_asg
-  vpc_zone_identifier       = [var.vpc_public_subnets["2a"], var.vpc_public_subnets["2b"]]
-  target_group_arns         = var.target_group_arns
-  health_check_type         = "EC2"
-  health_check_grace_period = 301
-  service_linked_role_arn   = var.ecs_cluster_auto_scaling_role_arn
-
-  launch_template {
-    id      = aws_launch_template.dockerzon-asg.id
-    version = "$Latest"
-  }
-}
-
 # Remove 50% of container instances in asg when -Infinity < CPUUtilization <= 25
 resource "aws_autoscaling_policy" "dockerzon-cluster-scale-in-policy" {
   name                   = "dockerzon-cluster-scale-in-policy"
