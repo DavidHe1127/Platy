@@ -3,11 +3,11 @@ resource "aws_autoscaling_group" "dockerzon-cluster-asg" {
   max_size                  = var.max_size_asg
   min_size                  = var.min_size_asg
   desired_capacity          = var.desired_capacity_asg
-  vpc_zone_identifier       = var.subnets
-  target_group_arns         = var.target_group_arns
+  vpc_zone_identifier       = data.aws_subnet_ids.dockerzon-public-subnets.ids
+  target_group_arns         = [aws_lb_target_group.dockerzon-lb-tg-temperature-api.arn]
   health_check_type         = "ELB"
   health_check_grace_period = 300
-  service_linked_role_arn   = var.ecs_cluster_auto_scaling_role_arn
+  service_linked_role_arn   = "arn:aws:iam::216659404274:role/aws-service-role/autoscaling.amazonaws.com/AWSServiceRoleForAutoScaling"
 
   launch_template {
     id      = aws_launch_template.dockerzon-asg.id
@@ -17,7 +17,7 @@ resource "aws_autoscaling_group" "dockerzon-cluster-asg" {
 
 # launch template
 resource "aws_launch_template" "dockerzon-asg" {
-  name = var.launch_template_name
+  name = "${var.app_name}-asg-launch-template"
 
   image_id      = var.ami
   instance_type = var.instance_type
@@ -38,7 +38,7 @@ resource "aws_launch_template" "dockerzon-asg" {
     delete_on_termination       = true
     description                 = "dockerzon ECS instance ENI"
     device_index                = 0
-    security_groups             = var.app_instance_sg_ids
+    security_groups             = data.aws_security_groups.app-sg.ids
   }
 
   iam_instance_profile {
@@ -54,9 +54,9 @@ resource "aws_launch_template" "dockerzon-asg" {
 
     tags = {
       Origin = "Lauched by Dockerzon ASG launch template"
-      Name   = var.name
+      Name   = "${var.app_name}-asg"
     }
   }
 
-  user_data = base64encode(templatefile("ec2/bootstrap/index.sh", { cluster = var.cluster, attribute = var.instance_attributes }))
+  user_data = base64encode(templatefile("configs/index.sh", { cluster = var.cluster, attribute = var.instance_attributes }))
 }

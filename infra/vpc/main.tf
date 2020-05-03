@@ -16,6 +16,7 @@ resource "aws_subnet" "public-subnet-2a" {
 
   tags = {
     Name = "10.0.1.0/ap-southeast-2a/public"
+    Tier = "public"
   }
 }
 
@@ -27,6 +28,7 @@ resource "aws_subnet" "public-subnet-2b" {
 
   tags = {
     Name = "10.0.3.0/ap-southeast-2b/public"
+    Tier = "public"
   }
 }
 
@@ -37,6 +39,7 @@ resource "aws_subnet" "private-subnet-2a" {
 
   tags = {
     Name = "10.0.5.0/ap-southeast-2a/private"
+    Tier = "private"
   }
 }
 
@@ -47,6 +50,7 @@ resource "aws_subnet" "private-subnet-2b" {
 
   tags = {
     Name = "10.0.4.0/ap-southeast-2b/private"
+    Tier = "private"
   }
 }
 
