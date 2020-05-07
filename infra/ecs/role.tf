@@ -1,3 +1,4 @@
+# EC2 Instance Profile
 resource "aws_iam_instance_profile" "instance-profile" {
   name = "dockerzon-instance-profile"
   role = aws_iam_role.instance-profile-role.name
@@ -20,7 +21,17 @@ resource "aws_iam_policy" "policy" {
   policy = file("configs/allow_create_log_group.policy.json")
 }
 
-resource "aws_iam_role_policy_attachment" "policy-attachment" {
+resource "aws_iam_role_policy_attachment" "instance-profile-role-policy-attachment" {
   role       = aws_iam_role.instance-profile-role.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role"
+}
+
+# Service-linked role
+resource "aws_iam_service_linked_role" "ecs-service-auto-scaling-role" {
+  aws_service_name = "autoscaling.amazonaws.com"
+}
+
+resource "aws_iam_role_policy_attachment" "ecs-service-auto-scaling-role-policy-attachment" {
+  role       = aws_iam_service_linked_role.ecs-service-auto-scaling-role.name
+  policy_arn = "arn:aws:iam::aws:policy/aws-service-role/AutoScalingServiceRolePolicy"
 }
