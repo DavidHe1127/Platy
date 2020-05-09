@@ -38,10 +38,7 @@ Lastly, run `docker-compose up` from project root and navigate to `http://localh
 
 ## TODOs
 
-- Merge ASG into ECS infra
-- Setup remote state file storage using S3
 - Add NAT Gateway
-- Incorporate ElasticCache and RDS and deploy the whole stack onto ECS
 - Use [terraform-aws-security-group](https://github.com/terraform-aws-modules/terraform-aws-security-group) module to create sg
 - Add CircleCI
 

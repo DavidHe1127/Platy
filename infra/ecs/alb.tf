@@ -67,7 +67,7 @@ resource "aws_lb" "dockerzon-lb" {
   load_balancer_type = "application"
   ip_address_type    = "ipv4"
   subnets            = data.aws_subnet_ids.dockerzon-public-subnets.ids
-  security_groups    = [data.aws_security_groups.alb-sg.id]
+  security_groups    = data.aws_security_groups.alb-sg.ids
 
   tags = {
     Name = "dockerzon-lb-terraform"

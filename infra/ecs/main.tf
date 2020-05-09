@@ -8,6 +8,8 @@ terraform {
     bucket  = "dave-dockerzon-ecs-tfstate"
     key     = "terraform.tfstate"
     region  = "ap-southeast-2"
+    # alternatively create an IAM user and attach required permissions to him. The resulting policy can then be added
+    # to ACL
     profile = "qq"
   }
 }
