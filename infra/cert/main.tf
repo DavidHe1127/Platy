@@ -1,7 +1,3 @@
-terraform {
-  required_version = "= 0.12.2"
-}
-
 provider "aws" {
   profile = "qq"
   region  = "ap-southeast-2"

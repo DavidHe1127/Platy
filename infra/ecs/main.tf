@@ -3,6 +3,15 @@ provider "aws" {
   region  = "ap-southeast-2"
 }
 
+terraform {
+  backend "s3" {
+    bucket  = "dave-dockerzon-ecs-tfstate"
+    key     = "terraform.tfstate"
+    region  = "ap-southeast-2"
+    profile = "qq"
+  }
+}
+
 # cluster
 resource "aws_ecs_cluster" "dockerzon" {
   name = var.cluster
