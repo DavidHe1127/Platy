@@ -29,7 +29,7 @@ resource "aws_vpc_endpoint" "ecr-s3" {
   service_name        = "com.amazonaws.${local.region}.s3"
   vpc_endpoint_type   = "Gateway"
 
-  policy = file("vpc_endpoint_s3_ecr_policy.json")
+  policy = file("configs/vpc_endpoint_s3_ecr_policy.json")
 
   route_table_ids = [
     aws_vpc.dockerzon-ecs-vpc.main_route_table_id,

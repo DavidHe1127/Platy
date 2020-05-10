@@ -7,6 +7,15 @@ locals {
   region = "ap-southeast-2"
 }
 
+terraform {
+  backend "s3" {
+    bucket  = "dave-dockerzon-ecs-tfstate"
+    key     = "dockerzon-ecs-prerequisites-terraform.tfstate"
+    region  = "ap-southeast-2"
+    profile = "qq"
+  }
+}
+
 # subnets
 resource "aws_subnet" "public-subnet-2a" {
   vpc_id                  = aws_vpc.dockerzon-ecs-vpc.id
@@ -16,6 +25,7 @@ resource "aws_subnet" "public-subnet-2a" {
 
   tags = {
     Name = "10.0.1.0/ap-southeast-2a/public"
+    Tier = "public"
   }
 }
 
@@ -27,6 +37,7 @@ resource "aws_subnet" "public-subnet-2b" {
 
   tags = {
     Name = "10.0.3.0/ap-southeast-2b/public"
+    Tier = "public"
   }
 }
 
@@ -37,6 +48,7 @@ resource "aws_subnet" "private-subnet-2a" {
 
   tags = {
     Name = "10.0.5.0/ap-southeast-2a/private"
+    Tier = "private"
   }
 }
 
@@ -47,6 +59,7 @@ resource "aws_subnet" "private-subnet-2b" {
 
   tags = {
     Name = "10.0.4.0/ap-southeast-2b/private"
+    Tier = "private"
   }
 }
 

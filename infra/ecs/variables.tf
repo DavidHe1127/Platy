@@ -1,27 +1,6 @@
-# expected input vars
 variable "vpc_name" {
   type        = string
   description = "vpc name"
-}
-
-variable "vpc_id" {
-  type        = string
-  description = "vpc id"
-}
-
-variable "vpc_public_subnets" {
-  type        = map
-  description = "vpc public subnet map"
-}
-
-variable "vpc_private_subnets" {
-  type        = map
-  description = "vpc private subnet map"
-}
-
-variable "ami" {
-  type        = string
-  description = "custom ami with apache pre-installed"
 }
 
 variable "app_name" {
@@ -29,32 +8,57 @@ variable "app_name" {
   description = "app name"
 }
 
-variable "cluster" {
-  type        = string
-  description = "ecs cluster"
-}
-
-variable "instance_key_name" {
-  type        = string
-  description = "instance key name"
-}
-
-variable "app_sg_id" {
-  type        = string
-  description = "instance sg id"
-}
-
-variable "lb_sg_id" {
-  type        = string
-  description = "load balancer sg id"
-}
-
 variable "domain_name" {
   type        = string
   description = "Full qualified domain name"
 }
 
+variable "ami" {
+  type        = string
+  description = "ami id"
+}
+
+variable "instance_type" {
+  type        = string
+  default     = "t2.micro"
+  description = "ami id"
+}
+
+variable "key_name" {
+  type        = string
+  description = "key name"
+}
+
+variable "cluster" {
+  type        = string
+  description = "cluster instances to register"
+}
+
 variable "instance_attributes" {
-  type        = map
+  type        = string
   description = "instance attributes"
+}
+
+variable "min_size_asg" {
+  type        = number
+  default     = 1
+  description = "Min asg size"
+}
+
+variable "max_size_asg" {
+  type        = number
+  default     = 3
+  description = "Max asg size"
+}
+
+variable "desired_capacity_asg" {
+  type        = number
+  default     = 1
+  description = "Desired count of targets"
+}
+
+variable "prerequisites_state_file_key" {
+  type        = string
+  default     = "dockerzon-ecs-prerequisites-terraform.tfstate"
+  description = "Prerequisites state file key name"
 }
