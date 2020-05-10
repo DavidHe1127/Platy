@@ -3,6 +3,17 @@ provider "aws" {
   region  = "ap-southeast-2"
 }
 
+terraform {
+  backend "s3" {
+    bucket  = "dave-dockerzon-ecs-tfstate"
+    key     = "dockerzon-ecs-cert-terraform.tfstate"
+    region  = "ap-southeast-2"
+    # alternatively create an IAM user and attach required permissions to him. The resulting policy can then be added
+    # to ACL
+    profile = "qq"
+  }
+}
+
 data "aws_route53_zone" "zone" {
   name         = var.domain_fqdn
   private_zone = false

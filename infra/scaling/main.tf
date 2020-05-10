@@ -7,11 +7,22 @@ locals {
   region = "ap-southeast-2"
 }
 
+terraform {
+  backend "s3" {
+    bucket  = "dave-dockerzon-ecs-tfstate"
+    key     = "dockerzon-ecs-scaling-terraform.tfstate"
+    region  = "ap-southeast-2"
+    # alternatively create an IAM user and attach required permissions to him. The resulting policy can then be added
+    # to ACL
+    profile = "qq"
+  }
+}
+
 # Remove 50% of container instances in asg when -Infinity < CPUUtilization <= 25
 resource "aws_autoscaling_policy" "dockerzon-cluster-scale-in-policy" {
   name                   = "dockerzon-cluster-scale-in-policy"
   adjustment_type        = "PercentChangeInCapacity"
-  autoscaling_group_name = aws_autoscaling_group.dockerzon-cluster-asg.name
+  autoscaling_group_name = data.terraform_remote_state.ecs-state.outputs.asg-name
 
   policy_type             = "StepScaling"
   metric_aggregation_type = "Average"
@@ -27,7 +38,7 @@ resource "aws_autoscaling_policy" "dockerzon-cluster-scale-in-policy" {
 resource "aws_autoscaling_policy" "dockerzon-cluster-scale-out-policy" {
   name                   = "dockerzon-cluster-scale-out-policy"
   adjustment_type        = "PercentChangeInCapacity"
-  autoscaling_group_name = aws_autoscaling_group.dockerzon-cluster-asg.name
+  autoscaling_group_name = data.terraform_remote_state.ecs-state.outputs.asg-name
 
   policy_type             = "StepScaling"
   metric_aggregation_type = "Average"
@@ -44,7 +55,7 @@ resource "aws_appautoscaling_target" "ecs-service-auto-scaling-target" {
   max_capacity       = 10
   min_capacity       = 1
   resource_id        = "service/${var.cluster}/${var.service}"
-  role_arn           = aws_iam_role.app-auto-scaling-service-role.arn
+  role_arn           = aws_iam_service_linked_role.ecs-app-auto-scaling-role.arn
   scalable_dimension = "ecs:service:DesiredCount"
   service_namespace  = "ecs"
 }
