@@ -7,6 +7,15 @@ locals {
   region = "ap-southeast-2"
 }
 
+terraform {
+  backend "s3" {
+    bucket  = "dave-dockerzon-ecs-tfstate"
+    key     = "dockerzon-ecs-prerequisites-terraform.tfstate"
+    region  = "ap-southeast-2"
+    profile = "qq"
+  }
+}
+
 # subnets
 resource "aws_subnet" "public-subnet-2a" {
   vpc_id                  = aws_vpc.dockerzon-ecs-vpc.id

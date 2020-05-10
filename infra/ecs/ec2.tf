@@ -7,7 +7,7 @@ resource "aws_autoscaling_group" "dockerzon-cluster-asg" {
   target_group_arns         = [aws_lb_target_group.dockerzon-lb-tg-temperature-api.arn]
   health_check_type         = "ELB"
   health_check_grace_period = 300
-  service_linked_role_arn   = aws_iam_service_linked_role.ecs-service-auto-scaling-role.arn
+  service_linked_role_arn   = data.terraform_remote_state.prerequisites-state.outputs.autoscaling-service-linked-role-arn
 
   launch_template {
     id      = aws_launch_template.dockerzon-asg.id

@@ -1,4 +1,3 @@
-# expected input vars
 variable "vpc_name" {
   type        = string
   description = "vpc name"
@@ -56,4 +55,10 @@ variable "desired_capacity_asg" {
   type        = number
   default     = 1
   description = "Desired count of targets"
+}
+
+variable "prerequisites_state_file_key" {
+  type        = string
+  default     = "dockerzon-ecs-prerequisites-terraform.tfstate"
+  description = "Prerequisites state file key name"
 }

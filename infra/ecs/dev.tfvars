@@ -14,4 +14,5 @@ desired_capacity_asg = 1
 ami                  = "ami-06862a6ef1260bb02"
 key_name             = "dockerzon-ecs"
 
-instance_attributes  = "{\\\"location\\\": \\\"instanceOne\\\"}"
+instance_attributes          = "{\\\"location\\\": \\\"instanceOne\\\"}"
+prerequisites_state_file_key = "dockerzon-ecs-prerequisites-terraform.tfstate"
