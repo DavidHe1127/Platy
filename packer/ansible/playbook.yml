@@ -1,0 +1,17 @@
+---
+name: Install and start Nginx
+# which host playbook will be executed in
+hosts: all
+# execute playbook as root user - become root user
+become: yes
+
+tasks:
+   - name: Install the latest version of Nginx
+     yum:
+        name: nginx
+        state: latest
+
+   - name: Start Nginx
+     service:
+         name: nginx
+         state: started
