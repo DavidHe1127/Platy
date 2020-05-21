@@ -12,6 +12,7 @@ The main app is created to demonstrate how you can have the trio - react app + n
 
 Responsibilities:
 
+- Flesh out packer with more code examples
 - frontend - a sample react app
 - nginx - reverse proxy + static assets serving
 - express - api server
