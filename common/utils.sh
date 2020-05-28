@@ -46,14 +46,13 @@ function deploy_service() {
                     --query 'TargetGroups[0].{arn:TargetGroupArn}.arn' \
                     --output text)
 
-  SERVICE_DISCOVERY=$(aws ecs describe-services \
+  SERVICE=$(aws ecs describe-services \
         --services $APPLICATION_NAME \
         --cluster dockerzon \
-        --query 'services[0].serviceRegistries' \
-        --output text)
+        --output json | jq -r '.services' | jq length)
 
-  if [ -z "$SERVICE_DISCOVERY" ];then
-    echo 'Service Discovery not found... Deploying service with Service Discovery'
+  if [ -z "$SERVICE" ];then
+    echo 'Service not found... Deploying service with Service Discovery'
     # spin up service with count set to 1
     ecs-cli compose \
       --file ./docker-compose.yml \
@@ -77,7 +76,7 @@ function deploy_service() {
       --dns-ttl 300 \
       --dns-type SRV
   else
-    echo 'Service Discovery enabled... Deploying service without Service Discovery'
+    echo 'Service found... Deploying service without Service Discovery'
     # spin up service with count set to 1
     ecs-cli compose \
       --file ./docker-compose.yml \
@@ -104,8 +103,8 @@ function deploy_service() {
     --region ap-southeast-2 \
     --cluster $CLUSTER \
     service scale $DESIRED_TASK_COUNT \
-    --deployment-max-percent 100 \
-    --deployment-min-healthy-percent 200 \
+    --deployment-max-percent 200 \
+    --deployment-min-healthy-percent 100 \
     --timeout 8
 }
 
