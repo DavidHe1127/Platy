@@ -19,6 +19,10 @@ Responsibilities:
 
 Weather API app is deployed on another ec2 instance separated from main app's one. This deployment allows us to explore ECS service discovery.
 
+## Versions
+Terraform v0.12.18
+AWS Provider v2.54.0_x4
+
 ## Apps
 
 - Weather API `https://api.theparrodise.com/weather`
@@ -39,26 +43,26 @@ Lastly, run `docker-compose up` from project root and navigate to `http://localh
 
 ## TODOs
 
-- Add NAT Gateway
-- Use [terraform-aws-security-group](https://github.com/terraform-aws-modules/terraform-aws-security-group) module to create sg
 - Add CircleCI
+- Add NAT Gateway
 
 ## Heads-up
 
 - When pointing a record to a new alb dns, it can take up to half hour before it's effective
 - It can take up to 10 minutes to recover your deployed apps from a `stopped` state
+- Repoint domain to ALB dns after alb is updated
 
-## Reference links
-- [url rewrite in reverse proxy](https://serverfault.com/questions/379675/nginx-reverse-proxy-url-rewrite)
-- [Sg rules for ALB](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/security-group-rules-reference.html)
-- [Service Discovery](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-cli-tutorial-servicediscovery.html)
+## Notes
 
-## Versions
-Terraform v0.12.18
-AWS Provider v2.54.0_x4
+- Cert in David's account is not managed by `infra/cert`
 
 ## Docs
 
 - [Service Discovery](./docs/service-discovery.md)
 - [App Notes](./docs/app-notes.md)
 - [ASG with ECS](./docs/asg.md)
+
+## Reference links
+- [url rewrite in reverse proxy](https://serverfault.com/questions/379675/nginx-reverse-proxy-url-rewrite)
+- [Sg rules for ALB](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/security-group-rules-reference.html)
+- [Service Discovery](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-cli-tutorial-servicediscovery.html)
