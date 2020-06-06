@@ -26,7 +26,7 @@ cd $(pwd)/../../infra/asg
 # plan
 terraform plan \
   --var-file="dev.tfvars" \
-  -target="aws_autoscaling_group.dockerzon-cluster-asg" \
+  -target="aws_cloudformation_stack.dockerzon-cluster-asg" \
   -refresh=true\
   -out="tfplan" \
   -var "desired_capacity_asg=${TEMP_DESIRED_COUNT}" \

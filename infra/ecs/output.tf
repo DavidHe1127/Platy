@@ -1,3 +1,3 @@
 output "asg-name" {
-  value = aws_autoscaling_group.dockerzon-cluster-asg.name
+  value = aws_cloudformation_stack.dockerzon-cluster-asg.name
 }
