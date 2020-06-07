@@ -16,15 +16,15 @@
 # }
 
 resource "aws_cloudformation_stack" "dockerzon-cluster-asg" {
-  name = "${var.cfn_stack_name}"
+  name = "DockerzonClusterASG"
 
   parameters = {
-    vpc_zone_identifier     = data.aws_subnet_ids.dockerzon-public-subnets.ids
+    vpc_zone_identifier     = join(",", data.aws_subnet_ids.dockerzon-public-subnets.ids)
     launch_template_id      = aws_launch_template.dockerzon-asg.id
     min_size                = var.min_size_asg
     max_size                = var.max_size_asg
     desired_capacity        = var.desired_capacity_asg
-    target_group_arns       = [aws_lb_target_group.dockerzon-lb-tg-temperature-api.arn]
+    target_group_arns       = aws_lb_target_group.dockerzon-lb-tg-temperature-api.arn
     service_linked_role_arn = data.terraform_remote_state.prerequisites-state.outputs.autoscaling-service-linked-role-arn
   }
 

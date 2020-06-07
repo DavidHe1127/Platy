@@ -1,4 +1,22 @@
+---
+AWSTemplateFormatVersion: 2010-09-09
 Description: Dockerzon asg created via Terraform CloudFormationStack
+Parameters:
+  vpc_zone_identifier:
+    Type: String
+  launch_template_id:
+    Type: String
+  min_size:
+    Type: String
+  max_size:
+    Type: String
+  desired_capacity:
+    Type: String
+  target_group_arns:
+    Type: String
+  service_linked_role_arn:
+    Type: String
+
 Resources:
   DockerzonClusterASG:
     Type: AWS::AutoScaling::AutoScalingGroup
@@ -6,8 +24,8 @@ Resources:
       AutoScalingGroupName: DockerzonClusterASG
       VPCZoneIdentifier: !Ref vpc_zone_identifier
       LaunchTemplate:
-        LaunchTemplateId: $Latest
-        Version: !Ref launch_template_version
+        LaunchTemplateId: !Ref launch_template_id
+        Version: $Latest
       MinSize: !Ref min_size
       MaxSize: !Ref max_size
       DesiredCapacity: !Ref desired_capacity_asg
