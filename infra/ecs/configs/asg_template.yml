@@ -2,19 +2,21 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: Dockerzon asg created via Terraform CloudFormationStack
 Parameters:
-  vpc_zone_identifier:
+  VPCZoneIdentifier:
+    Type: List<AWS::EC2::Subnet::Id>
+  LaunchTemplateId:
     Type: String
-  launch_template_id:
+  MinSize:
     Type: String
-  min_size:
+  MaxSize:
     Type: String
-  max_size:
+  DesiredCapacity:
     Type: String
-  desired_capacity:
+  TargetGroupARNs:
     Type: String
-  target_group_arns:
+  ServiceLinkedRoleARN:
     Type: String
-  service_linked_role_arn:
+  TemplateVersion:
     Type: String
 
 Resources:
@@ -22,21 +24,22 @@ Resources:
     Type: AWS::AutoScaling::AutoScalingGroup
     Properties:
       AutoScalingGroupName: DockerzonClusterASG
-      VPCZoneIdentifier: !Ref vpc_zone_identifier
+      VPCZoneIdentifier: !Ref VPCZoneIdentifier
       LaunchTemplate:
-        LaunchTemplateId: !Ref launch_template_id
-        Version: $Latest
-      MinSize: !Ref min_size
-      MaxSize: !Ref max_size
-      DesiredCapacity: !Ref desired_capacity_asg
+        LaunchTemplateId: !Ref LaunchTemplateId
+        Version: !Ref TemplateVersion
+      MinSize: !Ref MinSize
+      MaxSize: !Ref MaxSize
+      DesiredCapacity: !Ref DesiredCapacity
       HealthCheckType: EC2
       HealthCheckGracePeriod: 300
-      TargetGroupARNs: !Ref target_group_arns
-      ServiceLinkedRoleARN: !Ref service_linked_role_arn
+      TargetGroupARNs:
+        - !Ref TargetGroupARNs
+      ServiceLinkedRoleARN: !Ref ServiceLinkedRoleARN
 
-    CreationPolicy:
-      AutoScalingCreationPolicy:
-        MinSuccessfulInstancesPercent: 80
+    # CreationPolicy:
+    #   AutoScalingCreationPolicy:
+    #     MinSuccessfulInstancesPercent: 80
       # ResourceSignal:
       #   Count: '${var.cfn_signal_count}'
       #   Timeout: PT10M
@@ -46,7 +49,7 @@ Resources:
       #   IgnoreUnmodifiedGroupSizeProperties: true
       AutoScalingRollingUpdate:
         MaxBatchSize: 2
-        MinInstancesInService: !Ref min_size
+        MinInstancesInService: !Ref MinSize
         MinSuccessfulInstancesPercent: 80
         PauseTime: PT10M
         # auto scaling activities might disturb rolling update process which might

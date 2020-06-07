@@ -19,13 +19,14 @@ resource "aws_cloudformation_stack" "dockerzon-cluster-asg" {
   name = "DockerzonClusterASG"
 
   parameters = {
-    vpc_zone_identifier     = join(",", data.aws_subnet_ids.dockerzon-public-subnets.ids)
-    launch_template_id      = aws_launch_template.dockerzon-asg.id
-    min_size                = var.min_size_asg
-    max_size                = var.max_size_asg
-    desired_capacity        = var.desired_capacity_asg
-    target_group_arns       = aws_lb_target_group.dockerzon-lb-tg-temperature-api.arn
-    service_linked_role_arn = data.terraform_remote_state.prerequisites-state.outputs.autoscaling-service-linked-role-arn
+    VPCZoneIdentifier    = join(",", data.aws_subnet_ids.dockerzon-public-subnets.ids)
+    LaunchTemplateId     = aws_launch_template.dockerzon-asg.id
+    MinSize              = var.min_size_asg
+    MaxSize              = var.max_size_asg
+    DesiredCapacity      = var.desired_capacity_asg
+    ServiceLinkedRoleARN = data.terraform_remote_state.prerequisites-state.outputs.autoscaling-service-linked-role-arn
+    TemplateVersion      = aws_launch_template.dockerzon-asg.latest_version
+    TargetGroupARNs      = aws_lb_target_group.dockerzon-lb-tg-temperature-api.arn
   }
 
   template_body = file("${path.module}/configs/asg_template.yml")
