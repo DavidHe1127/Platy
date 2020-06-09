@@ -1,0 +1,63 @@
+---
+AWSTemplateFormatVersion: 2010-09-09
+Description: Dockerzon asg created via Terraform CloudFormationStack
+Parameters:
+  VPCZoneIdentifier:
+    Type: List<AWS::EC2::Subnet::Id>
+  LaunchTemplateId:
+    Type: String
+  MinSize:
+    Type: String
+  MaxSize:
+    Type: String
+  ResourceSignalCount:
+    Type: String
+  DesiredCapacity:
+    Type: String
+  TargetGroupARNs:
+    Type: String
+  ServiceLinkedRoleARN:
+    Type: String
+  TemplateVersion:
+    Type: String
+
+Resources:
+  ASG:
+    Type: AWS::AutoScaling::AutoScalingGroup
+    Properties:
+      AutoScalingGroupName: DockerzonClusterASG
+      VPCZoneIdentifier: !Ref VPCZoneIdentifier
+      LaunchTemplate:
+        LaunchTemplateId: !Ref LaunchTemplateId
+        Version: !Ref TemplateVersion
+      MinSize: !Ref MinSize
+      MaxSize: !Ref MaxSize
+      DesiredCapacity: !Ref DesiredCapacity
+      HealthCheckType: EC2
+      HealthCheckGracePeriod: 300
+      TargetGroupARNs:
+        - !Ref TargetGroupARNs
+      ServiceLinkedRoleARN: !Ref ServiceLinkedRoleARN
+
+    CreationPolicy:
+      AutoScalingCreationPolicy:
+        MinSuccessfulInstancesPercent: 100
+      ResourceSignal:
+        Count: !Ref ResourceSignalCount
+        Timeout: PT10M
+    UpdatePolicy:
+      AutoScalingRollingUpdate:
+        MaxBatchSize: 2
+        MinInstancesInService: !Ref MinSize
+        MinSuccessfulInstancesPercent: 80
+        PauseTime: PT10M
+        # auto scaling activities might disturb rolling update process which might
+        # cause it to fail. So suspend these processes during rolling update
+        SuspendProcesses:
+          - HealthCheck
+          - ReplaceUnhealthy
+          - AZRebalance
+          - AlarmNotification
+          - ScheduledActions
+        WaitOnResourceSignals: true
+    DeletionPolicy: Retain

@@ -1,17 +1,23 @@
-resource "aws_autoscaling_group" "dockerzon-cluster-asg" {
-  name                      = "DockerzonClusterASG"
-  max_size                  = var.max_size_asg
-  min_size                  = var.min_size_asg
-  desired_capacity          = var.desired_capacity_asg
-  vpc_zone_identifier       = data.aws_subnet_ids.dockerzon-public-subnets.ids
-  target_group_arns         = [aws_lb_target_group.dockerzon-lb-tg-temperature-api.arn]
-  health_check_type         = "EC2"
-  health_check_grace_period = 300
-  service_linked_role_arn   = data.terraform_remote_state.prerequisites-state.outputs.autoscaling-service-linked-role-arn
+resource "aws_cloudformation_stack" "dockerzon-cluster-asg" {
+  name = "DockerzonClusterASGTest"
 
-  launch_template {
-    id      = aws_launch_template.dockerzon-asg.id
-    version = "$Latest"
+  parameters = {
+    VPCZoneIdentifier    = join(",", data.aws_subnet_ids.dockerzon-public-subnets.ids)
+    LaunchTemplateId     = aws_launch_template.dockerzon-asg.id
+    MinSize              = var.min_size_asg
+    MaxSize              = var.max_size_asg
+    DesiredCapacity      = var.desired_capacity_asg
+    ServiceLinkedRoleARN = data.terraform_remote_state.prerequisites-state.outputs.autoscaling-service-linked-role-arn
+    TemplateVersion      = aws_launch_template.dockerzon-asg.latest_version
+    TargetGroupARNs      = aws_lb_target_group.dockerzon-lb-tg-temperature-api.arn
+    ResourceSignalCount  = var.desired_capacity_asg
+  }
+
+  template_body = file("${path.module}/configs/asg_template.yml")
+
+  # create a new one before destroy old one when a resource must be re-created upon a requested change
+  lifecycle {
+    create_before_destroy = true
   }
 }
 
@@ -58,5 +64,10 @@ resource "aws_launch_template" "dockerzon-asg" {
     }
   }
 
-  user_data = base64encode(templatefile("configs/index.sh", { cluster = var.cluster, attribute = var.instance_attributes }))
+  user_data = base64encode(templatefile("configs/index.sh",
+    { cluster   = var.cluster,
+      attribute = var.instance_attributes,
+      stack     = "DockerzonClusterASGTest",
+      resource  = "ASG"
+  }))
 }
