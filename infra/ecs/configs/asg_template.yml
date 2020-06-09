@@ -10,6 +10,8 @@ Parameters:
     Type: String
   MaxSize:
     Type: String
+  ResourceSignalCount:
+    Type: String
   DesiredCapacity:
     Type: String
   TargetGroupARNs:
@@ -20,7 +22,7 @@ Parameters:
     Type: String
 
 Resources:
-  DockerzonClusterASG:
+  ASG:
     Type: AWS::AutoScaling::AutoScalingGroup
     Properties:
       AutoScalingGroupName: DockerzonClusterASG
@@ -37,16 +39,13 @@ Resources:
         - !Ref TargetGroupARNs
       ServiceLinkedRoleARN: !Ref ServiceLinkedRoleARN
 
-    # CreationPolicy:
-    #   AutoScalingCreationPolicy:
-    #     MinSuccessfulInstancesPercent: 80
-      # ResourceSignal:
-      #   Count: '${var.cfn_signal_count}'
-      #   Timeout: PT10M
+    CreationPolicy:
+      AutoScalingCreationPolicy:
+        MinSuccessfulInstancesPercent: 100
+      ResourceSignal:
+        Count: !Ref ResourceSignalCount
+        Timeout: PT10M
     UpdatePolicy:
-      # Ignore differences in group size properties caused by scheduled actions
-      # AutoScalingScheduledAction:
-      #   IgnoreUnmodifiedGroupSizeProperties: true
       AutoScalingRollingUpdate:
         MaxBatchSize: 2
         MinInstancesInService: !Ref MinSize

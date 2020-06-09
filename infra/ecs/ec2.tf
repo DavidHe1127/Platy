@@ -16,7 +16,7 @@
 # }
 
 resource "aws_cloudformation_stack" "dockerzon-cluster-asg" {
-  name = "DockerzonClusterASG"
+  name = "DockerzonClusterASGTest"
 
   parameters = {
     VPCZoneIdentifier    = join(",", data.aws_subnet_ids.dockerzon-public-subnets.ids)
@@ -27,6 +27,7 @@ resource "aws_cloudformation_stack" "dockerzon-cluster-asg" {
     ServiceLinkedRoleARN = data.terraform_remote_state.prerequisites-state.outputs.autoscaling-service-linked-role-arn
     TemplateVersion      = aws_launch_template.dockerzon-asg.latest_version
     TargetGroupARNs      = aws_lb_target_group.dockerzon-lb-tg-temperature-api.arn
+    ResourceSignalCount  = var.desired_capacity_asg
   }
 
   template_body = file("${path.module}/configs/asg_template.yml")
@@ -80,5 +81,10 @@ resource "aws_launch_template" "dockerzon-asg" {
     }
   }
 
-  user_data = base64encode(templatefile("configs/index.sh", { cluster = var.cluster, attribute = var.instance_attributes }))
+  user_data = base64encode(templatefile("configs/index.sh",
+    { cluster   = var.cluster,
+      attribute = var.instance_attributes,
+      stack     = "DockerzonClusterASGTest",
+      resource  = "ASG"
+  }))
 }
