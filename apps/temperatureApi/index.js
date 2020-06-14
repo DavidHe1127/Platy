@@ -8,11 +8,11 @@ const PORT = process.env.PORT || 8000;
 const HOST = process.env.HOST || '0.0.0.0';
 
 const query = 'schofields';
-const key = 'b49d801e628045cf87c51838202003';
+const key = process.env.ECS_WEATHER_API_KEY;
 
 const server = restify.createServer();
 const weatherClient = restifyClient.createJsonClient({
-  url: 'https://api.weatherapi.com',
+  url: process.env.ECS_WEATHER_API_URL
 });
 
 server.get('/weather', (req, res, next) => {

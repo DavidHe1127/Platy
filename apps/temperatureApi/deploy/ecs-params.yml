@@ -1,9 +1,16 @@
-version: 1
+version: 3
 task_definition:
+  task_execution_role: ${TASK_EXEC_ROLE_ARN}
+  # task_execution_role: arn:aws:iam::216659404274:role/dockerzon-task-exec-role
   services:
     temperature_api:
       cpu_shares: 512
       mem_limit: 300m
+      secrets:
+        - value_from: /dockerzon/weather-api-key
+          name: ECS_WEATHER_API_KEY
+        - value_from: /dockerzon/weather-api-url
+          name: ECS_WEATHER_API_URL
   placement_constraints:
       - type: memberOf
         # run services on instance with attribute equal to instanceTwo

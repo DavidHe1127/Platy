@@ -40,6 +40,7 @@ function deploy_service() {
 
   DESIRED_TASK_COUNT=$6
   VPC_ID=$7
+  export TASK_EXEC_ROLE_ARN=$8
 
   TARGET_GROUP_ARN=$(aws elbv2 describe-target-groups \
                     --name $TARGET_GROUP_NAME \

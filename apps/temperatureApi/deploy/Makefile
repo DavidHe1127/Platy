@@ -15,7 +15,9 @@ VPC_ID=vpc-01f2c79f328ce1caf
 TARGET_GROUP_NAME=dockerzon-lb-tg-temperature-api
 CONTAINER_NAME=temperature_api
 CONTAINER_PORT=8000
-DESIRED_TASK_COUNT=2
+DESIRED_TASK_COUNT=1
+
+TASK_EXEC_ROLE_ARN=arn:aws:iam::216659404274:role/dockerzon-task-exec-role
 
 build-image:
 	echo "Build and tag image"
@@ -35,7 +37,8 @@ deploy-service:
 		${CONTAINER_NAME} \
 		${CONTAINER_PORT} \
 		${DESIRED_TASK_COUNT} \
-		${VPC_ID}
+		${VPC_ID} \
+		${TASK_EXEC_ROLE_ARN}
 
 .PHONY: clean
 
