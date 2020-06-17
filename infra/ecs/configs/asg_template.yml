@@ -60,4 +60,9 @@ Resources:
           - AlarmNotification
           - ScheduledActions
         WaitOnResourceSignals: true
-    DeletionPolicy: Retain
+    # retaining ASG after its stack has been deleted
+    # DeletionPolicy: Retain
+Outputs:
+  AsgName:
+    Description: The name of the auto scaling group
+    Value: !Ref ASG

@@ -1,5 +1,9 @@
+locals {
+  asg_stack_name = "DockerzonClusterASG"
+}
+
 resource "aws_cloudformation_stack" "dockerzon-cluster-asg" {
-  name = "DockerzonClusterASGTest"
+  name = local.asg_stack_name
 
   parameters = {
     VPCZoneIdentifier    = join(",", data.aws_subnet_ids.dockerzon-public-subnets.ids)
@@ -64,10 +68,10 @@ resource "aws_launch_template" "dockerzon-asg" {
     }
   }
 
-  user_data = base64encode(templatefile("configs/index.sh",
+  user_data = base64encode(templatefile("configs/user-data.sh",
     { cluster   = var.cluster,
       attribute = var.instance_attributes,
-      stack     = "DockerzonClusterASGTest",
+      stack     = local.asg_stack_name,
       resource  = "ASG"
   }))
 }
