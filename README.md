@@ -43,7 +43,6 @@ Lastly, run `docker-compose up` from project root and navigate to `http://localh
 
 ## TODOs
 
-- Implement AMI update using ASG lifecycle hooks
 - Add CircleCI
 - Add NAT Gateway
 
