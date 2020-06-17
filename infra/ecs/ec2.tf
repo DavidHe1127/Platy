@@ -1,22 +1,9 @@
-resource "aws_autoscaling_group" "dockerzon-cluster-asg-old" {
-  name                      = "DockerzonClusterASGOld"
-  max_size                  = var.max_size_asg
-  min_size                  = var.min_size_asg
-  desired_capacity          = var.desired_capacity_asg
-  vpc_zone_identifier       = data.aws_subnet_ids.dockerzon-public-subnets.ids
-  target_group_arns         = [aws_lb_target_group.dockerzon-lb-tg-temperature-api.arn]
-  health_check_type         = "EC2"
-  health_check_grace_period = 300
-  service_linked_role_arn   = data.terraform_remote_state.prerequisites-state.outputs.autoscaling-service-linked-role-arn
-
-  launch_template {
-    id      = aws_launch_template.dockerzon-asg.id
-    version = "$Latest"
-  }
+locals {
+  asg_stack_name = "DockerzonClusterASG"
 }
 
 resource "aws_cloudformation_stack" "dockerzon-cluster-asg" {
-  name = "DockerzonClusterASGTest"
+  name = local.asg_stack_name
 
   parameters = {
     VPCZoneIdentifier    = join(",", data.aws_subnet_ids.dockerzon-public-subnets.ids)
@@ -81,10 +68,10 @@ resource "aws_launch_template" "dockerzon-asg" {
     }
   }
 
-  user_data = base64encode(templatefile("configs/index.sh",
+  user_data = base64encode(templatefile("configs/user-data.sh",
     { cluster   = var.cluster,
       attribute = var.instance_attributes,
-      stack     = "DockerzonClusterASGTest",
+      stack     = local.asg_stack_name,
       resource  = "ASG"
   }))
 }

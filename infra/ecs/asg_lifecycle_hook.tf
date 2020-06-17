@@ -26,7 +26,7 @@ EOF
 
 resource "aws_iam_role" "container-draining_asg_lifecycle_hook" {
   name                  = "asg-hooks-container-draining-role"
-  assume_role_policy    = file("${path.module}/policies/autoscaling_assume_role.json")
+  assume_role_policy    = file("${path.module}/configs/autoscaling_assume_role.json")
   force_detach_policies = true
 }
 
@@ -87,7 +87,7 @@ resource "aws_lambda_permission" "container-draining_lambda" {
 
 resource "aws_iam_role" "container-draining-lambda-role" {
   name                  = "container-draining-lambda-assume-role"
-  assume_role_policy    = file("${path.module}/policies/lambda_assume_role.json")
+  assume_role_policy    = file("${path.module}/configs/lambda_assume_role.json")
   force_detach_policies = true
 }
 
