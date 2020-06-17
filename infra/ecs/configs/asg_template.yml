@@ -60,4 +60,5 @@ Resources:
           - AlarmNotification
           - ScheduledActions
         WaitOnResourceSignals: true
-    DeletionPolicy: Retain
+    # retaining ASG after its stack has been deleted
+    # DeletionPolicy: Retain
