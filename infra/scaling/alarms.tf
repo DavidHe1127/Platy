@@ -84,7 +84,7 @@ resource "aws_cloudwatch_metric_alarm" "dockerzon-cluster-scale-in-alarm" {
 
 resource "aws_cloudwatch_metric_alarm" "dockerzon-cluster-scale-out-alarm" {
   alarm_name        = "DockerzonClusterScaleOutAlarm"
-  alarm_description = "Scale service out when CPUUtilization exceeds specified threshold"
+  alarm_description = "Scale cluster out when CPUReservation exceeds specified threshold"
   namespace         = "AWS/ECS"
 
   # ecs service overall cpu utilization
