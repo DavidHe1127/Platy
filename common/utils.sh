@@ -109,5 +109,30 @@ function deploy_service() {
     --timeout 8
 }
 
+function enable_service_auto_scaling() {
+  CLUSTER=$1
+  APPLICATION_NAME=$2
+  MIN_TASK_COUNT=$3
+  MAX_TASK_COUNT=$4
+
+  # If the service supports service-linked roles,
+  # Application Auto Scaling uses a service-linked role,
+  # which it creates if it does not yet exist
+  aws application-autoscaling register-scalable-target \
+    --service-namespace ecs \
+    --scalable-dimension ecs:service:DesiredCount \
+    --resource-id "service/${CLUSTER}/${APPLICATION_NAME}" \
+    --min-capacity $MIN_TASK_COUNT \
+    --max-capacity $MAX_TASK_COUNT
+
+  aws application-autoscaling put-scaling-policy \
+    --service-namespace ecs \
+    --scalable-dimension ecs:service:DesiredCount \
+    --resource-id "service/${CLUSTER}/${APPLICATION_NAME}" \
+    --policy-name "cpu75-${APPLICATION_NAME}-auto-scaling-policy" \
+    --policy-type TargetTrackingScaling \
+    --target-tracking-scaling-policy-configuration file://service_auto_scaling_config.json
+}
+
 # Allows to call a function based on arguments passed to the script
 $*

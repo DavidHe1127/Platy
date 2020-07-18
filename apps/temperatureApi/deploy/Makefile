@@ -15,7 +15,10 @@ VPC_ID=vpc-01f2c79f328ce1caf
 TARGET_GROUP_NAME=dockerzon-lb-tg-temperature-api
 CONTAINER_NAME=temperature_api
 CONTAINER_PORT=8000
+
+MIN_TASK_COUNT=1
 DESIRED_TASK_COUNT=1
+MAX_TASK_COUNT=2
 
 TASK_EXEC_ROLE_ARN=arn:aws:iam::216659404274:role/dockerzon-task-exec-role
 
@@ -39,6 +42,13 @@ deploy-service:
 		${DESIRED_TASK_COUNT} \
 		${VPC_ID} \
 		${TASK_EXEC_ROLE_ARN}
+
+enable-service-auto-scaling:
+	echo "Add service autoscaling"
+	../../../common/utils.sh enable_service_auto_scaling ${CLUSTER} \
+		${APPLICATION_NAME} \
+		${MIN_TASK_COUNT} \
+		${MAX_TASK_COUNT}
 
 .PHONY: clean
 
