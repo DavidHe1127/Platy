@@ -56,3 +56,7 @@ data "aws_caller_identity" "current" {}
 data "aws_iam_policy" "task-exec-role-policy-aws" {
   arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
 }
+
+data "aws_autoscaling_group" "dockerzon-cluster-asg" {
+  name = "DockerzonClusterASG"
+}
