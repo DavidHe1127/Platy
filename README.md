@@ -43,9 +43,6 @@ Lastly, run `docker-compose up` from project root and navigate to `http://localh
 
 ## TODOs
 
-- Cluster Auto-scaling
-  - https://www.youtube.com/watch?v=0j8D-be2J1k
-  - https://aws.amazon.com/blogs/containers/deep-dive-on-amazon-ecs-cluster-auto-scaling/
 - Add CircleCI
 - Add NAT Gateway
 

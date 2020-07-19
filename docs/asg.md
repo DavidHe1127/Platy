@@ -34,3 +34,7 @@ Likewise, scaling policy will add 1 more instance to meet target value that is 5
 
 Also to note, setting target to value below 100 means spare capacity. In the above example, we will always make sure 50% instances are idle and not running any tasks on them. Besides, below-100 value makes scaling to zero impossible.
 ```
+
+#### Reference
+
+[Deep dive on CAS](https://aws.amazon.com/blogs/containers/deep-dive-on-amazon-ecs-cluster-auto-scaling/)
