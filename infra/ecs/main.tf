@@ -17,6 +17,11 @@ terraform {
 # cluster
 resource "aws_ecs_cluster" "dockerzon" {
   name = var.cluster
+  capacity_providers = [aws_ecs_capacity_provider.dockerzon-cas.name]
+
+  default_capacity_provider_strategy {
+    capacity_provider = aws_ecs_capacity_provider.dockerzon-cas.name
+  }
 
   tags = {
     Name = "dockerzon-cluster"
