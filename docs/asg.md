@@ -1,6 +1,7 @@
 ## Cluster Auto Scaling Key Points
 
 - CAS relies on ECS capacity providers, which provide the link between your ECS cluster and the ASGs you want to use.
+- Previously, tasks that cannot be placed due to insufficient compute resources will fail immediately. Now with managed scaling policy enabled in capacity provider, tasks will go into provisioning state instead and later be deployed when more instances come up as result of scale out. Currently, it allows 100 tasks in provisioning state to be queued.
 
 #### Scaling Design/Strategy
 
