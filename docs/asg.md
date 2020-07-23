@@ -34,6 +34,11 @@ CapacityProviderReservation = 66.6 (2 / 3 * 100)
 Likewise, scaling policy will add 1 more instance to meet target value that is 50.
 
 Also to note, setting target to value below 100 means spare capacity. In the above example, we will always make sure 50% instances are idle and not running any tasks on them. Besides, below-100 value makes scaling to zero impossible.
+
+#3 Given M = 0, N = 2 and Target = 100
+
+When M is 0, it means no tasks are running apart from daemon one. In this case, CapacityProviderReservation will be equal to Target only if M = N. Given M is 0, scaling policy will zero N out by scaling in 2 instances.
+
 ```
 
 #### Reference
