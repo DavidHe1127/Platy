@@ -25,7 +25,7 @@ CapacityProviderReservation = 66 (2 / 3 * 100)
 Scaling policy needs to tweak N so computed result equals 100. So it will remove one instance to bring N down to 2. As a result, 2 / 2 * 100 = 100
 In this process, a scale in activity is carried out.
 
-One thing to note is, set target to be 100 means all all instances are fully used. In other words, no more tasks can be placed on them unless new instances are launched.
+One thing to note is, set target to be 100 means all instances are fully used. In other words, no more tasks can be placed on them unless new instances are launched.
 
 #2 Given M = 2, N = 3 and Target = 50
 
