@@ -37,7 +37,9 @@ Also to note, setting target to value below 100 means spare capacity. In the abo
 
 #3 Given M = 0, N = 2 and Target = 100
 
-When M is 0, it means no tasks are running apart from daemon one. In this case, CapacityProviderReservation will be equal to Target only if M = N. Given M is 0, scaling policy will zero N out by scaling in 2 instances.
+When M is 0, it means no tasks are running apart from daemon one. In this case, 
+
+CapacityProviderReservation will be equal to Target only if M = N. Given M is 0, scaling policy will zero N out by scaling in 2 instances.
 
 ```
 
