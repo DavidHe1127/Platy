@@ -323,9 +323,9 @@ keep-alive-agent@0.0.1:
   integrity sha1-RIR8o5TOjWtSGuhYFr1kUJlCs4U=
 
 lodash@^4.17.11, lodash@^4.17.15:
-  version "4.17.15"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
-  integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
+  version "4.17.19"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.19.tgz#e48ddedbe30b3321783c5b4301fbd353bc1e4a4b"
+  integrity sha512-JNvd8XER9GQX0v2qJgsaN/mzFCNA5BRe/j8JN9d+tWyGLSodKQHKFicdwNYzWwI3wjRnaKPsGj1XkBjx/F96DQ==
 
 lru-cache@^5.1.1:
   version "5.1.1"
@@ -411,6 +411,11 @@ negotiator@^0.6.2:
   version "0.6.2"
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.2.tgz#feacf7ccf525a77ae9634436a64883ffeca346fb"
   integrity sha512-hZXc7K2e+PgeI1eDBe/10Ard4ekbfrrqG8Ep+8Jmf4JID2bNg7NvCPOZN+kfF574pFQI7mum2AUqDidoKqcTOw==
+
+node-os-utils@^1.2.2:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/node-os-utils/-/node-os-utils-1.3.0.tgz#67db4d7e2e78b86a3afc759f61456ae8eef82db8"
+  integrity sha512-1nA/jJ7JIT94BD/zCDFnU7GKbtSGJ7Cpbk/hCZcHLWTsERRtR8osnbnDZdT3Z8ZV7ugP38iYls6eGZfyA8M98A==
 
 obuf@^1.0.0, obuf@^1.1.2:
   version "1.1.2"
