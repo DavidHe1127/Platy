@@ -68,6 +68,14 @@ resource "aws_launch_template" "dockerzon-asg" {
     }
   }
 
+  tag_specifications {
+    resource_type = "volume"
+
+    tags = {
+      Name   = "dockerzon-vol"
+    }
+  }
+
   user_data = base64encode(templatefile("configs/user-data.sh",
     { cluster   = var.cluster,
       attribute = var.instance_attributes,
