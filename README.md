@@ -43,6 +43,7 @@ Lastly, run `docker-compose up` from project root and navigate to `http://localh
 
 ## TODOs
 
+- Automating the Amazon EBS snapshot lifecycle
 - Add CircleCI
 - Add NAT Gateway
 
