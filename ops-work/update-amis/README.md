@@ -1,4 +1,4 @@
-## Rolling update
+## Rolling update (UNUSED)
 
 Scripts in this folder are not used in favour of `Rolling update` being created via cloudformation. See `infra/ecs/ec2.tf` for more example.
 Scripts are maintained for reference purpose only.
