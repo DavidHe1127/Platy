@@ -43,6 +43,7 @@ Lastly, run `docker-compose up` from project root and navigate to `http://localh
 
 ## TODOs
 
+- [Blue/Green deployment](https://aws.amazon.com/blogs/aws/new-application-load-balancer-simplifies-deployment-with-weighted-target-groups/)
 - Use packer to encrypt EBS volume/AMI
 - Add CircleCI
 - Add NAT Gateway
