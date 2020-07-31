@@ -12,7 +12,7 @@ REPO=dockerzon-temperature-api
 TEMPERATURE_API_IMAGE=dockerzon-ecs_temperature-api
 
 VPC_ID=vpc-01f2c79f328ce1caf
-TARGET_GROUP_NAME=dockerzon-lb-tg-temperature-api
+TARGET_GROUP_NAME=alb-tg-temperature-api-blue
 CONTAINER_NAME=temperature_api
 CONTAINER_PORT=8000
 

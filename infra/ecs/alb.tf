@@ -20,10 +20,9 @@ resource "aws_lb_target_group" "dockerzon-lb-tg" {
   }
 }
 
-# temperature api tg
-resource "aws_lb_target_group" "dockerzon-lb-tg-temperature-api" {
+resource "aws_lb_target_group" "alb-tg-temperature-api-blue" {
   target_type = "instance"
-  name        = "dockerzon-lb-tg-temperature-api"
+  name        = "alb-tg-temperature-api-blue"
 
   port     = 80
   protocol = "HTTP"
@@ -39,7 +38,37 @@ resource "aws_lb_target_group" "dockerzon-lb-tg-temperature-api" {
   }
 
   tags = {
-    Name = "dockerzon-lb-tg-temperature-api"
+    Name = "alb-tg-temperature-api-blue"
+  }
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
+resource "aws_lb_target_group" "alb-tg-temperature-api-green" {
+  target_type = "instance"
+  name        = "alb-tg-temperature-api-green"
+
+  port     = 80
+  protocol = "HTTP"
+  vpc_id   = data.aws_vpc.dockerzon-vpc.id
+
+  health_check {
+    protocol            = "HTTP"
+    path                = "/health_check"
+    healthy_threshold   = 2
+    unhealthy_threshold = 3
+    timeout             = 5
+    interval            = 6
+  }
+
+  tags = {
+    Name = "alb-tg-temperature-api-green"
+  }
+
+  lifecycle {
+    create_before_destroy = true
   }
 }
 
@@ -49,8 +78,22 @@ resource "aws_lb_listener_rule" "path_based_routing" {
   priority     = 99
 
   action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.dockerzon-lb-tg-temperature-api.arn
+    type = "forward"
+    # Blue/Green weighted target groups
+    forward {
+      target_group {
+        arn    = aws_lb_target_group.alb-tg-temperature-api-blue.arn
+        weight = 100
+      }
+      target_group {
+        arn    = aws_lb_target_group.alb-tg-temperature-api-green.arn
+        weight = 0
+      }
+      stickiness {
+        enabled  = false
+        duration = 600
+      }
+    }
   }
 
   condition {

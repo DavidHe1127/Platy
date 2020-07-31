@@ -13,7 +13,6 @@ resource "aws_cloudformation_stack" "dockerzon-cluster-asg" {
     DesiredCapacity      = var.desired_capacity_asg
     ServiceLinkedRoleARN = data.terraform_remote_state.prerequisites-state.outputs.autoscaling-service-linked-role-arn
     TemplateVersion      = aws_launch_template.dockerzon-asg.latest_version
-    TargetGroupARNs      = aws_lb_target_group.dockerzon-lb-tg-temperature-api.arn
     ResourceSignalCount  = var.desired_capacity_asg
   }
 

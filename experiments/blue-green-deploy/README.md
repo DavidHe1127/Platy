@@ -4,13 +4,11 @@ Use weighted target group to implement B/G deployment.
 
 ### Workflow
 
-- Create 2 target groups for every app with one of the two as standby.
-- Direct 100% traffic to target group in usage (Blue)
-- Deploy green versioned of app to standby target group when b/g takes place
-- Adjust weighted policy to proportionally route traffic to blue and green groups
+- Create 2 target groups - one Blue and one Green for every app with Green one as standby.
+- Direct 100% traffic to Blue target group
+- When Green version is ready, deploy it using a different service name - i.e temperature-api-green and point it to Green target group
+- Adjust weighted policy proportionally to distribute traffic to both groups
 
 ### Reference
 
 [new-application-load-balancer-simplifies-deployment-with-weighted-target-groups/](https://aws.amazon.com/blogs/aws/new-application-load-balancer-simplifies-deployment-with-weighted-target-groups/)
-
-

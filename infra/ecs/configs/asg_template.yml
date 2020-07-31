@@ -14,8 +14,6 @@ Parameters:
     Type: String
   DesiredCapacity:
     Type: String
-  TargetGroupARNs:
-    Type: String
   ServiceLinkedRoleARN:
     Type: String
   TemplateVersion:
@@ -35,8 +33,6 @@ Resources:
       DesiredCapacity: !Ref DesiredCapacity
       HealthCheckType: EC2
       HealthCheckGracePeriod: 300
-      TargetGroupARNs:
-        - !Ref TargetGroupARNs
       ServiceLinkedRoleARN: !Ref ServiceLinkedRoleARN
 
     CreationPolicy:

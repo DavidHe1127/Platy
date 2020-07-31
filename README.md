@@ -21,7 +21,7 @@ Weather API app is deployed on another ec2 instance separated from main app's on
 
 ## Versions
 Terraform v0.12.18
-AWS Provider v2.54.0_x4
+AWS Provider v2.70
 
 ## Apps
 
