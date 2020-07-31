@@ -1,4 +1,4 @@
-## Experiments
+## Topics
 
 - [Custom AMI with Apache baked in](./custom-ami/)
 - [CloudWatch Event](./cloudwatch-event/)
