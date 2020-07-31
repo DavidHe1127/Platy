@@ -12,35 +12,26 @@ const key = process.env.ECS_WEATHER_API_KEY;
 
 const server = restify.createServer();
 const weatherClient = restifyClient.createJsonClient({
-  url: process.env.ECS_WEATHER_API_URL
+  url: process.env.ECS_WEATHER_API_URL,
 });
 
 server.get('/weather', (req, res, next) => {
-  // CPU intensive code below for testing ASG purpose
-  //   cpu.usage().then((cpuPercentage) => {
-  //     (function fiboLoop() {
-  //       process.stdout.write(fibo(45).toString());
-  //       process.nextTick(fiboLoop);
-  //     })();
-  //
-  //     (function spinForever() {
-  //       process.stdout.write('.');
-  //       process.nextTick(spinForever);
-  //     })();
-  //     res.send('xxx');
-  //     console.log(cpuPercentage + '%');
-  //     next();
   weatherClient.get(
     `/v1/current.json?key=${key}&q=${query}`,
     (err, req, r, obj) => {
       cpu.usage().then((cpuPercentage) => {
         res.send(obj);
         next();
-        console.log(cpuPercentage + '%');
       });
     }
   );
 });
+
+// b/g deployment
+// server.get('/weather', (req, res, next) => {
+//   res.send('green');
+//   next();
+// });
 
 server.get('/health_check', (req, res, next) => {
   res.send({
