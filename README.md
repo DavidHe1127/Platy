@@ -43,7 +43,6 @@ Lastly, run `docker-compose up` from project root and navigate to `http://localh
 
 ## TODOs
 
-- Use packer to encrypt EBS volume/AMI
 - Add CircleCI
 - Add NAT Gateway
 
