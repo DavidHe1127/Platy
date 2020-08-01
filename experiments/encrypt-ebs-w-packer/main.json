@@ -1,0 +1,38 @@
+{
+  "variables": {
+    "region": "ap-southeast-2"
+  },
+  "builders": [
+    {
+      "type": "amazon-ebs",
+      "ami_name": "david-packer-test-{{timestamp}}",
+      "instance_type": "t2.micro",
+      "region": "{{user `region`}}",
+      "ssh_username": "ec2-user",
+      "source_ami": "ami-0970010f37c4f9c8d",
+      "iam_instance_profile": "packer-builder-instance-profile",
+      "ssh_keypair_name": "dockerzon-ecs",
+      "ssh_private_key_file": "~/.ssh/dockerzon-ecs.pem",
+      "tags": {
+        "Name": "Produced by Packer"
+      },
+      "kms_key_id": "alias/aws/ebs",
+      "encrypt_boot": true
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline": [
+        "sudo yum -y update",
+        "sudo yum install python3 -y",
+        "sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm",
+        "sudo yum -y install ansible"
+      ]
+    },
+    {
+      "type": "ansible-local",
+      "playbook_file": "./ansible/playbook.yml"
+    }
+  ]
+}

@@ -4,4 +4,4 @@
 - [CloudWatch Event](./cloudwatch-event/)
 - [Blue/Green Deployment](./blue-green-deploy/)
 - [Automate EBS Backup using EC2 lifecycle Mgr](./automate-ebs-backup/)
-- [Packer](./packer/)
+- [Encrypt EBS with Packer](./encrypt-ebs-w-packer/)

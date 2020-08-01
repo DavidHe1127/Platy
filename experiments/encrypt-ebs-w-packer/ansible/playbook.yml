@@ -1,0 +1,10 @@
+# Install aws-cli and do some basic operations
+---
+- hosts: all
+  remote_user: root
+  tasks:
+  - name: Install awscli
+    pip:
+      name: awscli
+      executable: pip3
+      extra_args: "--user --upgrade"
