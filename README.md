@@ -43,8 +43,11 @@ Lastly, run `docker-compose up` from project root and navigate to `http://localh
 
 ## TODOs
 
-- Add CircleCI
+- inter-vpc communication
+- VPC Peering
+- VPN Client
 - Add NAT Gateway
+- Add CircleCI
 
 ## Heads-up
 
