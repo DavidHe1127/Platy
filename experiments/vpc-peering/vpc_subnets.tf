@@ -1,9 +1,6 @@
 # requester vpc
 resource "aws_vpc" "requester-vpc" {
   cidr_block = "10.100.0.0/16"
-  # dns settings below required to use VPC PrviateLinks
-  # enable_dns_support   = true
-  # enable_dns_hostnames = true
 
   tags = {
     env     = "dev"
