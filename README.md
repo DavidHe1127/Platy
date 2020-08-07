@@ -43,11 +43,10 @@ Lastly, run `docker-compose up` from project root and navigate to `http://localh
 
 ## TODOs
 
-- inter-vpc communication
-- VPC Peering
 - mix spot and on-demand instance in ASG
-- VPN Client
 - Add NAT Gateway
+- Lambda in python
+- VPN Client (add instructions only)
 - Add CircleCI
 
 ## Heads-up

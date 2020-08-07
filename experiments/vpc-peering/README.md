@@ -1,13 +1,14 @@
 ## VPC Peering
 
-### Prerequisites
+### Workflow
 
-- boto3
-- boto
-- ansible
+- Create 2 VPCs - requester/accepter VPC
+- Create VPC peering conn between 2 subnets from requester/accepter vpc respectively
+- Modify route table associated with each subnet to route traffic destined for the other subnet to peering conn id
 
-### AMI
-ami-0a7c4f7f17d3eecbc
+### Caveats
+
+- SG cannot span across different VPC - ec2 in one VPC cannot use sg from a different VPC
 
 ### References
 
