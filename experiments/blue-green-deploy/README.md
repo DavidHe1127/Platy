@@ -9,6 +9,10 @@ Use weighted target group to implement B/G deployment.
 - When Green version is ready, deploy it using a different service name - i.e temperature-api-green and point it to Green target group
 - Adjust weighted policy proportionally to distribute traffic to both groups
 
+### Implementation
+
+See [alb.tf](/infra/ecs/alb.tf)
+
 ### Reference
 
 [new-application-load-balancer-simplifies-deployment-with-weighted-target-groups/](https://aws.amazon.com/blogs/aws/new-application-load-balancer-simplifies-deployment-with-weighted-target-groups/)
