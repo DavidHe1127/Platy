@@ -2,9 +2,13 @@
 
 ### Workflow
 
-- Create 2 VPCs - requester/accepter VPC
+- Create 2 VPCs - requester/accepter VPC and subnets
 - Create VPC peering conn between 2 subnets from requester/accepter vpc respectively
 - Modify route table associated with each subnet to route traffic destined for the other subnet to peering conn id
+
+### Architecture
+
+![vpc-peering-arch](vpc-peering-arch.png)
 
 ### Verify
 
