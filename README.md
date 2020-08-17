@@ -43,7 +43,6 @@ Lastly, run `docker-compose up` from project root and navigate to `http://localh
 
 ## TODOs
 
-- mix spot and on-demand instance in ASG
 - Lambda in python using [docker-lambda](https://github.com/lambci/docker-lambda)
 - Add NAT Gateway
 - VPN Client (add instructions only)
