@@ -23,3 +23,34 @@ It allows you to launch ec2s with multiple instance types. i.e spot + on-demand 
 - Use multiple instance types
 - When using `lowest price`, to lower the impact of spot instance interruptions, specify a high number of spot instance pools. i.e set pool count to 10 when running critical mission like a web application or 2 when running a non-critical mission like batch job.
 - Setup event bridge to send 2 minute warning to SNS/lambda prior to spot instance terminations.
+
+### Terraform example
+
+Mixed instance type config is not implemented in the existing infra tf script. The following example is to illustrate how you can create it.
+
+```tf
+resource "aws_autoscaling_group" "example" {
+  availability_zones = ["us-east-1a"]
+  desired_capacity   = 1
+  max_size           = 1
+  min_size           = 1
+
+  mixed_instances_policy {
+    launch_template {
+      launch_template_specification {
+        launch_template_id = aws_launch_template.example.id
+      }
+
+      override {
+        instance_type     = "c4.large"
+        weighted_capacity = "3"
+      }
+
+      override {
+        instance_type     = "c3.large"
+        weighted_capacity = "2"
+      }
+    }
+  }
+}
+```
