@@ -7,7 +7,6 @@ It allows you to launch ec2s with multiple instance types. i.e spot + on-demand 
 - `on-demand` instances uses `prioritised` strategy. i.e use order of instance type in the list of launch template overrides. You order them by moving them up or down. The first instance type in the list is prioritized higher than the last. If all your On-Demand capacity cannot be fulfilled using your highest priority instance, then the EC2 Fleet launches the remaining capacity using the second priority instance type, and so on.
 - `spot` instances allow `capacity optimised` (recommended) or `lowest price`.
 - Instances weighting example
-- Spot instances will either be interrupted by higher bidding price OR insufficient capacity.
 
 |   | Total  |
 |---|--------|
@@ -15,7 +14,7 @@ It allows you to launch ec2s with multiple instance types. i.e spot + on-demand 
 | on-demand instance  |    5    |
 | over base on-demand 80%   |   12     |
 | over base spot 80%   |   8     |
-
+- Spot instances will either be interrupted by higher bidding price OR insufficient capacity.
 
 ### Best practices
 
