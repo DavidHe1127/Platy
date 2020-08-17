@@ -45,7 +45,8 @@ Lastly, run `docker-compose up` from project root and navigate to `http://localh
 
 - Lambda in python using [docker-lambda](https://github.com/lambci/docker-lambda)
 - Add NAT Gateway
-- VPN Client (add instructions only)
+- Try CDK
+- VPN Client (add workflow only)
 - Add CircleCI
 
 ## Heads-up
