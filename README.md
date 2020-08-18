@@ -48,6 +48,7 @@ Lastly, run `docker-compose up` from project root and navigate to `http://localh
 - Try CDK
 - VPN Client (add workflow only)
 - Add CircleCI
+- Try EFS with lambda
 
 ## Heads-up
 
