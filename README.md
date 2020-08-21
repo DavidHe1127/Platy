@@ -44,6 +44,8 @@ Lastly, run `docker-compose up` from project root and navigate to `http://localh
 ## TODOs
 
 - Lambda in python using [docker-lambda](https://github.com/lambci/docker-lambda)
+- Try send logs from ec2 to cw using cw agent
+https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/QuickStartEC2Instance.html
 - Add NAT Gateway
 - Try CDK
 - VPN Client (add workflow only)
