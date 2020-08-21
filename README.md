@@ -48,6 +48,7 @@ Lastly, run `docker-compose up` from project root and navigate to `http://localh
 https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/install-CloudWatch-Agent-on-EC2-Instance.html
 - Add NAT Gateway
 - Try CDK
+- DynamoDB stream
 - VPN Client (add workflow only)
 - Add CircleCI
 - Try EFS with lambda
