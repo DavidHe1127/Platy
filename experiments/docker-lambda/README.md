@@ -1,6 +1,6 @@
 ## Docker Lambda (Python)
 
-It makes local development of your lambda possible by utilising Docker.
+It makes local development of your lambda possible by baking almost-identical envrionment into Docker image
 
 ## Experiment notes
 
