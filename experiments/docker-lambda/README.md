@@ -8,5 +8,5 @@ It makes local development of your lambda possible by baking almost-identical en
 
 ## Reference
 
-[Docker Lambda](https://github.com/lambci/docker-lambda)
-[AWS services event](https://docs.aws.amazon.com/lambda/latest/dg/lambda-services.html)
+- [Docker Lambda](https://github.com/lambci/docker-lambda)
+- [AWS services event](https://docs.aws.amazon.com/lambda/latest/dg/lambda-services.html)
