@@ -43,9 +43,8 @@ Lastly, run `docker-compose up` from project root and navigate to `http://localh
 
 ## TODOs
 
-- Lambda in python using [docker-lambda](https://github.com/lambci/docker-lambda)
-- Try gomplate + stackup to demon cfn templating
 - idp https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers.html
+- DataDog ECS/lambda monitoring
 - Try send logs from ec2 to cw using cw agent
 https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/install-CloudWatch-Agent-on-EC2-Instance.html
 - Add NAT Gateway

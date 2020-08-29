@@ -1,55 +1,21 @@
 import boto3
 import json
+import os
+import subprocess
 
-# # The calls to AWS STS AssumeRole must be signed with the access key ID
-# # and secret access key of an existing IAM user or by using existing temporary
-# # credentials such as those from another role. (You cannot call AssumeRole
-# # with the access key for the root account.) The credentials can be in
-# # environment variables or in a configuration file and will be discovered
-# # automatically by the boto3.client() function. For more information, see the
-# # Python SDK documentation:
-# # http://boto3.readthedocs.io/en/latest/reference/services/sts.html#client
+def lambda_handler(event, context):
+  s3_client = boto3.client('s3')
+  res = s3_client.list_buckets()
 
-# # create an STS client object that represents a live connection to the
-# # STS service
-# sts_client = boto3.client('sts')
+  bucket = event['Records'][0]['s3']['bucket']['name']
+  key = 'jenkins-init-scripts/Jenkinsfile'
 
-# # Call the assume_role method of the STSConnection object and pass the role
-# # ARN and a role session name.
-# assumed_role_object=sts_client.assume_role(
-#     RoleArn="arn:aws:iam::account-of-role-to-assume:role/name-of-role",
-#     RoleSessionName="AssumeRoleSession1"
-# )
+  response = s3_client.get_object(Bucket=bucket, Key=key)
 
-# # From the response that contains the assumed role, get the temporary
-# # credentials that can be used to make subsequent API calls
-# credentials=assumed_role_object['Credentials']
+  print(response['Body'].read(), type(response['Body']))
 
-# # Use the temporary credentials that AssumeRole returns to make a
-# # connection to Amazon S3
-# s3_resource=boto3.resource(
-#     's3',
-#     aws_access_key_id=credentials['AccessKeyId'],
-#     aws_secret_access_key=credentials['SecretAccessKey'],
-#     aws_session_token=credentials['SessionToken'],
-# )
-
-# # Use the Amazon S3 resource object that is now configured with the
-# # credentials to access your S3 buckets.
-# for bucket in s3_resource.buckets.all():
-#     print(bucket.name)
-
-session = boto3.Session(profile_name='qq')
-
-qq_s3_client = session.client('s3')
-
-res = qq_s3_client.list_buckets()
-
-for bucket in res['Buckets']:
-  # string interpolation
-  print(f'  {bucket["Name"]}')
-
-# for bucket in buckets:
-#   print(bucket)
-
+  return {
+    'statusCode': 200,
+    'body': json.dumps('Hello from Lambda!')
+  }
 
