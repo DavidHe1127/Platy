@@ -73,3 +73,4 @@ https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/install-CloudWatc
 - [url rewrite in reverse proxy](https://serverfault.com/questions/379675/nginx-reverse-proxy-url-rewrite)
 - [Sg rules for ALB](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/security-group-rules-reference.html)
 - [Service Discovery](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-cli-tutorial-servicediscovery.html)
+- [ECS Deep-dive](https://www.youtube.com/watch?v=qbEPae8YNbs&t=2006s)

@@ -1,6 +1,7 @@
 ## Cluster Auto Scaling Key Points
 
 - CAS relies on ECS capacity providers, which provide the link between your ECS cluster and the ASGs you want to use.
+- With CAS, there is no need to configure cluster auto-scaling (+/- compute capacity) yourself rather capacity provider deals with it on your behalf.
 - Previously, tasks that cannot be placed due to insufficient compute resources will fail immediately. Now with managed scaling policy enabled in capacity provider, tasks will go into provisioning state instead and later be deployed when more instances come up as result of scale out. Currently, it allows 100 tasks in provisioning state to be queued.
 
 #### Scaling Design/Strategy
@@ -37,7 +38,7 @@ Also to note, setting target to value below 100 means spare capacity. In the abo
 
 #3 Given M = 0, N = 2 and Target = 100
 
-When M is 0, it means no tasks are running apart from daemon one. In this case, 
+When M is 0, it means no tasks are running apart from daemon one. In this case,
 
 CapacityProviderReservation will be equal to Target only if M = N. Given M is 0, scaling policy will zero N out by scaling in 2 instances.
 
