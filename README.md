@@ -43,14 +43,12 @@ Lastly, run `docker-compose up` from project root and navigate to `http://localh
 
 ## TODOs
 
-- DataDog ECS/lambda monitoring
+- Add NAT Gateway
 - Try send logs from ec2 to cw using cw agent
 https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/install-CloudWatch-Agent-on-EC2-Instance.html
-- Add NAT Gateway
 - Try CDK
 - DynamoDB stream
 - VPN Client (add workflow only)
-- Add CircleCI
 - Try EFS with lambda
 
 ## Heads-up
@@ -65,7 +63,6 @@ https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/install-CloudWatc
 
 ## Docs
 
-- [Service Discovery](./docs/service-discovery.md)
 - [App Notes](./docs/app-notes.md)
 - [ASG with ECS](./docs/asg.md)
 
