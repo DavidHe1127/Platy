@@ -1,5 +1,7 @@
 ## NAT Gateway
 
+Given time constraint, will not implement it.
+
 ### Step-by-step
 
 - Create a `NAT Gateway` in a public subnet.
