@@ -88,7 +88,7 @@ resource "aws_internet_gateway" "dockerzon-ecs-vpc-igw" {
 
 # Route Table
 # default route mapping vpc's cidr to local to allow communication
-# between subnets is created implicitly and cannot be explicitly specified
+# between subnets is created implicitly and cannot be explicitly created
 resource "aws_route_table" "dockerzon-ecs-vpc-public-route" {
   vpc_id = aws_vpc.dockerzon-ecs-vpc.id
 
