@@ -7,3 +7,7 @@
 - [Encrypt EBS with Packer](./encrypt-ebs-w-packer/)
 - [VPC Peering](./vpc-peering/)
 - [Docker Lambda](./docker-lambda)
+- [Datadog](./datadog)
+- [NAT](./nat-gateway)
+- [Mixed instance types](./mixed-instance-type)
+- [Kinesis data stream in pulumi](./kinesis-pulumi)
