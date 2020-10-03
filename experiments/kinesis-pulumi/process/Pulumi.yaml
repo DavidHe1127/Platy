@@ -1,0 +1,3 @@
+name: data-processor
+runtime: nodejs
+description: Ingest data from Kinesis Data Stream and process it
