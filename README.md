@@ -1,8 +1,6 @@
-## Dockerzon
+## Heacs
 
-(Note, this app serves as a demo app to be deployed onto ECS)
-
-A tailored version of `dockerzon` used in `Scaling Docker on AWS` course on udemy.
+This App serves as an experimental place for cloud/devops fun stuff to take place. Besides, it hosts a contrived dummy full-stack app to demo ECS usage.
 
 The main app is created to demonstrate how you can have the trio - react app + nginx + express work together in docker. It's comprised of:
 
@@ -43,6 +41,7 @@ Lastly, run `docker-compose up` from project root and navigate to `http://localh
 
 ## TODOs
 
+- Try buildkite
 - [SAML IdP IAM](https://aws.amazon.com/blogs/security/how-to-set-up-federated-single-sign-on-to-aws-using-google-apps/)
 - [elastic cache](https://aws.amazon.com/getting-started/hands-on/boosting-mysql-database-performance-with-amazon-elasticache-for-redis/)
 - Try send logs from ec2 to cw using cw agent
