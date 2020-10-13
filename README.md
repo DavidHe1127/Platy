@@ -1,4 +1,4 @@
-## Heacs
+## Platy (ECS)
 
 This App serves as an experimental place for cloud/devops fun stuff to take place. Besides, it hosts a contrived dummy full-stack app to demo ECS usage.
 
