@@ -41,7 +41,7 @@ Lastly, run `docker-compose up` from project root and navigate to `http://localh
 
 ## TODOs
 
-- Try buildkite
+- [Prometheus Monitoring Server w/ Grafana](https://levelup.gitconnected.com/configure-a-prometheus-monitoring-server-with-a-grafana-dashboard-59faa4a42ef6)
 - [SAML IdP IAM](https://aws.amazon.com/blogs/security/how-to-set-up-federated-single-sign-on-to-aws-using-google-apps/)
 - [elastic cache](https://aws.amazon.com/getting-started/hands-on/boosting-mysql-database-performance-with-amazon-elasticache-for-redis/)
 - Try send logs from ec2 to cw using cw agent
