@@ -19,4 +19,8 @@ steps:
 ```
 - Supports hooks
 
+### How to run
 
+- Build image via `build.sh`
+- Call `run.sh` to stand up agent
+- Commit and push your changes to trigger build

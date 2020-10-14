@@ -1,6 +1,6 @@
 steps:
-  - label: "🗃"
-    command: buildkite-agent pipeline upload
+  # - label: "🗃"
+  #   command: buildkite-agent pipeline upload
 
   - label: "Example Test"
     command: echo "ok I love buildkite!"
