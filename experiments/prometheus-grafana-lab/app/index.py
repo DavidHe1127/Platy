@@ -1,9 +1,9 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from random import randrange
-
-print(__name__)
+from prometheus_flask_exporter import PrometheusMetrics
 
 app = Flask(__name__)
+metrics = PrometheusMetrics(app)
 
 people = [{
     "name":
@@ -23,8 +23,18 @@ def hello():
 
 
 @app.route('/movies')
+@metrics.counter('call_counter',
+                 'Count response type',
+                 labels={
+                     'path': request.path,
+                     'status': lambda resp: resp.status_code
+                 })
 def movies():
     num = randrange(20)
+
+    # res = lambda: request.view_args['collection_id']
+
+    # print('xxxxxxxxx',res())
 
     if num < 4:
         return {'message': 'FORBIDDEN'}, 403
