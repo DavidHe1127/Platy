@@ -26,15 +26,11 @@ def hello():
 @metrics.counter('call_counter',
                  'Count response type',
                  labels={
-                     'path': request.path,
+                     'path': lambda: request.path,
                      'status': lambda resp: resp.status_code
                  })
 def movies():
     num = randrange(20)
-
-    # res = lambda: request.view_args['collection_id']
-
-    # print('xxxxxxxxx',res())
 
     if num < 4:
         return {'message': 'FORBIDDEN'}, 403
@@ -45,4 +41,4 @@ def movies():
 
 
 if __name__ == '__main__':
-    app.run(port=3100)
+    app.run(port=3100, host='0.0.0.0')
