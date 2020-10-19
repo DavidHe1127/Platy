@@ -16,7 +16,8 @@ services:
       — 3060:3000
 
   app:
-
+    build:
+      context: ./app
 
 networks:
   platy:
