@@ -11,3 +11,5 @@
 - [NAT](./nat-gateway)
 - [Mixed instance types](./mixed-instance-type)
 - [Kinesis data stream in pulumi](./kinesis-pulumi)
+- [ElasticSearch and Kibana](./elasticsearch-kibana)
+

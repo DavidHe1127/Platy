@@ -1,0 +1,89 @@
+{
+  "cluster_name": "es-docker-cluster",
+  "status": "green",
+  "timed_out": false,
+  "number_of_nodes": 3,
+  "number_of_data_nodes": 3,
+  "active_primary_shards": 7,
+  "active_shards": 14,
+  "relocating_shards": 0,
+  "initializing_shards": 0,
+  "unassigned_shards": 0,
+  "delayed_unassigned_shards": 0,
+  "number_of_pending_tasks": 0,
+  "number_of_in_flight_fetch": 0,
+  "task_max_waiting_in_queue_millis": 0,
+  "active_shards_percent_as_number": 100,
+  "indices": {
+    ".kibana-event-log-7.9.2-000001": {
+      "status": "green",
+      "number_of_shards": 1,
+      "number_of_replicas": 1,
+      "active_primary_shards": 1,
+      "active_shards": 2,
+      "relocating_shards": 0,
+      "initializing_shards": 0,
+      "unassigned_shards": 0
+    },
+    ".apm-custom-link": {
+      "status": "green",
+      "number_of_shards": 1,
+      "number_of_replicas": 1,
+      "active_primary_shards": 1,
+      "active_shards": 2,
+      "relocating_shards": 0,
+      "initializing_shards": 0,
+      "unassigned_shards": 0
+    },
+    ".kibana_task_manager_1": {
+      "status": "green",
+      "number_of_shards": 1,
+      "number_of_replicas": 1,
+      "active_primary_shards": 1,
+      "active_shards": 2,
+      "relocating_shards": 0,
+      "initializing_shards": 0,
+      "unassigned_shards": 0
+    },
+    "ilm-history-2-000001": {
+      "status": "green",
+      "number_of_shards": 1,
+      "number_of_replicas": 1,
+      "active_primary_shards": 1,
+      "active_shards": 2,
+      "relocating_shards": 0,
+      "initializing_shards": 0,
+      "unassigned_shards": 0
+    },
+    ".apm-agent-configuration": {
+      "status": "green",
+      "number_of_shards": 1,
+      "number_of_replicas": 1,
+      "active_primary_shards": 1,
+      "active_shards": 2,
+      "relocating_shards": 0,
+      "initializing_shards": 0,
+      "unassigned_shards": 0
+    },
+    ".async-search": {
+      "status": "green",
+      "number_of_shards": 1,
+      "number_of_replicas": 1,
+      "active_primary_shards": 1,
+      "active_shards": 2,
+      "relocating_shards": 0,
+      "initializing_shards": 0,
+      "unassigned_shards": 0
+    },
+    ".kibana_1": {
+      "status": "green",
+      "number_of_shards": 1,
+      "number_of_replicas": 1,
+      "active_primary_shards": 1,
+      "active_shards": 2,
+      "relocating_shards": 0,
+      "initializing_shards": 0,
+      "unassigned_shards": 0
+    }
+  }
+}
