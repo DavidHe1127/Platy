@@ -5,7 +5,7 @@ const express = require('express');
 // HOST - A domain name or IP address of the server to issue the request to
 // when settting it to 0.0.0.0, it means listen on all interfaces
 // think of interfaces as ethernet ports. So 0.0.0.0 will make node server to handle all requests
-// being sent to the machine where node server no matter through which ethernet port
+// being sent to the HOST machine where node server is no matter through which ethernet port
 const PORT = process.env.PORT || 8000;
 const HOST = process.env.HOST || '0.0.0.0';
 
