@@ -11,3 +11,4 @@
 - [NAT](./nat-gateway)
 - [Mixed instance types](./mixed-instance-type)
 - [Kinesis data stream in pulumi](./kinesis-pulumi)
+- [BuildKite trial](../buildkite)
