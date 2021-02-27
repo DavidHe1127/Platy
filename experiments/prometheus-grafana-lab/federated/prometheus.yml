@@ -12,7 +12,8 @@ scrape_configs:
     params:
       'match[]':
         - '{job=~"prometheus.*"}'
-        - '{job="movies"}'
+        - '{__name__=~"job:.*"}'
+        # - '{job="movies"}'
     static_configs:
       - targets:
-          - 'localhost:9091'
+          - 'prometheus:9090'
