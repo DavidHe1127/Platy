@@ -19,7 +19,7 @@ scrape_configs:
           - 'nginx:443'
     scheme: https
     tls_config:
-      ca_file: /etc/prometheus/federated-prom.crt
+      ca_file: /etc/prometheus/nginx.crt
       cert_file: /etc/prometheus/federated-prom.crt
       key_file: /etc/prometheus/federated-prom.key
       server_name: federated-prom

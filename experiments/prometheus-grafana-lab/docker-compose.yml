@@ -19,6 +19,7 @@ services:
     container_name: federated-prometheus
     volumes:
       - ${PWD}/federated/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ${PWD}/prometheus/nginx.crt:/etc/prometheus/nginx.crt
       - ${PWD}/federated/federated-prom.crt:/etc/prometheus/federated-prom.crt
       - ${PWD}/federated/federated-prom.key:/etc/prometheus/federated-prom.key
     ports:
