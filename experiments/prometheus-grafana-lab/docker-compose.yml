@@ -41,8 +41,8 @@ services:
     container_name: nginx
     volumes:
       - ${PWD}/prometheus/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ${PWD}/prometheus/nginx.crt:/etc/certs/prometheus.crt:ro
-      - ${PWD}/prometheus/nginx.key:/etc/certs/prometheus.key:ro
+      - ${PWD}/prometheus/nginx.crt:/etc/certs/nginx.crt:ro
+      - ${PWD}/prometheus/nginx.key:/etc/certs/nginx.key:ro
     ports:
       - 443:443
 
