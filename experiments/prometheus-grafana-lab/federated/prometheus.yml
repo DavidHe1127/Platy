@@ -12,8 +12,14 @@ scrape_configs:
     params:
       'match[]':
         - '{job=~"prometheus.*"}'
-        - '{__name__=~"job:.*"}'
+        # - '{__name__=~"job:.*"}'
         # - '{job="movies"}'
     static_configs:
       - targets:
-          - 'prometheus:9090'
+          - 'nginx:443'
+    scheme: https
+    tls_config:
+      ca_file: /etc/prometheus/federated-prom.crt
+      cert_file: /etc/prometheus/federated-prom.crt
+      key_file: /etc/prometheus/federated-prom.key
+      server_name: federated-prom
