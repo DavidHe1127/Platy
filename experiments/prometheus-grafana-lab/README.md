@@ -15,3 +15,10 @@ nginx             | 172.22.0.5 - - [03/Mar/2021:10:48:19 +0000] "GET /prometheus
 ```
 
 ### [Prometheus Key Points](https://github.com/DavidHe1127/Mr.He_HandBook/tree/master/DevOps/prometheus)
+
+
+###
+
+```
+https://localhost:443/federate?match%5B%5D=%7Bjob%3D~%22prometheus.%2A%22%7D
+```
