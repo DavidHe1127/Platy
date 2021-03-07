@@ -46,6 +46,7 @@ services:
       - ${PWD}/prometheus/nginx.key:/etc/certs/nginx.key:ro
     ports:
       - 443:443
+      - 8080:80
 
 networks:
   platy:
