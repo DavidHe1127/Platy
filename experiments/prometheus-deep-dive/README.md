@@ -1,6 +1,6 @@
-## Example app
+## Run Example app
 
-Make calls to `/movies` endpoint before having custom metrics show up in Prometheus `/metrics`.
+`docker-compose up` then run `watch -n 2 "curl http://localhost:3100/movies"`.
 
 ## Prometheus Deep Dive
 

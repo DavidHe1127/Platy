@@ -2,7 +2,7 @@ version: '3.6'
 
 services:
   prometheus:
-    image: prom/prometheus:latest
+    image: prom/prometheus:v2.25.2
     container_name: prometheus
     volumes:
       - ${PWD}/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
