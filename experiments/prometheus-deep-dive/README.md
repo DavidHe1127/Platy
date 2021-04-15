@@ -1,3 +1,7 @@
+## Example app
+
+Make calls to `/movies` endpoint before having custom metrics show up in Prometheus `/metrics`.
+
 ## Prometheus Deep Dive
 
 ACloudGuru course

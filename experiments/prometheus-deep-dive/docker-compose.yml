@@ -21,7 +21,6 @@ services:
     ports:
       - 3100:3100
 
-
 networks:
   platy:
     name: prometheus-grafana
