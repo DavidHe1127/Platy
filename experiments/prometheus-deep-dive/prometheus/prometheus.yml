@@ -12,6 +12,7 @@ scrape_configs:
         labels:
           purpose: test
           name: movies
+    # relabel default labels
     relabel_configs:
       - source_labels: [__address__]
         target_label: service_address
