@@ -10,6 +10,13 @@ scrape_configs:
     static_configs:
       - targets: ['app:3100']
         labels:
+          name: movies
+
+  # separate job targeting metrics with test as purpose label
+  - job_name: 'movies_test'
+    static_configs:
+      - targets: ['app:3100']
+        labels:
           purpose: test
           name: movies
     # relabel default labels
