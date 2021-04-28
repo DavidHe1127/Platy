@@ -1,3 +1,7 @@
+## Run Example app
+
+`docker-compose up` then run `watch -n 2 "curl http://localhost:3100/movies"`.
+
 ## Prometheus Deep Dive
 
 ACloudGuru course
@@ -52,6 +56,23 @@ http_request_duration_seconds_bucket{le="1.0"}
   python_gc_collections_total{generation="0"} + on(name) python_gc_collections_total{generation="1"}
   # for more queries stuff, refer to Docs
   ```
+- `rate` - average rate of increase **per second** over last certain amount of time.
+- `increase` - increased amount
+- `irate` - last two data points(scrapes).
+- The `rate()` function in Prometheus looks at the history of time series over a time period, and calculates how fast it's increasing per second.
+  ```
+  # 10rps over 5 mins and scraping interval 10s
+  # rate(call_counter_total[5m]) -> (v5 - v1) / (t5 - t1) = ~0.98xxxxx
+  # increase(call_counter_total[5m]) -> (v5 - v1) / (t5 - t1) * 300 = ~29.8xxxxx
+  # irate(call_counter_total[5m]) -> (v5 - v4) / (t5 - t4) could be 0 or ~0.2 as it only takes the last 2 scraps over
+  # 5 mins and if there is no new requests between 2 last scrapes then the v5 and v4 will be the same leading substraction to 0
+  ```
+Refs: https://www.reddit.com/r/PrometheusMonitoring/comments/eyvsyl/irate_vs_rate_functions_in_prometheus/fgms966/
+      https://www.robustperception.io/irate-graphs-are-better-graphs
+
+
+### Grafana
+
 
 ### [Prometheus Key Points](https://github.com/DavidHe1127/Mr.He_HandBook/tree/master/DevOps/prometheus)
 
