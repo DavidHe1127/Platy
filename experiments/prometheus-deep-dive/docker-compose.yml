@@ -10,10 +10,12 @@ services:
       - 9090:9090
 
   grafana:
-    image: grafana/grafana:latest
+    image: grafana/grafana:6.6.2
     container_name: grafana
     ports:
       - 3060:3000
+    volumes:
+      - ${PWD}/grafana-storage:/var/lib/grafana
 
   app:
     build:
