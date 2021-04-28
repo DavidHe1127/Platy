@@ -2,6 +2,10 @@
 
 ACloudGuru course
 
+To run the demo app, run `node_exporter` from command line followed by `docker-compose up`.
+
+---
+
 ### Notes
 
 - Flask exporter exposing metrics

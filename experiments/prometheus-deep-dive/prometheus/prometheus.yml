@@ -12,3 +12,10 @@ scrape_configs:
         labels:
           purpose: test
           name: movies
+
+  - job_name: 'node'
+    static_configs:
+      - targets: ['host.docker.internal:9100']
+        labels:
+          purpose: host metrics
+          name: node_exporter
