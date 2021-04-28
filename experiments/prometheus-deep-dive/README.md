@@ -1,12 +1,10 @@
-## Run Example app
-
-`docker-compose up` then run `watch -n 2 "curl http://localhost:3100/movies"`.
-
 ## Prometheus Deep Dive
 
 ACloudGuru course
 
-To run the demo app, run `node_exporter` from command line followed by `docker-compose up`.
+### How to run?
+
+`docker-compose up` then run `watch -n 2 "curl http://localhost:3100/movies"`. If you need `node_exporter`, make sure you have it running as a separate process.
 
 ---
 
