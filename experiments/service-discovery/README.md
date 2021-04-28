@@ -7,6 +7,20 @@ By default, ecs services running on different container instances can talk to ea
 This is why Service Discovery comes into play. It allows us to bind a domain to a private ip in the form of DNS records. i.e create a A record that points specified domain to an ip.
 
 ### How
+
+Brief steps:
+
+1. Create service discovery resources i.e namespace and service discovery service (arn:aws:servicediscovery:region:aws_account_id:service/srv-utcrh6wavdkggqtk)
+2. Create ECS service and specify `serviceRegistries` with service discovery service arn in step 1.
+```
+"serviceRegistries": [
+   {
+      "registryArn": "arn:aws:servicediscovery:region:aws_account_id:service/srv-utcrh6wavdkggqtk"
+   }
+],
+```
+CloudMap will create/manage SRV/A records under the hood for you in a private hosted zone.
+
 It's implemented by creating a set of A/SRV records in a private hosted zone. These records maintain the information of your services.
 
 ### Caveats
