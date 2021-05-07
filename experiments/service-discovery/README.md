@@ -1,7 +1,5 @@
 ## Service Discovery with ECS
 
-![service-discovery-arch](service-discovery-arch.png)
-
 ### Why?
 By default, ecs services running on different container instances can talk to each other via their private ips. But how does container A know the ip of container B?
 This is why Service Discovery comes into play. It allows us to bind a domain to a private ip in the form of DNS records. i.e create a A record that points specified domain to an ip.
