@@ -19,9 +19,7 @@ Brief steps:
    }
 ],
 ```
-CloudMap will create/manage SRV/A records under the hood for you in a private hosted zone.
-
-It's implemented by creating a set of A/SRV records in a private hosted zone. These records maintain the information of your services.
+CloudMap will create/manage SRV/A records under the hood for you in a private hosted zone. Depending on chosen network mode, you might select `SRV/A` (awsvpc)  or `SRV` (bridge).
 
 ### Caveats
 [Service Discovery Considerations](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-discovery.html)
@@ -58,4 +56,4 @@ will return
 
 ### References
 
-- [What is SRV why we need one?](https://www.webhostingbuzz.com/wiki/what-srv-record-and-why-you-might-need-one/)
+- [What is SRV why we need one?]( )
