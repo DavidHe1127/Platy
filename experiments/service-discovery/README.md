@@ -19,6 +19,8 @@ Brief steps:
 ```
 CloudMap will create/manage SRV/A records under the hood for you in a private hosted zone. You can DNS query your service using either `SRV` or `A` record.Depending on chosen network mode, you might select `SRV/A` (awsvpc)  or `SRV` (bridge). Because, in `awsvpc` mode, each task is allocated with an ENI (IP) and `A` record only includes `ip`. `SRV` record includes `port/ip`.
 
+`SRV/A` record count is equal to task count in `Fargate` mode.
+
 ### Caveats
 [Service Discovery Considerations](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-discovery.html)
 
