@@ -30,3 +30,15 @@ scrape_configs:
         labels:
           purpose: host metrics
           name: node_exporter
+
+  - job_name: 'Docker Containers'
+    static_configs:
+      - targets: ['host.docker.internal:8080']
+        labels:
+          name: cadvisor
+
+  - job_name: 'Docker Daemon'
+    static_configs:
+      - targets: ['docker.for.mac.host.internal:9323']
+        labels:
+          name: docker_daemon
