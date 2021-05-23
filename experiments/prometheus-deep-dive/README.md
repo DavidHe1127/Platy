@@ -76,4 +76,6 @@ Refs: https://www.reddit.com/r/PrometheusMonitoring/comments/eyvsyl/irate_vs_rat
 
 ### Pushgateway
 
+Used to help Prom collect metrics from short-lived processes. i.e batch jobs. batch jobs (push) ---> PushGateway <--- (pull) Prom.
+
 After `docker-compose up`, run `cleanup` script in `pushgateway` dir. See `job_executed_successful` in `graph` tab on Prom.
