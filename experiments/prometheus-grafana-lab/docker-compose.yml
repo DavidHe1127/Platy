@@ -34,13 +34,11 @@ services:
   app:
     build:
       context: ./app
-    network_mode: host
     ports:
       - 3100:3100
 
   nginx:
     image: nginx:1.15
-    network_mode: host
     container_name: nginx
     volumes:
       - ./prometheus/nginx:/etc/nginx:ro
