@@ -41,7 +41,7 @@ services:
     image: nginx:1.15
     container_name: nginx
     volumes:
-      - ./prometheus/nginx.conf:/etc/nginx:ro
+      - ./prometheus/nginx:/etc/nginx:ro
       - ./prometheus/certs:/etc/certs:ro
     ports:
       - 8443:8443
