@@ -34,11 +34,13 @@ services:
   app:
     build:
       context: ./app
+    network_mode: host
     ports:
       - 3100:3100
 
   nginx:
     image: nginx:1.15
+    network_mode: host
     container_name: nginx
     volumes:
       - ./prometheus/nginx:/etc/nginx:ro
@@ -46,8 +48,3 @@ services:
     ports:
       - 8443:8443
       - 8080:80
-
-networks:
-  platy:
-    name: prometheus-grafana
-    driver: bridge
