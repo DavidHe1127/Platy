@@ -21,6 +21,10 @@ people = [{
 def hello():
     return {'hello': 'world'}
 
+@app.route('/bye')
+def bye():
+    return {'bye': 'world'}
+
 
 @app.route('/movies')
 @metrics.counter('call_counter',
