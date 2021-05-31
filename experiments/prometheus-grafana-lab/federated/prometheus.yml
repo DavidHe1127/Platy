@@ -1,0 +1,25 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    server: 'global-monitor'
+
+scrape_configs:
+  - job_name: 'federate'
+    scrape_interval: 15s
+    honor_labels: true
+    metrics_path: '/federate'
+    params:
+      'match[]':
+        - '{job=~"prometheus.*"}'
+        # - '{__name__=~"job:.*"}'
+        # - '{job="movies"}'
+    static_configs:
+      - targets:
+          - 'nginx:443'
+    scheme: https
+    tls_config:
+      ca_file: /etc/prometheus/nginx.crt
+      cert_file: /etc/prometheus/federated-prom.crt
+      key_file: /etc/prometheus/federated-prom.key
+      server_name: nginx
