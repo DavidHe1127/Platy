@@ -26,5 +26,5 @@ https://localhost:443/federate?match%5B%5D=%7Bjob%3D~%22prometheus.%2A%22%7D
 nginx host network
 ```
 docker run --rm --net host --userns=host -d prometheus-grafana-lab_app
-docker run --rm --net host --userns=host -d nginx
+docker run --rm --net host -v $(pwd)/prometheus/nginx:/etc/nginx -v $(pwd)/prometheus/certs:/etc/certs --userns=host -d nginx:1.15
 ```
