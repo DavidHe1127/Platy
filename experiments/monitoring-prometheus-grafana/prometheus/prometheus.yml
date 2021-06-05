@@ -21,8 +21,12 @@ scrape_configs:
           name: movies
     # relabel default labels
     relabel_configs:
-      - source_labels: [__address__]
-        target_label: service_address
+      # default action is replace. It will set value of instance to be that of name - instance="movies"
+      - source_labels: [name]
+        target_label: instance
+      # - source_labels: [name]
+      #   regex: movies
+      #   action: drop
 
   - job_name: 'node'
     static_configs:
