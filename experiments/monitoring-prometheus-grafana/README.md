@@ -1,6 +1,6 @@
 ## Prometheus Deep Dive
 
-ACloudGuru course
+Codebase is created for labs in ACloudGuru course but can also be used for other experimental purposes.
 
 ### How to run?
 
