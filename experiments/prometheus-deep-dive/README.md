@@ -71,7 +71,6 @@ Refs: https://www.reddit.com/r/PrometheusMonitoring/comments/eyvsyl/irate_vs_rat
 
 ### Grafana
 
-
 ### [Prometheus Key Points](https://github.com/DavidHe1127/Mr.He_HandBook/tree/master/DevOps/prometheus)
 
 ### Pushgateway
