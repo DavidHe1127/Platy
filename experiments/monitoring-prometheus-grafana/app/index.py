@@ -23,6 +23,8 @@ def hello():
 
 
 @app.route('/movies')
+# only track custom metrics not default ones
+@metrics.do_not_track()
 @metrics.counter('call_counter',
                  'Count response type',
                  labels={

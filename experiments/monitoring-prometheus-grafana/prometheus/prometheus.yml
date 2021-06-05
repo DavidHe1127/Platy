@@ -1,0 +1,50 @@
+global:
+  scrape_interval: 5s
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  - job_name: 'movies'
+    static_configs:
+      - targets: ['app:3100']
+        labels:
+          name: movies
+
+  # separate job targeting metrics with test as purpose label
+  - job_name: 'movies_test'
+    static_configs:
+      - targets: ['app:3100']
+        labels:
+          purpose: test
+          name: movies
+    # relabel default labels
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: service_address
+
+  - job_name: 'node'
+    static_configs:
+      - targets: ['host.docker.internal:9100']
+        labels:
+          purpose: host metrics
+          name: node_exporter
+
+  - job_name: 'Docker Containers'
+    static_configs:
+      - targets: ['host.docker.internal:8080']
+        labels:
+          name: cadvisor
+
+  - job_name: 'Docker Daemon'
+    static_configs:
+      - targets: ['docker.for.mac.host.internal:9323']
+        labels:
+          name: docker_daemon
+
+  - job_name: 'Pushgateway'
+    # this will allow labels set by metric pushing script to overwrite label here - Pushgateway in this case
+    honor_labels: true
+    static_configs:
+      - targets: ['docker.for.mac.host.internal:9091']
