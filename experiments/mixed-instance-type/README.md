@@ -18,7 +18,7 @@ It allows you to launch ec2s with multiple instance types. i.e spot + on-demand 
 
 ### Best practices
 
-- Use default max price which is on-demand price.
+- Use default max price which is on-demand price. That way, your spot instances will not be terminated due to prices increase. But could still be terminated because AWS might not have enough capacity in the Spot instance pool.
 - Use multiple instance types
 - When using `lowest price`, to lower the impact of spot instance interruptions, specify a high number of spot instance pools. i.e set pool count to 10 when running critical mission like a web application or 2 when running a non-critical mission like batch job.
 - Setup event bridge to send 2 minute warning to SNS/lambda prior to spot instance terminations.
