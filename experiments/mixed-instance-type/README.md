@@ -12,8 +12,8 @@ It allows you to launch ec2s with multiple instance types. i.e spot + on-demand 
 |---|--------|
 |   |   20   |
 | on-demand instance  |    5    |
-| over base on-demand 80%   |   12     |
-| over base spot 80%   |   8     |
+| over base on-demand 60%   |   9     |
+| over base spot 40%   |   6     |
 - Spot instances will either be interrupted by higher bidding price OR insufficient capacity.
 
 ### Best practices
