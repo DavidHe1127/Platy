@@ -1,5 +1,7 @@
 global:
   scrape_interval: 5s
+  external_labels:
+    shard: 1
 
 scrape_configs:
   - job_name: 'prometheus'
@@ -27,6 +29,15 @@ scrape_configs:
       # - source_labels: [name]
       #   regex: movies
       #   action: drop
+      - source_labels: [__address__]
+        # 2 shards
+        modulus:       2
+        target_label:  __tmp_hash
+        action:        hashmod
+        # shard0
+      - source_labels: [__tmp_hash]
+        regex:         ^0$
+        action:        keep
 
   - job_name: 'node'
     static_configs:

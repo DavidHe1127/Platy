@@ -5,9 +5,25 @@ services:
     image: prom/prometheus:v2.25.2
     container_name: prometheus
     volumes:
-      - ${PWD}/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ${PWD}/prometheus/prometheus.main.yml:/etc/prometheus/prometheus.yml
     ports:
       - 9090:9090
+
+  prometheus-shard0:
+    image: prom/prometheus:v2.25.2
+    container_name: prometheus-shard0
+    volumes:
+      - ${PWD}/prometheus/prometheus.shard0.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - 9091:9090
+
+  prometheus-shard1:
+    image: prom/prometheus:v2.25.2
+    container_name: prometheus-shard1
+    volumes:
+      - ${PWD}/prometheus/prometheus.shard1.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - 9092:9090
 
   grafana:
     image: grafana/grafana:6.6.2
@@ -23,10 +39,10 @@ services:
     ports:
       - 3100:3100
 
-  pushgateway:
-    image: prom/pushgateway:v1.4.0
-    ports:
-      - 9091:9091
+  # pushgateway:
+  #   image: prom/pushgateway:v1.4.0
+  #   ports:
+  #     - 9091:9091
 
 networks:
   platy:
