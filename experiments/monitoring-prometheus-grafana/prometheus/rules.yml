@@ -1,0 +1,10 @@
+groups:
+  - name: "alerts"
+    rules:
+      - alert: "DavidTest"
+        annotations:
+          summary: "Traffic Processor sentinel-v2 metrics are absent."
+          description: "Traffic Processor's sentinel-v2 metrics have been missing for 10 minutes."
+          image: "https://monitoring.g.kasadapolyform.net/grafana/d/MTb3XJ4Gk/production-deployment-grouped?viewPanel=128&var-deploymentname={{ $labels.cf_stack_name }}"
+        expr: "up == 1"
+        for: "1m"

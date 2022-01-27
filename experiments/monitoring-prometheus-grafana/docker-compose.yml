@@ -6,16 +6,27 @@ services:
     container_name: prometheus
     volumes:
       - ${PWD}/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ${PWD}/prometheus/rules.yml:/etc/prometheus/rules.yml
     ports:
       - 9090:9090
 
-  grafana:
-    image: grafana/grafana:6.6.2
-    container_name: grafana
-    ports:
-      - 3060:3000
+  # grafana:
+  #   image: grafana/grafana:6.6.2
+  #   container_name: grafana
+  #   ports:
+  #     - 3060:3000
+  #   volumes:
+  #     - ${PWD}/grafana-storage:/var/lib/grafana
+
+  alertmanager:
+    image: prom/alertmanager:v0.23.0
+    container_name: alertmanager
+    command: --config.file /etc/alertmanager/config.yml --storage.path /var/lib/alertmanager
     volumes:
-      - ${PWD}/grafana-storage:/var/lib/grafana
+      - ${PWD}/alertmanager/config.yml:/etc/alertmanager/config.yml
+      - ${PWD}/alertmanager:/var/lib/alertmanager
+    ports:
+      - 9093:9093
 
   app:
     build:
@@ -23,10 +34,10 @@ services:
     ports:
       - 3100:3100
 
-  pushgateway:
-    image: prom/pushgateway:v1.4.0
-    ports:
-      - 9091:9091
+  # pushgateway:
+  #   image: prom/pushgateway:v1.4.0
+  #   ports:
+  #     - 9091:9091
 
 networks:
   platy:

@@ -78,3 +78,9 @@ Refs: https://www.reddit.com/r/PrometheusMonitoring/comments/eyvsyl/irate_vs_rat
 Used to help Prom collect metrics from short-lived processes. i.e batch jobs. batch jobs (push) ---> PushGateway <--- (pull) Prom.
 
 After `docker-compose up`, run `cleanup` script in `pushgateway` dir. See `job_executed_successful` in `graph` tab on Prom.
+
+### AlertManager
+
+AM loads `config.yml` file to setup receivers. Prom configures AM in `prometheus.yml` and loads alerting `rules.yml`.
+
+Run a local http server for receiving alerts `ws --port 8080 --log.format -f combined -v`. See [ws](https://github.com/lwsjs/local-web-server) for more details.
