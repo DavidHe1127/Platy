@@ -1,6 +1,16 @@
 global:
   scrape_interval: 5s
 
+
+alerting:
+  alertmanagers:
+    - static_configs:
+      - targets:
+        - alertmanager:9093
+
+rule_files:
+  - /etc/prometheus/rules.yml
+
 scrape_configs:
   - job_name: 'prometheus'
     static_configs:
@@ -28,27 +38,27 @@ scrape_configs:
       #   regex: movies
       #   action: drop
 
-  - job_name: 'node'
-    static_configs:
-      - targets: ['host.docker.internal:9100']
-        labels:
-          purpose: host metrics
-          name: node_exporter
+  # - job_name: 'node'
+  #   static_configs:
+  #     - targets: ['host.docker.internal:9100']
+  #       labels:
+  #         purpose: host metrics
+  #         name: node_exporter
 
-  - job_name: 'Docker Containers'
-    static_configs:
-      - targets: ['host.docker.internal:8080']
-        labels:
-          name: cadvisor
+  # - job_name: 'Docker Containers'
+  #   static_configs:
+  #     - targets: ['host.docker.internal:8080']
+  #       labels:
+  #         name: cadvisor
 
-  - job_name: 'Docker Daemon'
-    static_configs:
-      - targets: ['docker.for.mac.host.internal:9323']
-        labels:
-          name: docker_daemon
+  # - job_name: 'Docker Daemon'
+  #   static_configs:
+  #     - targets: ['docker.for.mac.host.internal:9323']
+  #       labels:
+  #         name: docker_daemon
 
-  - job_name: 'Pushgateway'
-    # this will allow labels set by metric pushing script to overwrite label here - Pushgateway in this case
-    honor_labels: true
-    static_configs:
-      - targets: ['docker.for.mac.host.internal:9091']
+  # - job_name: 'Pushgateway'
+  #   # this will allow labels set by metric pushing script to overwrite label here - Pushgateway in this case
+  #   honor_labels: true
+  #   static_configs:
+  #     - targets: ['docker.for.mac.host.internal:9091']

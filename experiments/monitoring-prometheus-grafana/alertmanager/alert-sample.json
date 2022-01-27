@@ -1,0 +1,84 @@
+{
+  "server.request": {
+    "requestId": 1,
+    "method": "POST",
+    "url": "/",
+    "headers": {
+      "host": "host.docker.internal:8080",
+      "user-agent": "Alertmanager/0.23.0",
+      "content-length": "2346",
+      "content-type": "application/json"
+    },
+    "body": {
+      "receiver": "test",
+      "status": "firing",
+      "alerts": [
+        {
+          "status": "firing",
+          "labels": {
+            "alertname": "DavidTest",
+            "instance": "app:3100",
+            "job": "movies",
+            "name": "movies"
+          },
+          "annotations": {
+            "description": "Traffic Processor's sentinel-v2 metrics have been missing for 10 minutes.",
+            "image": "https://monitoring.g.kasadapolyform.net/grafana/d/MTb3XJ4Gk/production-deployment-grouped?viewPanel=128&var-deploymentname=",
+            "summary": "Traffic Processor sentinel-v2 metrics are absent."
+          },
+          "startsAt": "2022-01-27T05:12:36.453620434Z",
+          "endsAt": "0001-01-01T00:00:00Z",
+          "generatorURL": "http://4f339b8f48c7:9090/graph?g0.expr=up+%3D%3D+1&g0.tab=1",
+          "fingerprint": "438df660257ed8f0"
+        },
+        {
+          "status": "firing",
+          "labels": {
+            "alertname": "DavidTest",
+            "instance": "movies",
+            "job": "movies_test",
+            "name": "movies",
+            "purpose": "test"
+          },
+          "annotations": {
+            "description": "Traffic Processor's sentinel-v2 metrics have been missing for 10 minutes.",
+            "image": "https://monitoring.g.kasadapolyform.net/grafana/d/MTb3XJ4Gk/production-deployment-grouped?viewPanel=128&var-deploymentname=",
+            "summary": "Traffic Processor sentinel-v2 metrics are absent."
+          },
+          "startsAt": "2022-01-27T05:12:36.453620434Z",
+          "endsAt": "0001-01-01T00:00:00Z",
+          "generatorURL": "http://4f339b8f48c7:9090/graph?g0.expr=up+%3D%3D+1&g0.tab=1",
+          "fingerprint": "cbe5257c0899e2e9"
+        },
+        {
+          "status": "firing",
+          "labels": {
+            "alertname": "DavidTest",
+            "instance": "localhost:9090",
+            "job": "prometheus"
+          },
+          "annotations": {
+            "description": "Traffic Processor's sentinel-v2 metrics have been missing for 10 minutes.",
+            "image": "https://monitoring.g.kasadapolyform.net/grafana/d/MTb3XJ4Gk/production-deployment-grouped?viewPanel=128&var-deploymentname=",
+            "summary": "Traffic Processor sentinel-v2 metrics are absent."
+          },
+          "startsAt": "2022-01-27T05:12:36.453620434Z",
+          "endsAt": "0001-01-01T00:00:00Z",
+          "generatorURL": "http://4f339b8f48c7:9090/graph?g0.expr=up+%3D%3D+1&g0.tab=1",
+          "fingerprint": "fff2f1611f99ac73"
+        }
+      ],
+      "groupLabels": {},
+      "commonLabels": { "alertname": "DavidTest" },
+      "commonAnnotations": {
+        "description": "Traffic Processor's sentinel-v2 metrics have been missing for 10 minutes.",
+        "image": "https://monitoring.g.kasadapolyform.net/grafana/d/MTb3XJ4Gk/production-deployment-grouped?viewPanel=128&var-deploymentname=",
+        "summary": "Traffic Processor sentinel-v2 metrics are absent."
+      },
+      "externalURL": "http://48e044e03d52:9093",
+      "version": "4",
+      "groupKey": "{}:{}",
+      "truncatedAlerts": 0
+    }
+  }
+}
