@@ -45,11 +45,11 @@ scrape_configs:
   #         purpose: host metrics
   #         name: node_exporter
 
-  # - job_name: 'Docker Containers'
-  #   static_configs:
-  #     - targets: ['host.docker.internal:8080']
-  #       labels:
-  #         name: cadvisor
+  - job_name: 'cadvisor'
+    static_configs:
+      - targets: ['cadvisor:8080']
+        labels:
+          name: cadvisor
 
   # - job_name: 'Docker Daemon'
   #   static_configs:
