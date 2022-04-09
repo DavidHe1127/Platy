@@ -1,7 +1,7 @@
 route:
   # If an alert has successfully been sent, wait 'repeat_interval' to resend them.
   repeat_interval: 10s
-  #  A default receiver
+  #  A default receiver. if incoming events match no route, it goes to default receiver.
   receiver: test
 
 receivers:
