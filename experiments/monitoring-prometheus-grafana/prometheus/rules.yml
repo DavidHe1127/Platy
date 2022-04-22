@@ -3,8 +3,24 @@ groups:
     rules:
       - alert: "DavidTest"
         annotations:
-          summary: "Traffic Processor sentinel-v2 metrics are absent."
-          description: "Traffic Processor's sentinel-v2 metrics have been missing for 10 minutes."
-          image: "https://monitoring.g.kasadapolyform.net/grafana/d/MTb3XJ4Gk/production-deployment-grouped?viewPanel=128&var-deploymentname={{ $labels.cf_stack_name }}"
-        expr: "up == 0"
+          summary: "Your summary"
+          description: "Your description"
+          image: "Visualization dashboard"
+        expr: up{instance="localhost:9090", job="prometheus"} == 1
         for: "1m"
+
+      # - alert: "foo"
+      #   annotations:
+      #     summary: "foo"
+      #     description: "a test alert foo"
+      #   expr: up{instance="cadvisor:8080", job="cadvisor", name="cadvisor"} == 1
+      #   for: "1m"
+
+      # - alert: "bar"
+      #   annotations:
+      #     summary: "bar"
+      #     description: "a test alert bar"
+      #   expr: up{instance="app:3100", job="movies", name="movies"} == 1
+      #   for: "1m"
+
+
