@@ -9,4 +9,4 @@ route:
 receivers:
   - name: 'event-orchestration'
     pagerduty_configs:
-    - service_key: R02JKPMGIRUXNAD82FDCPGRSM1F4XP4W
+    - service_key: YOUR_PD_INTEGRATION_KEY
