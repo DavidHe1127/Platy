@@ -1,10 +1,12 @@
 route:
   # If an alert has successfully been sent, wait 'repeat_interval' to resend them.
   repeat_interval: 10s
-  #  A default receiver. if incoming events match no route, it goes to default receiver.
-  receiver: test
+  # A default receiver. if incoming events match no route, it goes to default receiver.
+  receiver: event-orchestration
+  # prevent alert aggregation so that similar alerts with different job labels are sent individually
+  group_by: ['job']
 
 receivers:
-  - name: 'test'
-    webhook_configs:
-      - url: 'http://host.docker.internal:8080'
+  - name: 'event-orchestration'
+    pagerduty_configs:
+    - service_key: R02JKPMGIRUXNAD82FDCPGRSM1F4XP4W
